@@ -37,6 +37,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
 			location.href="http://www.google.es";
+			var ref = window.open('http://apache.org', '_blank', 'location=yes');
+			ref.addEventListener('loadstart', function() { alert(event.url); });
             //app.initialize();
         </script>
     </body>
