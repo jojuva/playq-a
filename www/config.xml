@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.uoc.jojuva.playqa" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Play Q&amp;A</name>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>HelloWorld</name>
     <description>
-        Play Q&amp;A - Application for students.
+        Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="jonas.julve@gmail.com" href="http://www.uoc.edu">
-        Jonás Julve
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
-    <preference name="phonegap-version" value="2.8.0" />
-	<preference name="permissions" value="none" />
+    <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
@@ -38,8 +37,6 @@
     <icon gap:platform="webos" src="res/icon/webos/icon-64.png" />
     <icon gap:platform="winphone" src="res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icon/windows-phone/icon-173.png" />
-    <gap:platform name="ios" />
-    <gap:platform name="android" />
     <gap:splash gap:density="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
     <gap:splash gap:density="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
     <gap:splash gap:density="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
@@ -50,7 +47,6 @@
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
-    <gap:plugin name="org.apache.cordova.core.inappbrowser" />
     <access origin="http://127.0.0.1*" />
     <content src="index.html" />
 </widget>

@@ -11,7 +11,6 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-	<preference name="phonegap-version" value="2.8.0" />
     <access origin="http://127.0.0.1*" />
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
@@ -29,8 +28,6 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-	    <gap:plugin name="org.apache.cordova.core.inappbrowser" />
-
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
