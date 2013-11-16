@@ -280,7 +280,7 @@ jasmine.HtmlReporterHelpers.addHelpers(jasmine.HtmlReporter);jasmine.HtmlReporte
   };
 
   this.complete = function() {
-    dom.alert.removeChild(this.runningAlert);
+    dom.alert.Child(this.runningAlert);
 
     this.skippedAlert.innerHTML = "Ran " + this.runningSpecCount + " of " + specPluralizedFor(this.totalSpecCount) + " - run all";
 

@@ -82,7 +82,7 @@ var require,
         };
     };
 
-    define.remove = function (id) {
+    define. = function (id) {
         delete modules[id];
     };
 
@@ -103,13 +103,13 @@ var channel = require('cordova/channel');
 var platform = require('cordova/platform');
 
 /**
- * Intercept calls to addEventListener + removeEventListener and handle deviceready,
+ * Intercept calls to addEventListener + EventListener and handle deviceready,
  * resume, and pause events.
  */
 var m_document_addEventListener = document.addEventListener;
-var m_document_removeEventListener = document.removeEventListener;
+var m_document_EventListener = document.EventListener;
 var m_window_addEventListener = window.addEventListener;
-var m_window_removeEventListener = window.removeEventListener;
+var m_window_EventListener = window.EventListener;
 
 /**
  * Houses custom event handlers to intercept on document + window event listeners.
@@ -135,23 +135,23 @@ window.addEventListener = function(evt, handler, capture) {
     }
 };
 
-document.removeEventListener = function(evt, handler, capture) {
+document.EventListener = function(evt, handler, capture) {
     var e = evt.toLowerCase();
     // If unsubscribing from an event that is handled by a plugin
     if (typeof documentEventHandlers[e] != "undefined") {
         documentEventHandlers[e].unsubscribe(handler);
     } else {
-        m_document_removeEventListener.call(document, evt, handler, capture);
+        m_document_EventListener.call(document, evt, handler, capture);
     }
 };
 
-window.removeEventListener = function(evt, handler, capture) {
+window.EventListener = function(evt, handler, capture) {
     var e = evt.toLowerCase();
     // If unsubscribing from an event that is handled by a plugin
     if (typeof windowEventHandlers[e] != "undefined") {
         windowEventHandlers[e].unsubscribe(handler);
     } else {
-        m_window_removeEventListener.call(window, evt, handler, capture);
+        m_window_EventListener.call(window, evt, handler, capture);
     }
 };
 
@@ -175,7 +175,7 @@ var cordova = {
     version:CORDOVA_JS_BUILD_LABEL,
     platformId:platform.id,
     /**
-     * Methods to add/remove your own addEventListener hijacking on document + window.
+     * Methods to add/ your own addEventListener hijacking on document + window.
      */
     addWindowEventHandler:function(event) {
         return (windowEventHandlers[event] = channel.create(event));
@@ -186,10 +186,10 @@ var cordova = {
     addDocumentEventHandler:function(event) {
         return (documentEventHandlers[event] = channel.create(event));
     },
-    removeWindowEventHandler:function(event) {
+    WindowEventHandler:function(event) {
         delete windowEventHandlers[event];
     },
-    removeDocumentEventHandler:function(event) {
+    DocumentEventHandler:function(event) {
         delete documentEventHandlers[event];
     },
     /**
@@ -198,8 +198,8 @@ var cordova = {
      * @return object
      */
     getOriginalHandlers: function() {
-        return {'document': {'addEventListener': m_document_addEventListener, 'removeEventListener': m_document_removeEventListener},
-        'window': {'addEventListener': m_window_addEventListener, 'removeEventListener': m_window_removeEventListener}};
+        return {'document': {'addEventListener': m_document_addEventListener, 'EventListener': m_document_EventListener},
+        'window': {'addEventListener': m_window_addEventListener, 'EventListener': m_window_EventListener}};
     },
     /**
      * Method to fire event from native code
@@ -1581,7 +1581,7 @@ utils.arrayIndexOf = function(a, item) {
 /**
  * Returns whether the item was found in the array.
  */
-utils.arrayRemove = function(a, item) {
+utils.array = function(a, item) {
     var index = utils.arrayIndexOf(a, item);
     if (index != -1) {
         a.splice(index, 1);

@@ -557,9 +557,9 @@ public class InAppBrowser extends CordovaPlugin {
                 settings.setDomStorageEnabled(true);
 
                 if (clearAllCache) {
-                    CookieManager.getInstance().removeAllCookie();
+                    CookieManager.getInstance().AllCookie();
                 } else if (clearSessionCache) {
-                    CookieManager.getInstance().removeSessionCookie();
+                    CookieManager.getInstance().SessionCookie();
                 }
 
                 inAppWebView.loadUrl(url);

@@ -1143,7 +1143,7 @@ jasmine.Matchers = function(env, actual, spec, opt_isNot) {
   this.reportWasCalled_ = false;
 };
 
-// todo: @deprecated as of Jasmine 0.11, remove soon [xw]
+// todo: @deprecated as of Jasmine 0.11,  soon [xw]
 jasmine.Matchers.pp = function(str) {
   throw new Error("jasmine.Matchers.pp() is no longer supported, please use jasmine.pp() instead!");
 };
@@ -2273,7 +2273,7 @@ jasmine.Spec.prototype.finishCallback = function() {
 };
 
 jasmine.Spec.prototype.finish = function(onComplete) {
-  this.removeAllSpies();
+  this.AllSpies();
   this.finishCallback();
   if (onComplete) {
     onComplete();
@@ -2361,7 +2361,7 @@ jasmine.Spec.prototype.spyOn = function(obj, methodName, ignoreMethodDoesntExist
   return spyObj;
 };
 
-jasmine.Spec.prototype.removeAllSpies = function() {
+jasmine.Spec.prototype.AllSpies = function() {
   for (var i = 0; i < this.spies_.length; i++) {
     var spy = this.spies_[i];
     spy.baseObj[spy.methodName] = spy.originalValue;

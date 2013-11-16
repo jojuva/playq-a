@@ -33,7 +33,7 @@ Methods
 ----------
 
 - addEventListener
-- removeEventListener
+- EventListener
 - close
 
 Permissions
@@ -118,12 +118,12 @@ Full Example
       </body>
     </html>
 
-removeEventListener
+EventListener
 ===================
 
-> Removes a listener for an event from the `InAppBrowser`.
+> s a listener for an event from the `InAppBrowser`.
 
-    ref.removeEventListener(eventname, callback);
+    ref.EventListener(eventname, callback);
 
 - __ref__: reference to the `InAppBrowser` window. _(InAppBrowser)_
 - __eventname__: the event to stop listening for. _(String)_
@@ -149,7 +149,7 @@ Quick Example
     var ref = window.open('http://apache.org', '_blank', 'location=yes');
     var myCallback = function() { alert(event.url); }
     ref.addEventListener('loadstart', myCallback);
-    ref.removeEventListener('loadstart', myCallback);
+    ref.EventListener('loadstart', myCallback);
 
 Full Example
 ------------
@@ -157,7 +157,7 @@ Full Example
     <!DOCTYPE html>
     <html>
       <head>
-        <title>InAppBrowser.removeEventListener Example</title>
+        <title>InAppBrowser.EventListener Example</title>
 
         <script type="text/javascript" charset="utf-8" src="cordova-x.x.x.js"></script>
         <script type="text/javascript" charset="utf-8">
@@ -183,10 +183,10 @@ Full Example
 
         function iabClose(event) {
              alert(event.type);
-             iabRef.removeEventListener('loadstart', iabLoadStart);
-             iabRef.removeEventListener('loadstop', iabLoadStop);
-             iabRef.removeEventListener('loaderror', iabLoadError);
-             iabRef.removeEventListener('exit', iabClose);
+             iabRef.EventListener('loadstart', iabLoadStart);
+             iabRef.EventListener('loadstop', iabLoadStop);
+             iabRef.EventListener('loaderror', iabLoadError);
+             iabRef.EventListener('exit', iabClose);
         }
 
         // device APIs are available
@@ -195,7 +195,7 @@ Full Example
              iabRef = window.open('http://apache.org', '_blank', 'location=yes');
              iabRef.addEventListener('loadstart', iabLoadStart);
              iabRef.addEventListener('loadstop', iabLoadStop);
-             iabRef.removeEventListener('loaderror', iabLoadError);
+             iabRef.EventListener('loaderror', iabLoadError);
              iabRef.addEventListener('exit', iabClose);
         }
 
@@ -320,8 +320,8 @@ Full Example
         }
 
         function iabClose(event) {
-             iabRef.removeEventListener('loadstop', replaceHeaderImage);
-             iabRef.removeEventListener('exit', iabClose);
+             iabRef.EventListener('loadstop', replaceHeaderImage);
+             iabRef.EventListener('exit', iabClose);
         }
 
         // device APIs are available
@@ -394,8 +394,8 @@ Full Example
         }
 
         function iabClose(event) {
-             iabRef.removeEventListener('loadstop', changeBackgroundColor);
-             iabRef.removeEventListener('exit', iabClose);
+             iabRef.EventListener('loadstop', changeBackgroundColor);
+             iabRef.EventListener('exit', iabClose);
         }
 
         // device APIs are available

@@ -32,7 +32,7 @@ var IAB = {
 
     close: function (win,lose) {
         if (browserWrap) {
-            browserWrap.parentNode.removeChild(browserWrap);
+            browserWrap.parentNode.Child(browserWrap);
             browserWrap = null;
         }
     },

@@ -49,7 +49,7 @@ InAppBrowser.prototype = {
             this.channels[eventname].subscribe(f);
         }
     },
-    removeEventListener: function(eventname, f) {
+    EventListener: function(eventname, f) {
         if (eventname in this.channels) {
             this.channels[eventname].unsubscribe(f);
         }

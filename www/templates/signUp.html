@@ -1,0 +1,26 @@
+<div class="box_dialog_login ui-btn-corner-all">
+	<form method="post">
+		<div id="form-signup" class="form-signup">
+			<div id="errors-signup" class="errors hide"></div>
+			<div>
+				<label id="username-label" class="ui-input-text" data-i18n="signup.form.username"></label>
+				<input type="text" name="username" id="username" value="" data-validate-field="username"/>
+			</div>
+			<div>
+				<label id="email-label" class="ui-input-text" data-i18n="signup.form.email"></label>
+				<input type="email" name="email" id="email" autocomplete="off" value="" data-validate-field="email"/>
+			</div>
+			<div>
+				<label id="password-label" class="ui-input-text" data-i18n="signup.form.password"></label>
+				<input type="password" name="password" id="password" autocomplete="off" value="" data-validate-field="password"/>
+			</div>
+			<div>
+				<label id="repeatpassword-label" class="ui-input-text" data-i18n="signup.form.repeat_password"></label>
+				<input type="password" name="repeatpassword" id="repeatpassword" autocomplete="off" value="" data-validate-field="repeatpassword"/>
+			</div>
+			<div id="error-message-password" class="error_message hide" data-i18n="error.failRepeatPassword"></div>
+		</div>
+		
+		<a id="signup_btn" data-role="button" class="ui-button-bg all-width margin-top-btn" data-i18n="buttons.signup"></a>
+	</form>
+</div>

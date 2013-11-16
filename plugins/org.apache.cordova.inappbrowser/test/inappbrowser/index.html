@@ -191,7 +191,7 @@
     }
     function closeHidden() {
        if(!!hiddenwnd ) {
-           hiddenwnd.removeEventListener('loadstop',loadlistener);
+           hiddenwnd.EventListener('loadstop',loadlistener);
            hiddenwnd.close();
            hiddenwnd=null;
        }

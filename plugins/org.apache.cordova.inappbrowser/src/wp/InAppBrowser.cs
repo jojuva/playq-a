@@ -227,7 +227,7 @@ namespace WPCordovaClassLib.Cordova.Commands
                             Grid grid = page.FindName("LayoutRoot") as Grid;
                             if (grid != null)
                             {
-                                grid.Children.Remove(browser);
+                                grid.Children.(browser);
                             }
                             page.ApplicationBar = null;
                         }
