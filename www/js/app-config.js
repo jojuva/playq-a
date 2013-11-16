@@ -3,9 +3,9 @@
 /***************************/
 
 var DATABASE = {
-	NAME: "GOTMobile",
+	NAME: "PlayQ&A",
 	VERSION: "1.0",
-	DISPLAYNAME: "BD GOT Mobile",
+	DISPLAYNAME: "BD Play Q&A",
 	//SIZE: 104857599
 	SIZE: 1000000
 };
@@ -21,7 +21,7 @@ var TYPE = {
 	BLOB : {value:"BLOB"}
 };
 
-var app_version = '0.1.0';
+var app_version = '0.2.0';
 
 /***************************/
 /****** SINCRO CONFIG ******/
