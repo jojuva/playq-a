@@ -1,0 +1,113 @@
+/************************/
+/*		 GENERAL		*/
+/************************/
+
+html {
+	color: #000;
+	background: #FFF;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td
+	{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset,img {
+	border: 0;
+}
+
+address,caption,cite,code,dfn,em,th,var,optgroup {
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+del,ins {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+caption,th {
+	text-align: left;
+}
+
+q:before,q:after {
+	content: '';
+}
+
+abbr,acronym {
+	border: 0;
+	font-variant: normal;
+}
+
+sup {
+	vertical-align: baseline;
+}
+
+sub {
+	vertical-align: baseline;
+}
+
+legend {
+	color: #000;
+}
+
+input,button,textarea,select,optgroup,option {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+input,button,textarea,select {
+	*font-size: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+:focus {
+	-moz-outline-style: none;
+}
+
+input, select, textarea {
+	outline: none;
+}
+
+.ui-header-fixed, .ui-footer-fixed {
+	z-index: 2;
+}
+
+/************************/
+/*		 LOADING		 */
+/************************/
+
+.ui-loader-background {
+    width:100%;
+    height:100%;
+    top:0;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display:none;
+    position: fixed;
+    z-index:100;
+}
+
+.ui-loading .ui-loader-background {
+    display:block;
+}

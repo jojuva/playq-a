@@ -1,0 +1,32 @@
+<div class="box_dialog_login ui-btn-corner-all">
+	<div class="logo">
+	</div>
+	<div class="app-version">
+		<span data-i18n="versio"></span><span> <%=versio%></span>
+	</div>
+	<form method="post">
+		<a id="face_login_btn" data-role="button" class="ui-icon-facebook-sign" data-i18n="buttons.facebook"></a>
+		<div id="form-login" class="form-login">
+			<div id="errors-login" class="errors hide"></div>
+			<div>
+				<label id="username-label" class="ui-input-text" data-i18n="login.form.user"></label>
+				<input type="text" name="username" id="username" value="jjulve" data-validate-field="sUsername"/>
+			</div>
+			<div>
+				<label id="password-label" class="ui-input-text" data-i18n="login.form.password"></label>
+				<input type="password" name="password" id="password" autocomplete="off" value="password" data-validate-field="sPassword"/>
+			</div>
+		</div>
+		
+		<a id="submit_login_btn" data-role="button" class="ui-button-bg all-width" data-i18n="buttons.enter"></a>
+		<div>
+			<label id="stay-logged-label" class="ui-input-text" data-i18n="login.form.staylogged"></label>
+			<select id="stay-logged" name="stay-logged" data-role="slider">
+				<option value="false" data-i18n="buttons.no"></option>
+				<option value="true" data-i18n="buttons.yes"></option>
+			</select>
+		</div>
+		<label id="new-user-label" class="ui-input-text" data-i18n="login.form.newuser"></label>
+		<a id="signup_btn" href="#signup" data-i18n="buttons.signup"></a>
+	</form>
+</div>

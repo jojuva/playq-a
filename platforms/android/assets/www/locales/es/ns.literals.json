@@ -1,0 +1,569 @@
+﻿{
+	"versio" : "Versión",
+	"alerts" : {
+		"syncroPendent" : "Datos pendientes de sincronizar."
+	},
+	"buttons" : {
+		"enter" : "Entrar",
+		"back"	: "Atrás",
+		"menu"	: "Menu",
+		"crear" : "Crear",
+		"borrar" : "Borrar",
+		"accept" : "Aceptar",
+		"cancel" : "Cancelar",
+		"add" : "Añadir",
+		"edit" : "Editar",
+		"yes" : "Sí",
+		"no" : "No",
+		"changePsw" : "Cambiar contraseña",
+		"signup" : "Registrarse",
+		"facebook" : "Facebook",
+		"training" : "Entrenamiento",
+		"challenge" : "Competición",
+		"statistics" : "Estadística",
+		"top10" : "Top 10",
+		"chemistry" : "Química",
+		"maths" : "Mates",
+		"physics" : "Física",
+		"ask" : "Pregunta",
+		"guess" : "Adivina ahora",
+		"play" : "Vuelve a Jugar"
+	},
+	"select":{
+		"defaultLabel" : "Elegir..."
+	},
+	"dialog":{
+		"deleteText" : "¿Quiere eliminar la base de datos?",
+		"deleteFoto" : "¿Quiere eliminar la fotografía?",
+		"deleteFotoAll" : "¿Quiere eliminar todas las fotografías?",
+		"delete" : "Eliminar",
+		"reiniciarTarea" : "¿Quiere volver a iniciar la tarea?",
+		"iniciar": "Iniciar Tarea",
+		"deleteLogText" : "¿Quiere eliminar el registro de logs?",
+		"deleteTimeSheetText": "¿Quiere eliminar el parte?",
+		"backTitle" : "Confirmación",
+		"backMsg" : "¿Seguro que desea salir sin guardar los cambios?",
+		"logoutMsg" : "¿Seguro que desea desconectarse?",
+		"si" : "Sí",
+		"no" : "No",
+		"deleteProgress" : "¿Quiere eliminar el avance?"
+	},
+	"loading" : {
+		"message" : "Cargando...",
+		"online" : "Login Online",
+		"offline" : "Login Offline",
+		"syncro" : "Sincronizando...",
+		"save": "Guardando...",
+		"process" : "Procesando..."
+	},
+	"cita" : {
+		"fromdatetime" : "Desde la fecha",
+		"untildatetime" : "Hasta la fecha"
+	},
+	"login" : {
+		"title" : "Login",
+		"form" : {
+			"title" : "Entra los datos",
+			"user" : "Usuario",
+			"password" : "Contraseña",
+			"staylogged" : "Mantener login",
+			"newuser" : "Usuario nuevo?"
+		},
+		"admin" : "Administrador",
+		"expirationDate" : {
+			"message" : "Debe cambiar la contraseña en __param__ días",
+			"message_plural" : "Debe cambiar la contraseña en __param__ día"
+		}
+	},
+	"signup" : {
+		"title" : "Registrarse",
+		"form" : {
+			"username" : "Usuario",
+			"email" : "E-mail",
+			"password" : "Contraseña",
+			"repeat_password" : "Repite contraseña"
+		}
+	},
+	"menu" : {
+		"title" : "Menu",
+		"form" : {
+			"category" : "Selecciona categoría..."
+		}
+	},
+	"question" : {
+		"title" : "Pregunta",
+		"form" : {
+		}
+	},
+	"wait" : {
+		"title" : "Por favor Espere...",
+		"table" : {
+			"scoring" : "Puntuación"
+		}
+	},
+	"statistics" : {
+		"title" : "Estadística",
+		"table" : {
+			"name" : "Nombre",
+			"points" : "Puntos",
+			"time" : "Tiempo medio",
+			"strike" : "Seguidos",
+			"ok" : "Aciertos",
+			"ko" : "Errores"
+		}
+	},
+	"top10" : {
+		"title" : "Classificación",
+		"table" : {
+			"rank" : "#",
+			"name" : "Nombre",
+			"points" : "Puntos"
+		}
+		}
+	},
+	"askClue" : {
+		"title" : "Escribe pregunta SI/NO"
+	},
+	"answerClue" : {
+		"title" : "Por favor, conteste a la pregunta"
+	},
+	"clueResult" : {
+		"title" : "Resultado"
+	},
+	"guess" : {
+		"title" : "Adivina adversario"
+	},
+	"end" : {
+		"title" : "FIN"
+	},
+	"info" : {
+		"saveSyncDataTitle" : "Guardar",
+		"saveSyncDataOk" : "Tarea guardada correctamente.",
+		"expirationDate" : "Aviso caducidad"
+	},
+	"error" :{
+		"userNotExists" : "Introduzca un usuario válido para acceder al sistema.",
+		"noConexion" : "No se puede establecer la conexión",
+		"noSyncTitle" : "Envío de datos",
+		"got_error_code" : "Código de error",
+		"fail_login_offline" :"El usuario o la contraseña no es correcta (OFF-LINE)",
+		"fail_login_online" :"El usuario o la contraseña no es correcta (ON-LINE)",
+		"fail_login_offline_no_credentials" : "No hay conexión, no se puede verificar su identidad",
+		"login_error" : "No se ha podido realizar el login correctamente",
+		"obligatorios" : "Introduzca los valores a los campos",
+		"failRepeatPassword" : "Las contraseñas no coinciden",
+		"syncroOffline" : "Envío no realizado al no tener cobertura",
+		"savedTask_syncroOffline" : "Tarea guardada - no se ha podido sincronizar al no tener cobertura",
+		"savedTask_syncroError" : "Tarea guardada - error en el proceso de sincronización",
+		"syncroError" : "Error en el proceso de envío",
+		"saveDataTitle" : "Guardar",
+		"saveDataError" : "Error en el proceso de guardado",
+		"fechasIncorrectas" : "Las fechas no son correctas",
+		"operarioObligatorio" : "Añade un operario",
+		"operariosDuplicados" : "Este operario ya se ha añadido en esta fecha",
+		"operarioDuracion" : "Falta duración para el operario con fecha ",
+		"operariosNull" : "Elige un operario",
+		"fechaNull" : "Elige una fecha",
+		"motivoObligatorio" : "Elige un motivo de no ejecución",
+		"duracionObligatorio": "Añade una duración",
+		"duracionOperario" : "Falta indicar operario para la duración ",
+		"validacionTarea" : "Revisa los siguientes campos",
+		"session_exp" : "La sesión ha caducado, vuelva a introduir sus credenciales.",
+		"parte_tareaNull": "Elige una tarea",
+		"minPresence" : "La tarea ha de tener como mínimo una presencia",
+		"solapaminto" : "Hay solapamiento de: ",
+		"parteNoObtenido" : "No se ha podido obtener el parte. Volver a intentar.",
+		"parteRepetit" : "El parte ya existe en el terminal",
+		"genericError" : "Se ha producido un error. Volver a intentar",
+		"deleteDataTitle" : "Eliminar datos",
+		"deleteData" : "Error al eliminar datos",
+		"operation" : {
+			"002" : "Contraseña caducada",
+			"005" : "Crear Base Datos",
+			"006" : "Error Javascript",
+			"007" : "Error crear BD",
+			"008" : "Error insertar tablas maestras",
+			"009" : "Error obtener datos",
+			"010" : "Error Guardar datos",
+			"011" : "Error cargar datos para mostrar pagina",
+			"012" : "Error cache template",
+			"013" : "Error borrar row",
+			"014" : "Error buscar",
+			"015" : "Error Login",
+			"016" : "Error al sincronizar",
+			"017" : "Error al sincronizar",
+			"018" : "Error de login online",
+			"019" : "Error connexión",
+			"020" : "Error getHash",
+			"021" : "Error Login",
+			"022" : "Error Fichero (Foto)",
+			"024" : "Problema de acceso app",
+			"025" : "Error Cambio contraseña",
+			"026" : "Error GOT Cambio contraseña"
+		},
+		"description" : {
+			"generic" : "Se ha producido un error inesperado en la aplicación y se cerrará.",
+			"002" : "La contraseña del operario ha caducado",
+			"005" : "Error al crear e inicializar la base de datos del dispositivo.",
+			"006" : "Error JS",
+			"007" : "Error CREATE BD",
+			"008" : "Error INSERT BD",
+			"009" : "Error fetch BD",
+			"010" : "Error insert/update BD",
+			"011" : "Error load page data",
+			"012" : "Error cache template",
+			"013" : "Error delete row",
+			"014" : "Error al buscar",
+			"015" : "Credencials incorrectas a la autenticación sin cobertura",
+			"016" : "Sincronitzación no realizada a causa de no tener cobertura",
+			"017" : "Error en el proceso de sincronitzación",
+			"018" : "Error del login realizado en el servidor",
+			"019" : "Error al hacer login a causa de no tener cobertura",
+			"020" : "No se ha podido obtener el hash de las credenciales",
+			"021" : "No se ha podido validar offline, no hay contraseña almacenada",
+			"022" : "Error en la gestión de la foto",
+			"024" : "Acceso a la aplicación con un operario desconocido por el terminal",
+			"025" : "No se ha podido establecer connexión para realizar el cambio de contraseña.",
+			"026" : "Error Cambio contraseña GOT."
+		},
+		"validation":{
+			"rownumber":{
+				"required" : "El campo Fila de Contador Instalado es obligatorio"
+			},
+			"columnnumber":{
+				"required" : "El campo Columna de Contador Instalado es obligatorio"
+			},
+			"brandid":{
+				"required" : "El campo Marca de Contador Instalado es obligatorio"
+			},
+			"modelid":{
+				"required" : "El campo Modelo de Contador Instalado es obligatorio"
+			},
+			"gaugeid": {
+				"required" : "El campo Calibre de Contador Instalado es obligatorio",
+				"required2" : "El campo Calibre de Contador Instalado (Segunda Esfera) es obligatorio"
+			},
+			"serialnumber":{
+				"required" : "El campo Número de serie de Contador Instalado es obligatorio",
+				"required2" : "El campo Número de serie de Contador Instalado (Segunda Esfera) es obligatorio"
+			},
+			"reading":{
+				"required" : "El campo Lectura del Contador Retirado es obligatorio si hay contador y tiene que ser numérico",
+				"required2" : "El campo Lectura del Contador Retirado (Segunda Esfera) es obligatorio si hay contador y tiene que ser numérico",
+				"requiredIns" : "El campo Lectura del Contador Instalado es obligatorio y tiene que ser numérico",
+				"requiredIns2" : "El campo Lectura del Contador Instalado (Segunda Esfera) es obligatorio y tiene que ser numérico"
+			},
+			"emplacementcode":{
+				"required" : "El campo Ubicación de Contador Instalado es obligatorio"
+			},
+			"radiomodule" : {
+				"required" : "El campo Módulo radio es obligatorio si hay instalado emisor"
+			},
+			"installationdate":{
+				"required" : "El campo Fecha de instalación de Contador Instalado es obligatorio"
+			},
+			"endtime":{
+				"required" : "El campo Hora fin es obligatorio"
+			},
+			"starttime":{
+				"required" : "El campo Hora inicio es obligatorio"
+			},
+			"startDate":{
+				"required": "El campo Inicio es obligatorio"
+			},
+			"endDate":{
+				"required": "El campo Fin es obligatorio"
+			},
+			"hourTypeForOpUnitId":{
+				"required": "Elige un Tipo Hora"
+			},
+			"cortes" : "Si informa los campos Duración y/o Exposición debe introducir un valor numérico mayor que 0 en el campo Cortes",
+			"date":{
+				"required" : "El campo horas tiene que ser mayor que 00:00"
+			},
+			"resourceId" : {
+				"required" : "El campo recurso es obligatorio"
+			},
+			"dateTS" :{
+				"required" : "Añade la fecha del parte"
+			},
+			"workDateTypeForOUId" : {
+				"required" : "Elige un tipo de Jornada"
+			},
+			"date_progress" : {
+				"required" : "Añade una fecha"
+			},
+			"progress" : {
+				"required" : "Añade un avance"
+			},
+			"failuretype" : {
+				"required" : "Elige la causa de avería"
+			},
+			"chlorinereading" : {
+				"required" : "Informa la lectura de cloro"
+			},
+			"totalleaks" : {
+				"format" : "Nº de fugas: 5 dígitos máximo"
+			},
+			"distance" : {
+				"format": "Metros de red: 8 dígitos máximo"
+			}
+		},
+		"overlap":{
+			"overlap_1": "No se puede añadir el intervalo de tiempo. Se solapa con ",
+			"overlap_2": " de la tarea ",
+			"overlap_3": "  de horas no productivas",
+			"start_end": "La fecha de inicio no puede ser superior a la fin",
+			"start_end_igual": "La fecha de inicio y la fin no pueden ser iguales",
+			"overlap_presence" : "La duración no se puede añadir, se solapa con "
+		}
+	},
+
+	"operario" : {
+		"title": "Operario"
+	},
+	
+	"tareas" : {
+		"title" : "Lista Tareas",
+		"nav" :{
+			"pendientes" : "Pendientes",
+			"contestadas" : "Contestadas"	
+		},
+		"detalle":{
+			"general" : "General",
+			"lecturas" : "Lecturas",
+			"citas" : "Citas",
+			"deudas" : "Deudas",
+			"observaciones" : "Observaciones"
+		},
+		"informacion":{
+			"direccion" : "Dirección: ",
+			"calibre" : "Calibre: ",
+			"fecha_prev" : "Fecha Prevista: ",
+			"orden-trabajo" : "Orden de trabajo: "
+		}
+	},
+	"tarea" : {
+		"descripcion" : "Descripción: ",
+		"origen" : "Origen: ",
+		"nombre" : "Nombre: ",
+		"domicilio" : "Domicilio: ",
+		"domicilio-comp" : "Complemento - domicilio: ",
+		"telefono" : "Teléfono: ",
+		"telefono2" : "Teléfono 2: ",
+		"poblacion" : "Población: ",
+		"ubicacion" : "Ubicación: ",
+		"comentario" : "Observaciones: ",
+		"ruta" : "Ruta: ",
+		"iniciada" : "Iniciada"
+	},
+	"cita" : {
+		"fromdatetime" : "Desde la fecha",
+		"untildatetime" : "Hasta la fecha"
+	},
+	"deuda" : {
+		"deuda-total" : "Deuda total reclamada: ",
+		"coste-suministro" : "Coste reposición suministro: "
+	},
+	"reading" :{
+		"fecha" : "Fecha",
+		"lectura" : "Lectura",
+		"consumo" : "Consumo",
+		"num-contador" : "Nº de serie del contador: "
+		},
+	"menuList" : {
+		"syncro" : "Sincronizar",
+		"logout" : "Desconectar",
+		"exit" : "Salir",
+		"config" : "Configuración",
+		"iniciar" : "Iniciar",
+		"contestar" : "Contestar",
+		"fotos" : "Fotos",
+		"mapa" : "Mapa",
+		"guardarConfig" : "Guardar",
+		"verLog" : "Ver log",
+		"borrarConfig" : "Borrar",
+		"guardar" : "Guardar",
+		"vaciar" : "Vaciar BD",
+		"catala" :"Català",
+		"castellano" : "Castellano",
+		"newFoto" : "Nueva",
+		"borrarFoto": "Borrar",
+		"borrarFotoTodas": "Borrar todo",
+		"partes" : "Partes",
+		"newTS" : "Nuevo parte",
+		"guardarTimeSheet" : "Guardar parte",
+		"resumenTareas" : "Resumen tareas",
+		"changepsw" : "Cambio contraseña",
+		"sync_ts" : "Enviar partes"
+	},
+	"config" :{
+		"title" : "Configuración",
+		"form" :{
+			"uid" : "UUID",
+			"tm" : "Identificador TM",
+			"ws" : "WS Sincronización",
+			"path" : "Ruta fotos",
+			"syncro" : "Intervalo de sincronización",
+			"segs" : "segundos",
+			"logActive" : "Activar log",
+			"log_no" : "No",
+			"log_yes" : "Sí"
+		}
+	},
+	"contesta" :{
+		"ejecutada" : "Ejecutada",
+		"no_ejecutada" : "No ejecutada",
+		"en_ejecucion" : "En ejecución",
+		"motivo_no_ejecucion" : "Motivo de no ejecución",
+		"motivo_lbl" : "Motivo",
+		"operario_lbl" : "Operario",
+		"observaciones": "Observaciones",
+		"list-operators" : "Lista operarios",
+		"list-presence" : "Lista de duraciones",
+		"cloro" : "Control de cloro",
+		"lectura-cloro" : "Lectura de cloro",
+		"cloro-ppm" : "ppm",
+		"brand" : "Marca",
+		"model" : "Modelo",
+		"gauge" : "Calibre",
+		"emplacement" : "Ubicación",
+		"serialNumber" : "Número Serie",
+		"fila" : "Fila",
+		"columna" : "Columna",
+		"lectura" : "Lectura",
+		"fecha-inst" : "Fecha instalación",
+		"fecha-fabricacion": "Fabricación",
+		"valvula" : "Válvula Ret.",
+		"ismeterinplace" : "¿Hay contador?",
+		"imp_yes": "Sí",
+		"imp_no" : "No",
+		"presence": {
+			"title": "Duración"
+		},
+		"meter":{
+			"title":"Contador",
+			"instalado": "Instalado",
+			"instaladoSegEsfera" : "Instalado segunda esfera",
+			"retirado": "Retirado",
+			"retiradoSegEsfera" : "Retirado segunda esfera",
+			"isRemoteReading" : "Telelectura",
+			"isInstallRemoteReading" : "Instalado emisor",
+			"radioModule" : "Módulo radio",
+			"readingYes" : "Sí",
+			"readingNo" : "No"
+		},
+		"fecha" : "Fecha",
+		"hora" : "Hora",
+		"endTime" : "Hora fin",
+		"startTime" : "Hora inicio",
+		"operators":{
+			"title": "Operarios"
+		},
+		"avance" : "Avance",
+		"progress" : {
+			"title" : "Grado de avance"
+		},
+		"list-progress" : "Listado de avances",
+		"progress-title" : "Contestar tarea",
+		"progress-text" : "¿Desea que se descargue la tarea? (La información será reportada aunque no se descargue)",
+		"causa-averia" : "Causa avería",
+		"averia" : "Averías",
+		"fugas" : {
+			"numero-fugas" : "Nº de fugas ocultas detectadas",
+			"metros-red" : "Metros de red inspeccionados",
+			"title" : "Fugas"
+		}
+	},
+	"logs": {
+		"title": "Logs",
+		"no-logs": "No hay logs"
+	},
+	"fotos" : {
+		"noFotos" : "La tarea no contiene fotografías"
+	},
+	"timesheet" : {
+		"abierto" : "Abierto",
+		"finalizado" : "Finalizado",
+		"title" : "Listado de partes",
+		"form": {
+			"userid": "Operario",
+			"timesheetdate": "Fecha",
+			"timesheetworkdatetypeid": "Tipo Jornada",
+			"plate": "Vehículo",
+			"init" : "Inicio",
+			"end" : "Fin",
+			"hourType" : "Tipo Hora",
+			"tasks" : "Tareas",
+			"usage" : "Horas",
+			"resource" : "Recurso de protección",
+			"space_yes" : "Sí",
+			"space_no" : "No",
+			"cortes" : "Cortes",
+			"duracion_cortes" : "Duración",
+			"exposicion_cortes" :"Exposición",
+			"space" : "Espacio Confinado"
+		},
+		"diet" : "Dieta",
+		"name" : "Operario ",
+		"status" : "Estado ",
+		"dateTS" : "Parte ",
+		"timesheetworkdatetype" : "Jornada ",
+		"info": "Información parte",
+		"observation" : "Observaciones",
+		"noProductive":{
+			"title" : "Horas no productivas"
+		},
+		"list-noProductive": "Listado horas no productivas",
+		"productive" : {
+			"title" : "Tareas"
+		},
+		"list-productive" : "Listado de tareas",
+		"list-intervals" : "Listado de presencias",
+		"plr": {
+			"title" : "PRL",
+			"failures" : "Cortes",
+			"plr" : "PRL"
+		},
+		"list-plr" : "Tareas",
+		"editPLR" : "Editar PRL",
+		"list-resource" :"Listado de recursos",
+		"edit-interval": "Editar intervalo",
+		"total": "Total: ",
+		"total-prod" : "Total Productivas: ",
+		"total-noprod" : "Total No Productivas: ",
+		"total-ded" : "Total Dedicación: ",
+		"missatge_parteOK" : "Parte realizado correctamente",
+		"finalizar_parte" : "Desea finalizar el parte?",
+		"missatge_major" : "Las horas imputadas exceden las horas de la jornada laboral.",
+		"missatge_menor" : "Las horas imputadas son menores a las previstas en la jornada laboral.",
+		"endTS" : "Finalizar Parte",
+		"resume" :{
+			"title" : "Resumen"
+		},
+		"resume-productive" : "Horas Productivas",
+		"resume-noproductive" : "Horas No Productivas",
+		"resume-duration" : "Duración",
+		"create-title": "Crear Parte",
+		"noTS" : "No hay partes descargados en el terminal",
+		"empty-interval-productive" : "No hay presencias de tareas",
+		"empty-interval-noproductive" : "No hay presencias no productivas",
+		"editPresences" :"Editar Presencias"
+	},
+	"resumenTareas" : {
+		"title": "Resumen de tareas",
+		"table" : {
+			"agrupacion" : "Agrupación",
+			"totales" : "Totales",
+			"pendientes" : "Pendientes",
+			"comercial" : "Comercial",
+			"obra" : "Obra",
+			"revision" : "Revisión",
+			"reparaciones" : "Reparaciones",
+			"correctivo" : "Correctivo",
+			"partecontrol" : "Parte de control",
+			"got" : "GOT",
+			"averias" : "Averías"
+		}
+	}
+}
