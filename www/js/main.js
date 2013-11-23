@@ -9,6 +9,7 @@ require.config({
 	underscore: 'libs/underscore/underscore-1.5.2.min',
 	'underscore.extend' : 'libs/underscore/underscore.playqa.extends',
 	parse: 'libs/parse/parse-1.2.13',
+	'facebook': 'libs/facebook/all',
 	backbone: 'libs/backbone/backbone-1.0.0',
 	'backbone.stickit': 'libs/backbone/backbone.stickit',
 	'backbone.stickit.extend': 'libs/backbone/backbone.stickit.extends',
@@ -47,6 +48,9 @@ require.config({
     },
     parse: {
 		exports: 'Parse'
+    },    
+	'facebook': {
+		exports: 'FB'
     },
     backbone: {
 		deps: ['underscore.extend', 'jquery'],
@@ -113,8 +117,8 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "parse", "jqm", "iscrollview", "utils", "app-config", "json2"],
-	function(require, $, _, Parse) {
+define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "iscrollview", "utils", "app-config", "json2"],
+	function(require, $, _, Parse, FB) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
 			$(document).ready(function() {
@@ -147,7 +151,8 @@ function initApplication() {
 		// i18n init
 	require(["jquery", "underscore.extend", "backbone.extend", "i18n", "router"],
 		function($, _, Backbone, i18n, AppRouter){
-
+		
+		// Initialize Parse
 		Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
 		
 		/*var TestObject = Parse.Object.extend("TestObject");
@@ -161,11 +166,21 @@ function initApplication() {
 		  }
 		});*/	
 		
+		// Initialize Facebook
+		Parse.FacebookUtils.init({
+		  appId      : FB_APP_ID, // Facebook App ID
+		  channelUrl : '//playqa.parseapp.com/channel.html', // Channel File
+		  cookie     : true, // enable cookies to allow Parse to access the session
+		  xfbml      : true  // parse XFBML
+		});
+	   
+	   // Initialize lang
 		var lang = window.localStorage.getItem(LS_LANG);
 		if (_.isNull(lang)) {
 			window.localStorage.setItem(LS_LANG, DEFAULT_LANG);
 		}
 
+		// Initialize i18n
 		i18n.init({
 			lng: window.localStorage.getItem(LS_LANG),
 			ns: { namespaces: ['ns.literals'], defaultNs: 'ns.literals'},

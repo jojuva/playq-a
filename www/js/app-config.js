@@ -57,11 +57,17 @@ var ANDROID_PATH = 'Android/data/edu.uoc.jojuva.playqa/fotos/';
 var IOS_PATH = '';
 
 /***************************/
-/********* PARSE **********/
+/********* PARSE ***********/
 /***************************/
 
 var PARSE_APP_ID = '2nYMgIyu9aOFd5cmsh0bOouDwXQKwiY05tDyYcFq';
 var PARSE_JS_KEY = 'yV0miMQmosMbf2pXKQ81aD6PRVGbQfrSS8VphpQA';
+
+/***************************/
+/********* FACEBOOK ********/
+/***************************/
+
+var FB_APP_ID = '217472768376798';
 
 /***************************/
 /********* UUID IOS ********/

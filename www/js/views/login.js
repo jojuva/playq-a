@@ -20,7 +20,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
-			console.log("stickit");
 			this.stickit();
 			if (this.options.sessionExp === true) {
 				this.showErrorRecived(ERROR.SESSION_EXPIRED);
@@ -35,6 +34,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		events: {
 			"click #submit_login_btn": "validateForm",
+			"click #face_login_btn": "doFBLogin",
 			"focusout input.ui-input-text" : "scrollTop"
 		},
 
@@ -54,11 +54,8 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		validateForm: function (event) {
 			this.scrollTop();
-			//console.log(this.model.get(url));
-			console.log(this.model.get(username));
-			console.log(this.model.get(password));
+			console.log(this.model.get('username'));
 			this.model.validate();
-			console.log("2");
 			//TODO Temporal BORRAR
 			//window.localStorage.setItem(LS_NOM_OPERATOR, "Maria García");
 			//window.localStorage.setItem(LS_OPERATOR_ID, 661);
@@ -72,16 +69,14 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		invalidForm: function (model, errors) {
 			$.mobile.loading('hide');
-			console.log("invalidForm");
-			console.log(errors);
 			this.showErrors(errors);
 			this.clearPassword();
 		},
 
 		doLogin:function () {
 			var self = this;
-		    var username = this.$("#username").val();
-		    var password = this.$("#password").val();
+		    var username = this.model.get('username');
+		    var password = this.model.get('password');
 	  
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
@@ -102,6 +97,34 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 				self.showErrorReceived(user, error);
 			  }
 			});
+		},
+		
+		doFBLogin:function () {
+			var self = this;
+	  
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+
+			this.hideErrors();
+			this.hideErrorMessage($('#errors-login', this.el));
+
+			Parse.FacebookUtils.logIn(null, {
+			  success: function(user) {
+				if (!user.existed()) {
+				  alert("User signed up and logged in through Facebook!");
+				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				  app.navigate('menu', true);	  
+				} else {
+				  alert("User logged in through Facebook!");
+				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				  app.navigate('menu', true);	  
+				}
+			  },
+			  error: function(user, error) {
+				console.log(user);
+				console.log(error);
+				self.showErrorReceived(user, error);
+			  }
+			});		
 		},
 
 		showErrorReceived: function (user, error) {
