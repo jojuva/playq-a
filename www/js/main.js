@@ -150,7 +150,7 @@ function initApplication() {
 
 		Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
 		
-		var TestObject = Parse.Object.extend("TestObject");
+		/*var TestObject = Parse.Object.extend("TestObject");
 		var testObject = new TestObject();
 		  testObject.save({foo: "bar"}, {
 		  success: function(object) {
@@ -159,7 +159,7 @@ function initApplication() {
 		  error: function(model, error) {
 			$(".error").show();
 		  }
-		});	
+		});*/	
 		
 		var lang = window.localStorage.getItem(LS_LANG);
 		if (_.isNull(lang)) {

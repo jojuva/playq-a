@@ -59,7 +59,8 @@
 
 		showErrorMessage: function ($errors, errors) {
 
-			require(['text!templates/contesta/errorItem.html'], function(errorItemTpl){
+			require(['text!templates/errorItem.html'], function(errorItemTpl){
+
 				if (!_.isEmpty(errors)) {
 					var listVal = _.values(errors),
 						tpl = '',

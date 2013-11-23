@@ -36,7 +36,7 @@
 .ui-icon-heart, .ui-icon-wrench, .ui-icon-play, .ui-icon-pause, .ui-icon-stop, .ui-icon-person, .ui-icon-music,
 .ui-icon-wifi, .ui-icon-phone, .ui-icon-power,
 .ui-icon-lightning, .ui-icon-drink, .ui-icon-android {
-  background-image: url("../../img/icons-18-black-pack.png") !important;
+  background-image: url("../../images/icons-18-black-pack.png") !important;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 1.3dppx) {
@@ -50,7 +50,7 @@
   .ui-icon-heart, .ui-icon-wrench, .ui-icon-play, .ui-icon-pause, .ui-icon-stop, .ui-icon-person, .ui-icon-music,
   .ui-icon-wifi, .ui-icon-phone, .ui-icon-power,
   .ui-icon-lightning, .ui-icon-drink, .ui-icon-android {
-    background-image: url("../../img/icons-36-black-pack.png") !important;
+    background-image: url("../../images/icons-36-black-pack.png") !important;
     -moz-background-size: 774px 54px;
     -o-background-size: 774px 54px;
     -webkit-background-size: 774px 54px;
@@ -58,7 +58,7 @@
   }
 
   .ui-icon-alt {
-    background-image: url("../../img/icons-36-black-pack.png");
+    background-image: url("../../images/icons-36-black-pack.png");
   }
 }
 /* first row */
@@ -252,8 +252,8 @@
 /* begin primary declarations */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../../img/fontawesome/fontawesome-webfont.eot");
-  src: url("../../img/fontawesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../../img/fontawesome/fontawesome-webfont.woff") format("woff"), url("../../img/fontawesome/fontawesome-webfont.ttf") format("truetype");
+  src: url("../../images/fontawesome/fontawesome-webfont.eot");
+  src: url("../../images/fontawesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../../images/fontawesome/fontawesome-webfont.woff") format("woff"), url("../../images/fontawesome/fontawesome-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

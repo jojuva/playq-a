@@ -1,18 +1,18 @@
-define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
-	function($, _, Backbone, stickit, Parse, moment, Header, AlertPopup, jqmPageTpl, loginTpl) {
+define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playuser', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
+	function($, _, Backbone, stickit, Parse, PlayUser, moment, Header, AlertPopup, jqmPageTpl, loginTpl) {
 	
 	var Login = Backbone.View.extend({
 
 		subviews: {},
 
 		bindings: {
-			"#username" : "sUsername",
-			"#password" : "sPassword"
+			"#username" : "username",
+			"#password" : "password"
 		},
 
 		initialize:function () {
 			this.template = _.template(loginTpl);
-			this.model = new Parse.User();
+			this.model = new PlayUser();
 			this.subviews.alertPopup = new AlertPopup();
 			this.model.on("validated:valid", this.doLogin, this);
 			this.model.on("validated:invalid", this.invalidForm, this);
@@ -20,6 +20,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
+			console.log("stickit");
 			this.stickit();
 			if (this.options.sessionExp === true) {
 				this.showErrorRecived(ERROR.SESSION_EXPIRED);
@@ -48,12 +49,14 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		},
 
 		clearPassword: function() {
-			this.model.set({ sPassword: null });
+			this.model.set({ password: null });
 		},
 
 		validateForm: function (event) {
 			this.scrollTop();
-			console.log("1");
+			//console.log(this.model.get(url));
+			console.log(this.model.get(username));
+			console.log(this.model.get(password));
 			this.model.validate();
 			console.log("2");
 			//TODO Temporal BORRAR
@@ -69,22 +72,24 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		invalidForm: function (model, errors) {
 			$.mobile.loading('hide');
+			console.log("invalidForm");
+			console.log(errors);
 			this.showErrors(errors);
 			this.clearPassword();
 		},
 
 		doLogin:function () {
-			var self = this,
-				credentials = {
-					username: this.model.get('sUsername'),
-					password: this.model.get('sPassword')
-				};
-
+			var self = this;
+		    var username = this.$("#username").val();
+		    var password = this.$("#password").val();
+	  
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 			this.hideErrors();
 			this.hideErrorMessage($('#errors-login', this.el));
-
+			
+			console.log("user:"+username);
+			console.log("password:"+password);
 			Parse.User.logIn(username, password, {
 			  success: function(user) {
 				// Do stuff after successful login.
@@ -93,6 +98,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			  },
 			  error: function(user, error) {
 				// The login failed. Check error to see why.
+				console.log("login-error:"+error.message);
 				self.showErrorReceived(user, error);
 			  }
 			});
@@ -104,7 +110,9 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			scroll(0);
 
 			if (!_.isUndefined(error)) {
-				this.showErrorMessage($errorsContent, error);
+				var errorMsg = { text: "error.login_error" };
+				//var errorMsg = { text: error.message };
+				this.showErrorMessage($errorsContent, errorMsg);
 			}
 
 			this.clearPassword();
