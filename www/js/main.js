@@ -8,6 +8,7 @@ require.config({
 	'app-config': 'app-config',
 	underscore: 'libs/underscore/underscore-1.5.2.min',
 	'underscore.extend' : 'libs/underscore/underscore.playqa.extends',
+	parse: 'libs/parse/parse-1.2.13',
 	backbone: 'libs/backbone/backbone-1.0.0',
 	'backbone.stickit': 'libs/backbone/backbone.stickit',
 	'backbone.stickit.extend': 'libs/backbone/backbone.stickit.extends',
@@ -43,6 +44,9 @@ require.config({
     'underscore.extend': {
 		deps: ['underscore'],
 		exports: "_"
+    },
+    parse: {
+		exports: 'Parse'
     },
     backbone: {
 		deps: ['underscore.extend', 'jquery'],
@@ -109,8 +113,8 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "jqm", "iscrollview", "utils", "app-config", "json2"],
-	function(require, $, _) {
+define(['require', "jquery", "underscore.extend", "parse", "jqm", "iscrollview", "utils", "app-config", "json2"],
+	function(require, $, _, Parse) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
 			$(document).ready(function() {
@@ -144,6 +148,19 @@ function initApplication() {
 	require(["jquery", "underscore.extend", "backbone.extend", "i18n", "router"],
 		function($, _, Backbone, i18n, AppRouter){
 
+		Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
+		
+		var TestObject = Parse.Object.extend("TestObject");
+		var testObject = new TestObject();
+		  testObject.save({foo: "bar"}, {
+		  success: function(object) {
+			$(".success").show();
+		  },
+		  error: function(model, error) {
+			$(".error").show();
+		  }
+		});	
+		
 		var lang = window.localStorage.getItem(LS_LANG);
 		if (_.isNull(lang)) {
 			window.localStorage.setItem(LS_LANG, DEFAULT_LANG);

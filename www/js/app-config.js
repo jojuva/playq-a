@@ -21,7 +21,7 @@ var TYPE = {
 	BLOB : {value:"BLOB"}
 };
 
-var app_version = '0.2.0';
+var app_version = '0.2.1';
 
 /***************************/
 /****** SINCRO CONFIG ******/
@@ -53,16 +53,23 @@ var INIT_URL_SERVICES = 'http://mobilityd.agbar.local:8080/mobility-server/servi
 /********* PHOTOS **********/
 /***************************/
 
-var ANDROID_PATH = 'Android/data/net.aqualogy.mobility.got.android/fotos/';
+var ANDROID_PATH = 'Android/data/edu.uoc.jojuva.playqa/fotos/';
 var IOS_PATH = '';
+
+/***************************/
+/********* PARSE **********/
+/***************************/
+
+var PARSE_APP_ID = '2nYMgIyu9aOFd5cmsh0bOouDwXQKwiY05tDyYcFq';
+var PARSE_JS_KEY = 'yV0miMQmosMbf2pXKQ81aD6PRVGbQfrSS8VphpQA';
 
 /***************************/
 /********* UUID IOS ********/
 /***************************/
 
 var SECURE_UUID = {
-    DOMAIN: 'net.aqualogy.mobility',
-    PASSWORD: 'gotmobile'
+    DOMAIN: 'edu.uoc.jojuva',
+    PASSWORD: 'playqa'
 };
 
 /***************************/
@@ -126,21 +133,11 @@ var ID_PAGE = {
 	CLUE_RESULT: "clueResult",
 	GUESS: "guess",
 	END: "end",
-	CHANGE_PSW: "changepsw",
-	TAREAS: "listatareas",
-	TAREASDETALLES: "listatareasdetalle",
 	CONFIG: "config",
-	DET_TAREA: "detalletarea",
-	CONTESTA_NO_EJ: "contestanoejecucion",
-	CONTESTA_EJ: "contestaejecucion",
 	GALERIAFOTOS: "fotos",
 	SYNCRO: "syncro",
 	ERROR: "error",
-	LOGS: "logs",
-	RESUMEN_TAREAS: "resumentareas",
-	PARTES: "listtimesheet",
-	CREARPARTE: "formcreatetimesheet",
-	EDITPARTE: "formedittimesheet"
+	LOGS: "logs"
 };
 
 
