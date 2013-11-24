@@ -7,7 +7,9 @@ define(['underscore', 'backbone', 'parse', 'i18n'],
 
 			defaults: {
 				username: null,
+				email: null,
 				password: null,
+				repeatpassword: null,
 				mobileTerminal: null,
 				pushId: null,
 				platform: null,
@@ -26,9 +28,11 @@ define(['underscore', 'backbone', 'parse', 'i18n'],
 
 			validation: {
 				username: { required: true, msg: 'error.obligatorios' },
-				password: { required: true, msg: 'error.obligatorios' }
+				email: { required: false, pattern: 'email', msg: 'error.emailPattern' },
+				password: { required: true, msg: 'error.obligatorios' },
+				repeatpassword: { required: true, equalTo: 'password', msg: 'error.failRepeatPassword' },
 			}
-
+			
 		});
 
 		return PlayUser;

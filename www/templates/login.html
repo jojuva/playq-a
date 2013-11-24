@@ -10,12 +10,14 @@
 			<div id="errors-login" class="errors hide"></div>
 			<div>
 				<label id="username-label" class="ui-input-text" data-i18n="login.form.user"></label>
-				<input type="text" name="username" id="username" value="jjulve" data-validate-field="username"/>
+				<input type="text" name="username" id="username" value="" data-validate-field="username"/>
 			</div>
+			<div id="error-message-username" class="error_message hide" data-i18n="error.obligatorios"></div>
 			<div>
 				<label id="password-label" class="ui-input-text" data-i18n="login.form.password"></label>
-				<input type="password" name="password" id="password" autocomplete="off" value="password" data-validate-field="password"/>
+				<input type="password" name="password" id="password" autocomplete="off" value="" data-validate-field="password"/>
 			</div>
+			<div id="error-message-password" class="error_message hide" data-i18n="error.obligatorios"></div>
 		</div>
 		
 		<a id="submit_login_btn" data-role="button" class="ui-button-bg all-width" data-i18n="buttons.enter"></a>

@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playuser', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
-	function($, _, Backbone, stickit, Parse, PlayUser, moment, Header, AlertPopup, jqmPageTpl, loginTpl) {
+define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/loginuser', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
+	function($, _, Backbone, stickit, Parse, LoginUser, moment, Header, AlertPopup, jqmPageTpl, loginTpl) {
 	
 	var Login = Backbone.View.extend({
 
@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 
 		initialize:function () {
 			this.template = _.template(loginTpl);
-			this.model = new PlayUser();
+			this.model = new LoginUser();
 			this.subviews.alertPopup = new AlertPopup();
 			this.model.on("validated:valid", this.doLogin, this);
 			this.model.on("validated:invalid", this.invalidForm, this);
@@ -56,15 +56,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			this.scrollTop();
 			console.log(this.model.get('username'));
 			this.model.validate();
-			//TODO Temporal BORRAR
-			//window.localStorage.setItem(LS_NOM_OPERATOR, "Maria García");
-			//window.localStorage.setItem(LS_OPERATOR_ID, 661);
-			//window.localStorage.setItem(LS_ALIASTM, "TM01013");
-			//window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDD HH:mm:ss"));
-			//window.localStorage.setItem(LS_EDIT_INIT_DATE, true);
-			//window.localStorage.setItem(LS_EDIT_FINAL_DATE, true);
-			//window.localStorage.setItem(LS_CHANGE_PASSWORD, true);
-			//app.navigate('menu', true);
 		},
 
 		invalidForm: function (model, errors) {
