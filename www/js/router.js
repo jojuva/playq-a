@@ -6,11 +6,11 @@ var AppRouter = Backbone.Router.extend({
     routes:{
 		"":"login",
 		"login":"login",
-		"menu" : "menu",
 		"login/:sessionExp" : "login",
 		"changepsw" : "changepsw",
 		"signup" : "signup",
-		"question" : "question",
+		"menu" : "menu",
+		"question/:cat" : "question",
 		"wait" : "wait",
 		"statistics" : "statistics",
 		"top10" : "top10",
@@ -19,18 +19,10 @@ var AppRouter = Backbone.Router.extend({
 		"clueResult" : "clueResult",
 		"guess" : "guess",
 		"end" : "end",
-		"tarea/:id" :'detalleTarea',
 		"exitApp" : "exitApp",
 		"config" : "configuracion",
-		"contestaNoEjecutada/:id" : "contestaTareaNoEjecutada",
-		"contestaEjecutada/:id/:status" : "contestaTareaEjecutada",
 		"logs" : "logs",
-		"idioma/:lng" : "changeLang",
-		"fotos/:id" : "listFotos",
-		"timesheets" : "listTimeSheet",
-		"createTS" : "formCreateTimeSheet",
-		"editTS/:id" : "formEditTimeSheet",
-		"resumentareas" : "resumentareas"
+		"idioma/:lng" : "changeLang"
     },
 
 	currentPage: null,
@@ -72,10 +64,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
     /* pagina question */
-	question: function () {
+	question: function (cat) {
 		var self = this;
 		require(["views/questionPage"], function(QuestionPage){
-			self.changePage( new QuestionPage());
+			self.changePage( new QuestionPage({	objectId: cat }));
 		});
 	},
     /* pagina wait */

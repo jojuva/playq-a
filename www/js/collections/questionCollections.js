@@ -1,10 +1,11 @@
-define(['underscore', 'backbone', 'models/timesheet/TSProductive', 'sync/dao/timesheet/TSProductiveDAO'], function(_, Backbone, TSProductive, TSProductiveDAO){
+define(['underscore', 'backbone', 'models/Question', 'sync/dao/QuestionDAO'], 
+  function(_, Backbone, Question, QuestionDAO){
 	var TSProductiveCollection = Backbone.Collection.extend({
-		model: TSProductive,
-		dao: TSProductiveDAO,
+		model: Question,
+		dao: QuestionDAO,
 		
 		comparator: function(model) {
-			return model.get('startDate');
+			return model.get('name');
 		},
 		getProdByTask: function(taskId, date, callbacks) {
 			var self = this;
