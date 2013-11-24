@@ -207,7 +207,7 @@ var TABLEDB = {
 /********* CONSTANTS ***********/
 /*******************************/
 
-var DEFAULT_LANG = "es";
+var DEFAULT_LANG = "ca";
 
 var CODE_ERROR_SYNC = {
 	KO: "KO",

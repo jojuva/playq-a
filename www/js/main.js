@@ -22,8 +22,6 @@ require.config({
 	views: 'views',
 	collections: 'collections',
 	'sqlUtils' : 'sync/sql-utils',
-	'configQueue': 'sync/dto/configurationQueueDTO',
-	'configPartesQueue': 'sync/dto/configurationPartesQueueDTO',
 	'utils': 'utils',
 	'moment': 'libs/moment/moment-with-langs.min',
 	'mobiscrollcore' : 'libs/mobiscroll/mobiscroll.core',

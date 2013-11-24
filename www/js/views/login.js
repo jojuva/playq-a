@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/loginuser', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
+define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/loginUser', 'moment', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/login.html', 'jqm'],
 	function($, _, Backbone, stickit, Parse, LoginUser, moment, Header, AlertPopup, jqmPageTpl, loginTpl) {
 	
 	var Login = Backbone.View.extend({

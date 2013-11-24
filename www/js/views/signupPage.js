@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playuser', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/signUp.html', 'jqm'],
+define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playUser', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/signUp.html', 'jqm'],
 	function($, _, Backbone, stickit, Parse, PlayUser, Header, AlertPopup, jqmPageTpl, signupTpl) {
 
 	var SignUp = Backbone.View.extend({
