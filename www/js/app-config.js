@@ -18,10 +18,11 @@ var TYPE = {
 	FLOAT: {value:"REAL"},
 	TEXT : {value:"TEXT"},
 	BOOLEAN : {value:"NUMERIC"},
-	BLOB : {value:"BLOB"}
+	BLOB : {value:"BLOB"},
+	ACL : {value:"ACL"}
 };
 
-var app_version = '0.2.1';
+var app_version = '0.3.1';
 
 /***************************/
 /****** SINCRO CONFIG ******/
@@ -153,53 +154,9 @@ var ID_PAGE = {
 /*******************************/
 
 var TABLEDB = {
-	/*MESTRES*/
-	BRAND: "Brand",
-	EMPLACEMENT: "Emplacement",
-	GAUGE: "Gauge",
-	MODEL: "Model",
-	NONEXECUTIVEMOTIVE: "NonExecutiveMotive",
-	OPERATOR: "Operator",
-	OTCLASS: "OTClass",
-	TASKTYPE: "TaskType",
-	OTTASK: "OTTask",
-	OTTASKFORM: "OTTaskForm",
-	FAILURETYPE: "FailureType",
-	//MESTRES PARTES
-	TIMESHEETWORKDATETYPE: "TimeSheetWorkDateType",
-	TIMESHEETHOURTYPE: "TimeSheetHourType",
-	RESOURCE: "Resource",
-	/*FI_MESTRES*/
-	COMMENT: "Comment",
-	MEETING: "Meeting",
-	METER: "Meter",
-	PRESENCE: "Presence",
-	READINGREGISTER: "ReadingRegister",
-	TASK: "Task",
-	TASKCOMMERCIAL: "TaskCommercial",
-	TASKHYDRAULIC: "TaskHydraulic",
-	CONFIGURACIONTM: "ConfiguracionTM",
-	FORM: "Form",
-	NONEXECUTIVETASK: "NonExecutiveTask",
-	OPERATORTASK: "OperatorTask",
-	TASKHIDDENLEAK: "TaskHiddenLeak",
-	/*INTERNAL*/
-	INTERVAL: "Inverval",
-	METEROPERATION: "MeterOperation",
-	TASKSTATUS: "TaskStatus",
-	LOG: "Log",
-	TASKSTATUSSYNC: "TaskStatusSync",
-	TIMESHEETSTATUS: "TimeSheetStatus",
-	TASKPROGRESS: "TaskProgress",
-	/*FI_INTERNAL*/
-	USER_HASH: "UserHash",
-	/*PARTES - TIMESHEET */
-	TIMECONTROL: "TimeControl",
-	TIMESHEET: "TimeSheet",
-	TIMESHEETNOPRODUCTIVETIME: "TimeSheetNoProductiveTime",
-	TIMESHEETPRODUCTIVETIME: "TimeSheetProductiveTime",
-	TIMESHEETRESOURCE: "TimeSheetResource",
-	TIMESHEETTASK: "TimeSheetTask"
+	QUESTION: 'Question',
+	CATEGORY: 'Category',
+	ANSWER: 'Answer'
 
 };
 
