@@ -1,6 +1,7 @@
-define(['underscore', 'backbone.extend', 'sync/dao/questionDAO'], 
-  function(_, Backbone, QuestionDAO){
-	var Question = Backbone.Model.extend({
+define(['underscore', 'parse', 'sync/dao/questionDAO'], 
+  function(_, Parse, QuestionDAO){
+	var Question = Parse.Object.extend({
+		className: 'Question',
 		dao: QuestionDAO,
 		idAttribute: 'objectId',
 
@@ -21,15 +22,30 @@ define(['underscore', 'backbone.extend', 'sync/dao/questionDAO'],
 			objectId: { required: true, msg: 'error.obligatorios' },
 			name: { required: true, msg: 'error.obligatorios' },
 			description: { required: true, msg: 'error.obligatorios' }
-		}.
+		},
 		
-		getDuracion: function(){
-			//return moment(this.get('endDate')).diff(moment(this.get('startDate')));
-			if(!_.isNull(this.get('endDate')) && !_.isNull(this.get('startDate'))){
-				return moment((this.get('endDate')).toString(), "YYYYMMDDHHmmss") - moment((this.get('startDate')).toString(), "YYYYMMDDHHmmss");
+		getCategories: function(){
+			if(!_.isNull(this.get('categories'))){
+				return null; //TODO findCategories;
 			}else{
-				return '';
+				return null;
 			}
+		},
+		
+		getRandomByCategory: function(catId, callbacks) {
+			var self = this;
+
+			new this.dao(window.db).findByCategory(catId, {
+				success: function (Question, error) {
+					if (!_.isUndefined(error)) {
+							callbacks.error(error);
+						return;
+					}
+					self.add(Question);
+					if (callbacks.success) callbacks.success();
+				},
+				error: callbacks.error
+			});
 		}
 
 	});

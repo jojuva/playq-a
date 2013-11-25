@@ -7,7 +7,6 @@ var AppRouter = Backbone.Router.extend({
 		"":"login",
 		"login":"login",
 		"login/:sessionExp" : "login",
-		"changepsw" : "changepsw",
 		"signup" : "signup",
 		"menu" : "menu",
 		"question/:cat" : "question",
@@ -20,8 +19,6 @@ var AppRouter = Backbone.Router.extend({
 		"guess" : "guess",
 		"end" : "end",
 		"exitApp" : "exitApp",
-		"config" : "configuracion",
-		"logs" : "logs",
 		"idioma/:lng" : "changeLang"
     },
 
@@ -49,13 +46,6 @@ var AppRouter = Backbone.Router.extend({
 			sessionExp: (sessionExp === 'true')
 		}));
 	},
-    /* pagina menu */
-	menu: function () {
-		var self = this;
-		require(["views/menuPage"], function(MenuPage){
-			self.changePage( new MenuPage());
-		});
-	},
     /* pagina signup */
 	signup: function () {
 		var self = this;
@@ -63,11 +53,27 @@ var AppRouter = Backbone.Router.extend({
 			self.changePage( new SignUpPage());
 		});
 	},
+    /* pagina menu */
+	menu: function () {
+		var self = this;
+		require(["views/menuPage"], function(MenuPage){
+			self.changePage( new MenuPage());
+		});
+	},
     /* pagina question */
 	question: function (cat) {
 		var self = this;
 		require(["views/questionPage"], function(QuestionPage){
-			self.changePage( new QuestionPage({	objectId: cat }));
+			self.before(ID_PAGE.QUESTION, {
+				success: function () {
+					self.changePage( new QuestionPage(self.dataForView));
+				},
+				error: function () {
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: detalleTarea; objectId: '+cat);
+				}
+			},{
+				objectId: cat
+			});
 		});
 	},
     /* pagina wait */
@@ -127,22 +133,6 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 
-	/* pagina lista tareas */
-    listaTareas:function () {
-		var self = this;
-
-		require(["views/listaTareasPage", "collections/taskListCollections"], function (ListaTareasPage) {
-			self.before(ID_PAGE.TAREAS, {
-				success: function(){
-					self.changePage(new ListaTareasPage(self.dataForView));
-				},
-				error: function () {
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: listaTareas;');
-				}
-			});
-		});
-	},
-
     exitApp: function () {
 		navigator.app.exitApp();
 	},
@@ -181,20 +171,8 @@ var AppRouter = Backbone.Router.extend({
 				}
 
 				var attr = dataKeys[n];
-
-				//mirem si l'attr conté "master/"
-				if (attr.indexOf("master/") >= 0){
-					attr = attr.substr(7);
-					collection_path = 'collections/master/';
-				}else if(attr.indexOf("internal/") >= 0){
-					attr = attr.substr(9);
-					collection_path = 'collections/internal/';
-				}else if(attr.indexOf("timesheet/") >= 0){
-					attr = attr.substr(10);
-					collection_path = 'collections/timesheet/';
-				}else{
-					collection_path = 'collections/';
-				}
+				
+				collection_path = 'collections/';
 
 				if (_.isUndefined(dataForView[attr])) {
 					dataForView[attr] = new (require(collection_path + attr))();
@@ -213,43 +191,23 @@ var AppRouter = Backbone.Router.extend({
 		_(this.dataForView).removeAll();
 
 		switch (idPage) {
-			case ID_PAGE.TAREAS:
-				break;
-
-			case ID_PAGE.TAREASDETALLES:
-				break;
-
-			case ID_PAGE.CONFIG:
-				require(["models/master/configuracionTM"],
-				function(Configuracion){
-					dataForView.configTM = new Configuracion({ConfiguracionID: 1});
-					dataForView.configTM.fetch(callbacks);
+			case ID_PAGE.QUESTION:
+				require(["models/question"],
+				function(Question){
+					console.log("before");
+					dataForView.question = new Question({question : new Question({categories : initData.objectId})});
+					console.log(initData.objectId);
+					//getRandomByCategory
+					dataForView.question.getRandomByCategory(initData.objectId,callbacks);
+					console.log("before2");
 				});
-				break;
-
-			case ID_PAGE.LOGS:
-				dataKeys.push('internal/logCollections');
-				fetchCollections(0);
 				break;
 
 			default:
 				break;
 		}
-    },
-
-    beforeDetall: function(idTask, successCallback, errorCallback){
-		var self = this, dataForView = this.dataForView;
-		require(["models/global/taskGlobal", "models/task"],
-			function(TaskGlobal, Task){
-			var loadCallbacks = {
-				success: successCallback,
-				error: errorCallback
-			};
-
-			dataForView.taskGlobal = new TaskGlobal({task : new Task({taskid : idTask})});
-			dataForView.taskGlobal.fetch(loadCallbacks);
-		});
     }
+	
 });
 	return AppRouter;
 
