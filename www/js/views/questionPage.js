@@ -5,6 +5,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		initialize:function () {
 			console.log(this.model);
+			console.log(this.collection);
 			this.template = _.template(questionTpl);
 			this.questionData = {
 				questionA: 'pregunta',
@@ -24,11 +25,11 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		updateQuestionData: function() {
 			console.log("updateQuestionData");
-			this.questionData.questionA = _.first(this.model.get('results')).description;
-			this.questionData.answera = '';
-			this.questionData.answerb = '';
-			this.questionData.answerc = '';
-			this.questionData.answerd = '';
+			this.questionData.questionA = this.model.get('description');
+			this.questionData.answera = this.model.get('answers').key;
+			//this.questionData.answerb = this.model.get('answers').get('className');
+			//this.questionData.answerc = this.model.get('answers')[2].get('description');
+			//this.questionData.answerd = this.model.get('answers')[3].get('description');
 		},
 
 		events: {
@@ -49,10 +50,12 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		subviews: {},
 
 		initialize:function () {
+			console.log('QuestionPage-ini');
 			this.template = _.template(jqmPageTpl);
 		},
 
 		render:function (eventName) {
+			console.log('QuestionPage-render');
 			$(this.el).html(this.template({headerFixed: true}));
 
 			this.subviews.headerView = new Header({
@@ -66,7 +69,8 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 			this.subviews.menuView = new Question({
 				el: $('#page-content', this.el),
-				model: this.options.question
+				model: this.options[0],
+				collection: this.options[1]
 			}).render();
 
 			return this;

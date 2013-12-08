@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 
 		doTraining: function() {
-			app.navigate('question/K37dNER6cU', true);
+			app.navigate('question/X0PMoUgy4C', true);
 		},
 		
 		doChallenge: function() {

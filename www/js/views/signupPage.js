@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playUser', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/signUp.html', 'jqm'],
-	function($, _, Backbone, stickit, Parse, PlayUser, Header, AlertPopup, jqmPageTpl, signupTpl) {
+define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'parse', 'models/playUser', 'models/ranking', 'models/statistic', 'views/headerView', 'views/dialogs/alertPopup', 'text!templates/jqmPage.html', 'text!templates/signUp.html', 'jqm'],
+	function($, _, Backbone, stickit, Parse, PlayUser, Ranking, Statistic, Header, AlertPopup, jqmPageTpl, signupTpl) {
 
 	var SignUp = Backbone.View.extend({
 		
@@ -73,8 +73,10 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			console.log("password:"+password);
 			user.signUp(null, {
 			  success: function(user) {
-				// Hooray! Let them use the app now.
+				console.log(user.toJSON);
 				window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				self.addRanking(user);
+				self.addStatistic(user);
 				app.navigate('menu', true);	
 			  },
 			  error: function(user, error) {
@@ -86,6 +88,32 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			});			
 		},
 
+		addRanking: function (user) {
+			var rank = new Ranking();
+			rank.set('user',user);
+			rank.save(null, {
+			  success: function(object) {
+				console.log('New ranking created with objectId: ' + object.id);
+			  },
+			  error: function(object, error) {
+				console.log('Failed to create new ranking, with error code: ' + error.code);
+			  }
+			});
+		},	
+		
+		addStatistic: function (user) {
+			var stat = new Statistic();
+			stat.set('user',user);
+			stat.save(null, {
+			  success: function(object) {
+				console.log('New statistic created with objectId: ' + object.id);
+			  },
+			  error: function(object, error) {
+				console.log('Failed to create new statistic, with error code: ' + error.code);
+			  }
+			});
+		},				
+		
 		showErrorReceived: function (user, error) {
 			var $errorsContent = $('#errors-signup', this.el);
 

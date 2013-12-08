@@ -29,10 +29,10 @@ define(['underscore', 'parse'],
 			});		
 		},
 		find:function (model, callbacks) {
-			var answer = Parse.Object.extend("Answer");
+			var Answer = Parse.Object.extend("Answer");
 			var query = new Parse.Query(Answer);
 			query.get(model.id, {
-			  success: function(answer) {
+			  success: function(object) {
 				// The object was retrieved successfully.
 			  },
 			  error: function(object, error) {
@@ -40,6 +40,25 @@ define(['underscore', 'parse'],
 				// error is a Parse.Error with an error code and description.
 			  }
 			});		
+		},
+		findByQuestion:function (question, callbacks) {
+			console.log('findByQuestionDao');
+			console.log(question.toJSON());
+			var answers = question.relation("answers");
+			answers.query().find({
+			  success: function(objects) {
+				// The object was retrieved successfully.
+				console.log("#answers:"+objects.length);
+				callbacks.success(objects);
+			  },
+			  error: function(error) {
+				// The object was not retrieved successfully.
+				// error is a Parse.Error with an error code and description.
+				console.log(error.code);
+				console.log(error.message);		
+				callbacks.error(error);				
+			  }
+			});
 		},
 		saveData: function (tx, answer) {
 			answer.save(null, {

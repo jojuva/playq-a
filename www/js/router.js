@@ -66,9 +66,11 @@ var AppRouter = Backbone.Router.extend({
 		require(["views/questionPage"], function(QuestionPage){
 			self.before(ID_PAGE.QUESTION, {
 				success: function () {
+					console.log('changePage-QuestionPage');
 					self.changePage( new QuestionPage(self.dataForView));
 				},
 				error: function () {
+					console.log('error-questionPage');
 					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: detalleTarea; objectId: '+cat);
 				}
 			},{
@@ -192,14 +194,13 @@ var AppRouter = Backbone.Router.extend({
 
 		switch (idPage) {
 			case ID_PAGE.QUESTION:
-				require(["models/question"],
-				function(Question){
-					console.log("before");
-					dataForView.question = new Question({question : new Question({categories : initData.objectId})});
+				require(["models/question","collections/answerCollections"],
+				function(Question, AnswerCollection){
 					console.log(initData.objectId);
-					//getRandomByCategory
-					dataForView.question.getRandomByCategory(initData.objectId,callbacks);
-					console.log("before2");
+					dataForView[0] = new Question();
+					dataForView[0].getRandomByCategory(initData.objectId,callbacks);
+					console.log('q:'+dataForView[0]);					
+					console.log('before-questionPage-end');
 				});
 				break;
 

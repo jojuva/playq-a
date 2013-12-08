@@ -19,6 +19,7 @@ define(['underscore', 'parse'],
 	_.extend(QuestionDAO.prototype, {
 
 		findAll:function (callbacks) {
+			var Question = Parse.Object.extend("Question");
 			var questions = Parse.Collection.extend("QuestionCollection");
 			var query = new Parse.Query(Question);
 			query.find( {
@@ -34,7 +35,7 @@ define(['underscore', 'parse'],
 			var Question = Parse.Object.extend("Question");
 			var query = new Parse.Query(Question);
 			query.get(model.id, {
-			  success: function(question) {
+			  success: function(Question) {
 				// The object was retrieved successfully.
 			  },
 			  error: function(object, error) {
@@ -44,10 +45,27 @@ define(['underscore', 'parse'],
 			});		
 		},
 		findByCategory: function(catId, callbacks){
-			var category = new Category();
-			category.id = catId;
-			 
-			question.set("parent", category);		
+			var query = new Parse.Query("Question");
+			var Category = Parse.Object.extend("Category");
+			var cat = new Category();
+			cat.set("objectId",catId);			
+			query.equalTo("categories",cat);
+			//query.include("answers");
+			query.find( {
+			  success: function(objects) {
+				// The object was retrieved successfully.
+				console.log("#questions:"+objects.length);
+				callbacks.success(objects);
+			  },
+			  error: function(error) {
+				// The object was not retrieved successfully.
+				// error is a Parse.Error with an error code and description.
+				console.log(error.code);
+				console.log(error.message);		
+				callbacks.error(error);				
+			  }
+			});				
+			
 		},
 		saveData: function (tx, question) {
 			question.save(null, {
