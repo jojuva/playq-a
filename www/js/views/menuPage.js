@@ -9,7 +9,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
-			//this.stickit();
 			return this;
 		},
 
@@ -52,18 +51,22 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 
 		doTraining: function() {
+			console.log('navigate question');
 			app.navigate('question/X0PMoUgy4C', true);
 		},
 		
 		doChallenge: function() {
+			console.log('navigate wait');
 			app.navigate('wait', true);
 		},
 		
 		doStatistics: function() {
+			console.log('navigate statistics');
 			app.navigate('statistics', true);
 		},
 		
 		doTop10: function() {
+			console.log('navigate top10');
 			app.navigate('top10', true);
 		}		
 

@@ -36,12 +36,14 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 			this.subviews.headerView = new Header({
 				el: $('#page-header', this.el),
 				idPage: this.idPage,
+				showBackBtn: true,
+				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();
 
-			this.subviews.top10 = new Top10({
+			this.subviews.top10View = new Top10({
 				el: $('#page-content', this.el),
-				collection: this.options.taskCollections
+				collection: this.options.rankingCollections
 			}).render();
 
 			return this;

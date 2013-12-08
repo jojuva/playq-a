@@ -71,7 +71,7 @@ var AppRouter = Backbone.Router.extend({
 				},
 				error: function () {
 					console.log('error-questionPage');
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: detalleTarea; objectId: '+cat);
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: question; objectId: '+cat);
 				}
 			},{
 				objectId: cat
@@ -89,14 +89,32 @@ var AppRouter = Backbone.Router.extend({
 	statistics: function () {
 		var self = this;
 		require(["views/statisticsPage"], function(StatisticsPage){
-			self.changePage( new StatisticsPage());
+			self.before(ID_PAGE.STATISTICS, {
+				success: function () {
+					console.log('changePage-StatisticsPage');
+					self.changePage( new StatisticsPage(self.dataForView));
+				},
+				error: function () {
+					console.log('error-StatisticsPage');
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: statistics');
+				}
+			});		
 		});
 	},
     /* pagina top10 */
 	top10: function () {
 		var self = this;
 		require(["views/top10Page"], function(Top10Page){
-			self.changePage( new Top10Page());
+			self.before(ID_PAGE.TOP10, {
+				success: function () {
+					console.log('changePage-Top10Page');
+					self.changePage( new Top10Page(self.dataForView));
+				},
+				error: function () {
+					console.log('error-Top10Page');
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: top10');
+				}
+			});	
 		});
 	},
     /* pagina askClue */
@@ -194,16 +212,31 @@ var AppRouter = Backbone.Router.extend({
 
 		switch (idPage) {
 			case ID_PAGE.QUESTION:
+				console.log('before-question');
 				require(["models/question","collections/answerCollections"],
 				function(Question, AnswerCollection){
 					console.log(initData.objectId);
 					dataForView[0] = new Question();
 					dataForView[0].getRandomByCategory(initData.objectId,callbacks);
 					console.log('q:'+dataForView[0]);					
-					console.log('before-questionPage-end');
 				});
 				break;
-
+			case ID_PAGE.STATISTICS:
+				console.log('before-statistics');
+				require(["models/statistic"],
+				function(Statistic){
+					dataForView.statistic = new Statistic();
+					dataForView.statistic.getMyStatistic(callbacks);
+				});
+				break;			
+			case ID_PAGE.TOP10:
+				console.log('before-top10');
+				require(["collections/rankingCollections"],
+				function(RankingCollection){
+					dataForView.ranking = new RankingCollection();
+					dataForView.ranking.getTop10(callbacks);
+				});
+				break;
 			default:
 				break;
 		}

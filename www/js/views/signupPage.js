@@ -73,14 +73,13 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			console.log("password:"+password);
 			user.signUp(null, {
 			  success: function(user) {
-				console.log(user.toJSON);
+				console.log('New user created with objectId: ' + user.id);
 				window.localStorage.setItem(LS_NOM_OPERATOR, user);
 				self.addRanking(user);
 				self.addStatistic(user);
 				app.navigate('menu', true);	
 			  },
 			  error: function(user, error) {
-				// Show the error message somewhere and let the user try again.
 				alert("Error: " + error.code + " " + error.message);
 				console.log("login-error:"+error.message);
 				self.showErrorReceived(user, error);	
@@ -135,9 +134,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		subviews: {},
 
 		initialize:function () {
-			//var data = {};
 			this.template = _.template(jqmPageTpl);
-			//this.template = '';
 		},
 
 		render:function (eventName) {
