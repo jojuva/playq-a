@@ -23,7 +23,25 @@ define(['underscore', 'parse', 'sync/dao/statisticDAO'],
 		validation: {
 			objectId: { required: true, msg: 'error.obligatorios' },
 			user: { required: true, msg: 'error.obligatorios' }
-		}
+		},
+		
+		getMyStatistic: function (callbacks) {
+			var self = this;
+		
+			var query = new Parse.Query(Statistic);
+			query.equalTo('user', Parse.User.current());
+			query.find({
+			  success: function(stat) {
+				console.log("Successfully retrieved " + stat[0].id);
+				self.add(stat);
+				callbacks.success();
+			  },
+			  error: function(error) {
+				console.log("Error: " + error.code + " " + error.message);
+				callbacks.error();
+			  }
+			});
+		}		
 		
 	});
 	return Statistic;

@@ -79,7 +79,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			Parse.User.logIn(username, password, {
 			  success: function(user) {
 				// Do stuff after successful login.
-				window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				//window.localStorage.setItem(LS_NOM_OPERATOR, user);
 				app.navigate('menu', true);
 			  },
 			  error: function(user, error) {
