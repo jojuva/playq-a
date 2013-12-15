@@ -67,6 +67,7 @@ var AppRouter = Backbone.Router.extend({
 			self.before(ID_PAGE.QUESTION, {
 				success: function () {
 					console.log('changePage-QuestionPage');
+					
 					self.changePage( new QuestionPage(self.dataForView));
 				},
 				error: function () {
@@ -92,6 +93,7 @@ var AppRouter = Backbone.Router.extend({
 			self.before(ID_PAGE.STATISTICS, {
 				success: function () {
 					console.log('changePage-StatisticsPage');
+					console.log('d4:'+self.dataForView.toSource());
 					self.changePage( new StatisticsPage(self.dataForView));
 				},
 				error: function () {
@@ -157,7 +159,7 @@ var AppRouter = Backbone.Router.extend({
 		navigator.app.exitApp();
 	},
 
-    changePage:function (page, isSplitView) {
+    changePage:function (page) {
 		if (this.currentPage)
 		this.currentPage.close();
 		this.currentPage = page;
@@ -216,9 +218,17 @@ var AppRouter = Backbone.Router.extend({
 				require(["models/question","collections/answerCollections"],
 				function(Question, AnswerCollection){
 					console.log(initData.objectId);
-					dataForView[0] = new Question();
-					dataForView[0].getRandomByCategory(initData.objectId,callbacks);
-					console.log('q:'+dataForView[0]);					
+					dataForView.question = new Question();
+					dataForView.question.getRandomByCategory(initData.objectId,{
+						success: function () { 
+							console.log("q2:"+dataForView.question.id);
+							dataForView.answerCollections = new AnswerCollection();
+							dataForView.answerCollections.findByQuestion(dataForView.question,callbacks);
+							callbacks.success();
+						},
+						error: function () { callbacks.error(); }
+					});
+
 				});
 				break;
 			case ID_PAGE.STATISTICS:
@@ -233,8 +243,8 @@ var AppRouter = Backbone.Router.extend({
 				console.log('before-top10');
 				require(["collections/rankingCollections"],
 				function(RankingCollection){
-					dataForView.ranking = new RankingCollection();
-					dataForView.ranking.getTop10(callbacks);
+					dataForView.rankingCollections = new RankingCollection();
+					dataForView.rankingCollections.getTop10(callbacks);
 				});
 				break;
 			default:

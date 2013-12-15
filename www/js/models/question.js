@@ -13,7 +13,7 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 			categories: null,
 			answers: null,
 			createdAt: null,
-			respuestas: null
+			updatedAt: null
 		},
 
 		initialize: function() {
@@ -23,14 +23,6 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 			objectId: { required: true, msg: 'error.obligatorios' },
 			name: { required: true, msg: 'error.obligatorios' },
 			description: { required: true, msg: 'error.obligatorios' }
-		},
-		
-		getCategories: function(){
-			if(!_.isNull(this.get('categories'))){
-				return null; //TODO findCategories;
-			}else{
-				return null;
-			}
 		},
 		
 		getRandomByCategory: function(catId, callbacks) {
@@ -45,8 +37,8 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 					var pos = _.random(objects.length-1);
 					var object = objects[pos];
 					console.log("question:"+object.id);
-					var query=object.relation("answers").query();
-					var answers = query.find({
+					/*var query=object.relation("answers").query();
+					callbacks.answers = query.find({
 					  success: function(answers) {
 						alert("Successfully retrieved " + answers.length + " answers.");
 						// Do something with the returned Parse.answer values
@@ -56,14 +48,20 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 						  var answer = answers[i];
 						  alert(answer.id + ' - ' + answer.get('description'));
 						}
-						self.add(answers);
+						return answers;
 					  },
 					  error: function(error) {
 						alert("Error: " + error.code + " " + error.message);
 					  }
 					});
-					console.log("answers:"+answers);
+					console.log("answers:"+callbacks.answers);*/
 					self.add(object);
+					self.set({
+						objectId: object.id,
+						createdAt: object.createdAt,
+						updatedAt: object.updatedAt
+					});
+					console.log('o:'+object.toSource());
 					if (callbacks.success) callbacks.success();
 				},
 				error: callbacks.error

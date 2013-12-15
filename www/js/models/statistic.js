@@ -30,10 +30,16 @@ define(['underscore', 'parse', 'sync/dao/statisticDAO'],
 		
 			var query = new Parse.Query(Statistic);
 			query.equalTo('user', Parse.User.current());
+			query.include('user');
 			query.find({
 			  success: function(stat) {
-				console.log("Successfully retrieved " + stat[0].id);
-				self.add(stat);
+				console.log("Successfully retrieved stat " + stat[0].toSource());
+				self.add(stat[0]);
+				self.set({
+					objectId: stat[0].id,
+					createdAt: stat[0].createdAt,
+					updatedAt: stat[0].updatedAt
+				});
 				callbacks.success();
 			  },
 			  error: function(error) {

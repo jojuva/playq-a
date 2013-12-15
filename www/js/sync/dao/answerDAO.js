@@ -42,8 +42,7 @@ define(['underscore', 'parse'],
 			});		
 		},
 		findByQuestion:function (question, callbacks) {
-			console.log('findByQuestionDao');
-			console.log(question.toJSON());
+			console.log('answerDAO.findByQuestion');
 			var answers = question.relation("answers");
 			answers.query().find({
 			  success: function(objects) {

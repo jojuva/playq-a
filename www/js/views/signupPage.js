@@ -74,7 +74,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			user.signUp(null, {
 			  success: function(user) {
 				console.log('New user created with objectId: ' + user.id);
-				window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				//window.localStorage.setItem(LS_NOM_OPERATOR, user);
 				self.addRanking(user);
 				self.addStatistic(user);
 				app.navigate('menu', true);	

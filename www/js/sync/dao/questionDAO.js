@@ -55,7 +55,11 @@ define(['underscore', 'parse'],
 			  success: function(objects) {
 				// The object was retrieved successfully.
 				console.log("#questions:"+objects.length);
-				callbacks.success(objects);
+				if (objects.length!=0){
+					callbacks.success(objects);
+				}else{
+					callbacks.error('no questions for this category');
+				}
 			  },
 			  error: function(error) {
 				// The object was not retrieved successfully.

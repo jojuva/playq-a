@@ -10,7 +10,7 @@ define(['underscore', 'parse', 'models/Answer', 'sync/dao/answerDAO'],
 		
 		findByQuestion: function(question, callbacks) {
 			var self = this;
-			console.log('findByQuestionCol');
+			console.log('answerCollections.findByQuestion');
 			new this.dao(window.db).findByQuestion(question, {
 				success: function (objects, error) {
 					if (!_.isUndefined(error)) {

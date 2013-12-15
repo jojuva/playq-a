@@ -6,6 +6,26 @@ define(['underscore', 'parse', 'models/ranking', 'sync/dao/rankingDAO'],
 		
 		comparator: function(model) {
 			return model.get('user');
+		},
+		
+		getTop10: function (callbacks) {
+			var self = this;
+		
+			var query = new Parse.Query(Ranking);
+			query.limit(10);
+			query.descending('score');
+			query.include('user');
+			query.find({
+			  success: function(ranks) {
+				console.log("Successfully retrieved ranks " + ranks[0].id);
+				self.add(ranks);
+				callbacks.success();
+			  },
+			  error: function(error) {
+				console.log("Error: " + error.code + " " + error.message);
+				callbacks.error();
+			  }
+			});
 		}
 		
 	});

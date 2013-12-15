@@ -23,7 +23,7 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 		},
 
 		updateStatisticsData: function() {
-			//this.statisticsData.name = this.model.get('user').get('username');
+			this.statisticsData.name = this.model.get('user').get('username');
 			this.statisticsData.points = this.model.get('totScore');
 			this.statisticsData.ok = this.model.get('okAnswers');
 			this.statisticsData.ko = this.model.get('koAnswers');
