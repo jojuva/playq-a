@@ -9,7 +9,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
-			//this.stickit();
 			return this;
 		},
 
@@ -22,7 +21,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		initialize:function () {
 			//var data = {};
 			this.template = _.template(jqmPageTpl);
-			//this.template = '';
 		},
 
 		render:function (eventName) {
@@ -50,20 +48,28 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			"click #statistics_btn": "doStatistics",
 			"click #top10_btn": "doTop10"
 		},
-
+		
 		doTraining: function() {
-			app.navigate('question', true);
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			console.log('navigate question');
+			app.navigate('question/'+$('#categoryid').val(), true);
 		},
 		
 		doChallenge: function() {
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			console.log('navigate wait');
 			app.navigate('wait', true);
 		},
 		
 		doStatistics: function() {
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			console.log('navigate statistics');
 			app.navigate('statistics', true);
 		},
 		
 		doTop10: function() {
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			console.log('navigate top10');
 			app.navigate('top10', true);
 		}		
 

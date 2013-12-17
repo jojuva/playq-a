@@ -18,10 +18,11 @@ var TYPE = {
 	FLOAT: {value:"REAL"},
 	TEXT : {value:"TEXT"},
 	BOOLEAN : {value:"NUMERIC"},
-	BLOB : {value:"BLOB"}
+	BLOB : {value:"BLOB"},
+	ACL : {value:"ACL"}
 };
 
-var app_version = '0.2.0';
+var app_version = '0.4.1';
 
 /***************************/
 /****** SINCRO CONFIG ******/
@@ -53,16 +54,29 @@ var INIT_URL_SERVICES = 'http://mobilityd.agbar.local:8080/mobility-server/servi
 /********* PHOTOS **********/
 /***************************/
 
-var ANDROID_PATH = 'Android/data/net.aqualogy.mobility.got.android/fotos/';
+var ANDROID_PATH = 'Android/data/edu.uoc.jojuva.playqa/fotos/';
 var IOS_PATH = '';
+
+/***************************/
+/********* PARSE ***********/
+/***************************/
+
+var PARSE_APP_ID = '2nYMgIyu9aOFd5cmsh0bOouDwXQKwiY05tDyYcFq';
+var PARSE_JS_KEY = 'yV0miMQmosMbf2pXKQ81aD6PRVGbQfrSS8VphpQA';
+
+/***************************/
+/********* FACEBOOK ********/
+/***************************/
+
+var FB_APP_ID = '217472768376798';
 
 /***************************/
 /********* UUID IOS ********/
 /***************************/
 
 var SECURE_UUID = {
-    DOMAIN: 'net.aqualogy.mobility',
-    PASSWORD: 'gotmobile'
+    DOMAIN: 'edu.uoc.jojuva',
+    PASSWORD: 'playqa'
 };
 
 /***************************/
@@ -126,21 +140,11 @@ var ID_PAGE = {
 	CLUE_RESULT: "clueResult",
 	GUESS: "guess",
 	END: "end",
-	CHANGE_PSW: "changepsw",
-	TAREAS: "listatareas",
-	TAREASDETALLES: "listatareasdetalle",
 	CONFIG: "config",
-	DET_TAREA: "detalletarea",
-	CONTESTA_NO_EJ: "contestanoejecucion",
-	CONTESTA_EJ: "contestaejecucion",
 	GALERIAFOTOS: "fotos",
 	SYNCRO: "syncro",
 	ERROR: "error",
-	LOGS: "logs",
-	RESUMEN_TAREAS: "resumentareas",
-	PARTES: "listtimesheet",
-	CREARPARTE: "formcreatetimesheet",
-	EDITPARTE: "formedittimesheet"
+	LOGS: "logs"
 };
 
 
@@ -150,53 +154,9 @@ var ID_PAGE = {
 /*******************************/
 
 var TABLEDB = {
-	/*MESTRES*/
-	BRAND: "Brand",
-	EMPLACEMENT: "Emplacement",
-	GAUGE: "Gauge",
-	MODEL: "Model",
-	NONEXECUTIVEMOTIVE: "NonExecutiveMotive",
-	OPERATOR: "Operator",
-	OTCLASS: "OTClass",
-	TASKTYPE: "TaskType",
-	OTTASK: "OTTask",
-	OTTASKFORM: "OTTaskForm",
-	FAILURETYPE: "FailureType",
-	//MESTRES PARTES
-	TIMESHEETWORKDATETYPE: "TimeSheetWorkDateType",
-	TIMESHEETHOURTYPE: "TimeSheetHourType",
-	RESOURCE: "Resource",
-	/*FI_MESTRES*/
-	COMMENT: "Comment",
-	MEETING: "Meeting",
-	METER: "Meter",
-	PRESENCE: "Presence",
-	READINGREGISTER: "ReadingRegister",
-	TASK: "Task",
-	TASKCOMMERCIAL: "TaskCommercial",
-	TASKHYDRAULIC: "TaskHydraulic",
-	CONFIGURACIONTM: "ConfiguracionTM",
-	FORM: "Form",
-	NONEXECUTIVETASK: "NonExecutiveTask",
-	OPERATORTASK: "OperatorTask",
-	TASKHIDDENLEAK: "TaskHiddenLeak",
-	/*INTERNAL*/
-	INTERVAL: "Inverval",
-	METEROPERATION: "MeterOperation",
-	TASKSTATUS: "TaskStatus",
-	LOG: "Log",
-	TASKSTATUSSYNC: "TaskStatusSync",
-	TIMESHEETSTATUS: "TimeSheetStatus",
-	TASKPROGRESS: "TaskProgress",
-	/*FI_INTERNAL*/
-	USER_HASH: "UserHash",
-	/*PARTES - TIMESHEET */
-	TIMECONTROL: "TimeControl",
-	TIMESHEET: "TimeSheet",
-	TIMESHEETNOPRODUCTIVETIME: "TimeSheetNoProductiveTime",
-	TIMESHEETPRODUCTIVETIME: "TimeSheetProductiveTime",
-	TIMESHEETRESOURCE: "TimeSheetResource",
-	TIMESHEETTASK: "TimeSheetTask"
+	QUESTION: 'Question',
+	CATEGORY: 'Category',
+	ANSWER: 'Answer'
 
 };
 
@@ -204,7 +164,7 @@ var TABLEDB = {
 /********* CONSTANTS ***********/
 /*******************************/
 
-var DEFAULT_LANG = "es";
+var DEFAULT_LANG = "ca";
 
 var CODE_ERROR_SYNC = {
 	KO: "KO",

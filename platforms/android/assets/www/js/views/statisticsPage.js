@@ -4,6 +4,7 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 	var Statistics = Backbone.View.extend({
 
 		initialize: function () {
+			console.log('ini-stats');
 			this.template = _.template(statisticsTpl);
 			this.statisticsData = {
 				name: '----',
@@ -22,6 +23,12 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 		},
 
 		updateStatisticsData: function() {
+			this.statisticsData.name = this.model.get('user').get('username');
+			this.statisticsData.points = this.model.get('totScore');
+			this.statisticsData.ok = this.model.get('okAnswers');
+			this.statisticsData.ko = this.model.get('koAnswers');
+			this.statisticsData.strike = this.model.get('maxStrike');
+			this.statisticsData.time = this.model.get('avgTime');
 		}
 	});
 
@@ -30,21 +37,25 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 		subviews: {},
 
 		initialize:function () {
+			console.log('ini-stats-page');
 			this.template = _.template(jqmPageTpl);
 		},
 
 		render:function (eventName) {
+			console.log('render-stats-page');
 			$(this.el).html(this.template({headerFixed: true}));
 
 			this.subviews.headerView = new Header({
 				el: $('#page-header', this.el),
 				idPage: this.idPage,
+				showBackBtn: true,
+				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();
 
-			this.subviews.statistics = new Statistics({
+			this.subviews.statisticsView = new Statistics({
 				el: $('#page-content', this.el),
-				collection: this.options.taskCollections
+				model: this.options.statistic
 			}).render();
 
 			return this;

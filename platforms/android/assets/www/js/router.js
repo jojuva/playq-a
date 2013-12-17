@@ -6,11 +6,10 @@ var AppRouter = Backbone.Router.extend({
     routes:{
 		"":"login",
 		"login":"login",
-		"menu" : "menu",
 		"login/:sessionExp" : "login",
-		"changepsw" : "changepsw",
 		"signup" : "signup",
-		"question" : "question",
+		"menu" : "menu",
+		"question/:cat" : "question",
 		"wait" : "wait",
 		"statistics" : "statistics",
 		"top10" : "top10",
@@ -19,18 +18,8 @@ var AppRouter = Backbone.Router.extend({
 		"clueResult" : "clueResult",
 		"guess" : "guess",
 		"end" : "end",
-		"tarea/:id" :'detalleTarea',
 		"exitApp" : "exitApp",
-		"config" : "configuracion",
-		"contestaNoEjecutada/:id" : "contestaTareaNoEjecutada",
-		"contestaEjecutada/:id/:status" : "contestaTareaEjecutada",
-		"logs" : "logs",
-		"idioma/:lng" : "changeLang",
-		"fotos/:id" : "listFotos",
-		"timesheets" : "listTimeSheet",
-		"createTS" : "formCreateTimeSheet",
-		"editTS/:id" : "formEditTimeSheet",
-		"resumentareas" : "resumentareas"
+		"idioma/:lng" : "changeLang"
     },
 
 	currentPage: null,
@@ -57,13 +46,6 @@ var AppRouter = Backbone.Router.extend({
 			sessionExp: (sessionExp === 'true')
 		}));
 	},
-    /* pagina menu */
-	menu: function () {
-		var self = this;
-		require(["views/menuPage"], function(MenuPage){
-			self.changePage( new MenuPage());
-		});
-	},
     /* pagina signup */
 	signup: function () {
 		var self = this;
@@ -71,11 +53,30 @@ var AppRouter = Backbone.Router.extend({
 			self.changePage( new SignUpPage());
 		});
 	},
+    /* pagina menu */
+	menu: function () {
+		var self = this;
+		require(["views/menuPage"], function(MenuPage){
+			self.changePage( new MenuPage());
+		});
+	},
     /* pagina question */
-	question: function () {
+	question: function (cat) {
 		var self = this;
 		require(["views/questionPage"], function(QuestionPage){
-			self.changePage( new QuestionPage());
+			self.before(ID_PAGE.QUESTION, {
+				success: function () {
+					console.log('changePage-QuestionPage');
+					
+					self.changePage( new QuestionPage(self.dataForView));
+				},
+				error: function () {
+					console.log('error-questionPage');
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: question; objectId: '+cat);
+				}
+			},{
+				objectId: cat
+			});
 		});
 	},
     /* pagina wait */
@@ -89,14 +90,33 @@ var AppRouter = Backbone.Router.extend({
 	statistics: function () {
 		var self = this;
 		require(["views/statisticsPage"], function(StatisticsPage){
-			self.changePage( new StatisticsPage());
+			self.before(ID_PAGE.STATISTICS, {
+				success: function () {
+					console.log('changePage-StatisticsPage');
+					console.log('d4:'+self.dataForView.toSource());
+					self.changePage( new StatisticsPage(self.dataForView));
+				},
+				error: function () {
+					console.log('error-StatisticsPage');
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: statistics');
+				}
+			});		
 		});
 	},
     /* pagina top10 */
 	top10: function () {
 		var self = this;
 		require(["views/top10Page"], function(Top10Page){
-			self.changePage( new Top10Page());
+			self.before(ID_PAGE.TOP10, {
+				success: function () {
+					console.log('changePage-Top10Page');
+					self.changePage( new Top10Page(self.dataForView));
+				},
+				error: function () {
+					console.log('error-Top10Page');
+					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: top10');
+				}
+			});	
 		});
 	},
     /* pagina askClue */
@@ -135,27 +155,11 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 
-	/* pagina lista tareas */
-    listaTareas:function () {
-		var self = this;
-
-		require(["views/listaTareasPage", "collections/taskListCollections"], function (ListaTareasPage) {
-			self.before(ID_PAGE.TAREAS, {
-				success: function(){
-					self.changePage(new ListaTareasPage(self.dataForView));
-				},
-				error: function () {
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: listaTareas;');
-				}
-			});
-		});
-	},
-
     exitApp: function () {
 		navigator.app.exitApp();
 	},
 
-    changePage:function (page, isSplitView) {
+    changePage:function (page) {
 		if (this.currentPage)
 		this.currentPage.close();
 		this.currentPage = page;
@@ -189,20 +193,8 @@ var AppRouter = Backbone.Router.extend({
 				}
 
 				var attr = dataKeys[n];
-
-				//mirem si l'attr conté "master/"
-				if (attr.indexOf("master/") >= 0){
-					attr = attr.substr(7);
-					collection_path = 'collections/master/';
-				}else if(attr.indexOf("internal/") >= 0){
-					attr = attr.substr(9);
-					collection_path = 'collections/internal/';
-				}else if(attr.indexOf("timesheet/") >= 0){
-					attr = attr.substr(10);
-					collection_path = 'collections/timesheet/';
-				}else{
-					collection_path = 'collections/';
-				}
+				
+				collection_path = 'collections/';
 
 				if (_.isUndefined(dataForView[attr])) {
 					dataForView[attr] = new (require(collection_path + attr))();
@@ -221,43 +213,45 @@ var AppRouter = Backbone.Router.extend({
 		_(this.dataForView).removeAll();
 
 		switch (idPage) {
-			case ID_PAGE.TAREAS:
-				break;
+			case ID_PAGE.QUESTION:
+				console.log('before-question');
+				require(["models/question","collections/answerCollections"],
+				function(Question, AnswerCollection){
+					console.log(initData.objectId);
+					dataForView.question = new Question();
+					dataForView.question.getRandomByCategory(initData.objectId,{
+						success: function () { 
+							console.log("q2:"+dataForView.question.id);
+							dataForView.answerCollections = new AnswerCollection();
+							dataForView.answerCollections.findByQuestion(dataForView.question,callbacks);
+							callbacks.success();
+						},
+						error: function () { callbacks.error(); }
+					});
 
-			case ID_PAGE.TAREASDETALLES:
-				break;
-
-			case ID_PAGE.CONFIG:
-				require(["models/master/configuracionTM"],
-				function(Configuracion){
-					dataForView.configTM = new Configuracion({ConfiguracionID: 1});
-					dataForView.configTM.fetch(callbacks);
 				});
 				break;
-
-			case ID_PAGE.LOGS:
-				dataKeys.push('internal/logCollections');
-				fetchCollections(0);
+			case ID_PAGE.STATISTICS:
+				console.log('before-statistics');
+				require(["models/statistic"],
+				function(Statistic){
+					dataForView.statistic = new Statistic();
+					dataForView.statistic.getMyStatistic(callbacks);
+				});
+				break;			
+			case ID_PAGE.TOP10:
+				console.log('before-top10');
+				require(["collections/rankingCollections"],
+				function(RankingCollection){
+					dataForView.rankingCollections = new RankingCollection();
+					dataForView.rankingCollections.getTop10(callbacks);
+				});
 				break;
-
 			default:
 				break;
 		}
-    },
-
-    beforeDetall: function(idTask, successCallback, errorCallback){
-		var self = this, dataForView = this.dataForView;
-		require(["models/global/taskGlobal", "models/task"],
-			function(TaskGlobal, Task){
-			var loadCallbacks = {
-				success: successCallback,
-				error: errorCallback
-			};
-
-			dataForView.taskGlobal = new TaskGlobal({task : new Task({taskid : idTask})});
-			dataForView.taskGlobal.fetch(loadCallbacks);
-		});
     }
+	
 });
 	return AppRouter;
 
