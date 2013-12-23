@@ -21,7 +21,6 @@ require.config({
 	templates: '../templates',
 	views: 'views',
 	collections: 'collections',
-	'sqlUtils' : 'sync/sql-utils',
 	'utils': 'utils',
 	'moment': 'libs/moment/moment-with-langs.min',
 	'mobiscrollcore' : 'libs/mobiscroll/mobiscroll.core',
@@ -119,12 +118,14 @@ define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "i
 	function(require, $, _, Parse, FB) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
+			console.log('NOT IS ON DEVICE');
 			$(document).ready(function() {
 				window.device = { uuid: '111111111', version: 'browser Chrome' };
                 window.localStorage.setItem(LS_UUID, window.device.uuid);
 				initApplication();
 			});
 		} else {
+			console.log('YES IS ON DEVICE');
 			//$(document).on("mobileinit", function () {
 			$(document).ready(function() {
 				document.addEventListener('deviceready', onDeviceReady, false);

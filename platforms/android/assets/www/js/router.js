@@ -26,6 +26,7 @@ var AppRouter = Backbone.Router.extend({
 	dataForView: {},
 
     initialize:function () {
+    	console.log('INI-ROUTER');
 		window.location.hash = '';
         this.firstPage = true;
     },

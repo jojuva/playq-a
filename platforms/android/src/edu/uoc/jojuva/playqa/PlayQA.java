@@ -28,9 +28,10 @@ public class PlayQA extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        super.init();
+        //super.init();
+        System.out.println("INICIANDO...");
         // Set by <content src="index.html" /> in config.xml
-        super.loadUrl(Config.getStartUrl(), 80000);
+        super.loadUrl(Config.getStartUrl(), 1000000);
         //super.loadUrl("file:///android_asset/www/index.html")
     }
 }

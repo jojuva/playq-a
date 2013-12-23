@@ -3,8 +3,6 @@ define(['underscore', 'backbone', 'parse', 'i18n'],
 
 		var PlayUser = Backbone.Model.extend({
 
-			url: URL_DO_LOGIN,
-
 			defaults: {
 				username: null,
 				email: null,

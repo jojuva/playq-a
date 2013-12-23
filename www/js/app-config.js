@@ -37,19 +37,6 @@ var sufixUrl = '.json';
 var GET_TIMEOUT = 120000;
 var POST_TIMEOUT = 120000;
 
-var URL_DO_LOGIN = 'loginService/doLogin';
-var URL_CHANGE_PSW = 'loginService/changePassword';
-var URL_CONFIRM_TM = 'confirmationTMService/confirmationTM';
-var URL_SEND_TASK = 'taskService/sendTask';
-var URL_SEND_FOTO = 'attachmentService/sendAttachment';
-var URL_SET_GOT_TASKS = 'taskGotService/setGotTasks';
-var URL_GET_QUEUE = 'queueService/getQueue';
-var URL_GET_PARTES = 'chargeService/getCharge';
-var URL_SET_PARTES = 'chargeService/setCharge';
-
-//var INIT_URL_SERVICES = 'http://agbar006467.agbar.ga.local:8080/mobility-server/services/';
-var INIT_URL_SERVICES = 'http://mobilityd.agbar.local:8080/mobility-server/services/';
-
 /***************************/
 /********* PHOTOS **********/
 /***************************/
@@ -140,9 +127,6 @@ var ID_PAGE = {
 	CLUE_RESULT: "clueResult",
 	GUESS: "guess",
 	END: "end",
-	CONFIG: "config",
-	GALERIAFOTOS: "fotos",
-	SYNCRO: "syncro",
 	ERROR: "error",
 	LOGS: "logs"
 };
@@ -174,57 +158,6 @@ var LOGIN_STATUS = {
 	LOGIN_ONLINE:"online",
 	LOGIN_OFFLINE: "offline"
 };
-
-var TASKSTATUS = {
-	PENDIENTE: "0",
-	EXECUTIVE: "1",
-	NONEXECUTIVE: "2",
-	PROGRESS: "3"
-};
-
-var METEROPERATION = {
-	RETIRAR: 0,
-	INSTALAR: 1,
-	REVISAR: 2
-};
-
-var TIMESHEETSTATUS = {
-	ABIERTO: 0,
-	FINALIZADO: 1
-};
-
-var TASKSTATUSSYNC = {
-	PENDIENTE: "0",
-	GUARDADA: "1",
-	FINALIZADA: "2"
-};
-
-var INTERVAL = {
-	NO_PRODUCTIVE: "no_prod",
-	PRODUCTIVE: "prod"
-};
-
-var PENDINGSTATUS = {
-	PENDIENTE : 1,
-	CONTESTADA : 0
-};
-
-//PESTANYES FORM
-/*CONTESTAR*/
-var PESTANYAS = {
-	FPRESENCIAS : "FPRESENCIAS",
-	FOPERARIOS : "FOPERARIOS",
-	FCLORO : "FCLORO",
-	FCONTADORINSTALADO: "FCONTADORINSTALADO",
-	FCONTACTUALRETIRADO : "FCONTACTUALRETIRADO",
-	FOBSERVACIONES : "FOBSERVACIONES",
-	FGRADOAVANCE : "FGRADOAVANCE",
-	FFUGASYAVERIAS : "FFUGASYAVERIAS",
-	FBUSCAFUGAS : "FBUSCAFUGAS"
-};
-
-var TIME_SESSION_EXPIRED = 4; //hours
-
 
 /** ERRORS a llistar al LOG **/
 var ERROR_OLD = {

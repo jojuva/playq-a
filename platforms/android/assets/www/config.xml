@@ -5,7 +5,7 @@
         Play Q&amp;A - Application for students.
     </description>
     <author email="jonas.julve@gmail.com" href="http://www.uoc.edu">
-        Jonás Julve
+        Jonï¿½s Julve
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="phonegap-version" value="3.1.0" />

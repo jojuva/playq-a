@@ -21,7 +21,6 @@ require.config({
 	templates: '../templates',
 	views: 'views',
 	collections: 'collections',
-	'sqlUtils' : 'sync/sql-utils',
 	'utils': 'utils',
 	'moment': 'libs/moment/moment-with-langs.min',
 	'mobiscrollcore' : 'libs/mobiscroll/mobiscroll.core',
@@ -32,8 +31,6 @@ require.config({
 	'md5' : 'libs/hash/md5',
 	'main' : 'main',
 	'router' : 'router',
-	'iscroll' : 'libs/iscroll/iscroll',
-	'iscrollview' : 'libs/iscroll/jquery.mobile.iscrollview',
 	'swipe': 'libs/swipe/swipe'
 },
   shim: {
@@ -86,17 +83,11 @@ require.config({
     'app-config': {
 		exports: 'AppConf'
 	},
-	'sqlUtils': {
-		deps:['underscore']
-	},
 	'utils':{
 		deps:['jquery']
 	},
 	'router':{
 		deps:['backbone.extend', 'utils']
-	},
-	'iscrollview':{
-		deps: ['iscroll', 'jqm']
 	},
 	'mobiscrollcore' : {
 		deps: ['jquery', 'jqm-config']
@@ -115,16 +106,18 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "iscrollview", "utils", "app-config", "json2"],
+define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "utils", "app-config", "json2"],
 	function(require, $, _, Parse, FB) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
+			console.log('NOT IS ON DEVICE');
 			$(document).ready(function() {
 				window.device = { uuid: '111111111', version: 'browser Chrome' };
                 window.localStorage.setItem(LS_UUID, window.device.uuid);
 				initApplication();
 			});
 		} else {
+			console.log('YES IS ON DEVICE');
 			//$(document).on("mobileinit", function () {
 			$(document).ready(function() {
 				document.addEventListener('deviceready', onDeviceReady, false);
@@ -132,18 +125,11 @@ define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "i
 		}
 
 		function onDeviceReady() {
+			console.log('ONDEVICEREADY');
 			document.addEventListener("backbutton", handleBackButton, false);
 			document.addEventListener("menubutton", handleMenuButton, false);
 			window.addEventListener("orientationchange", orientationHandler, false);
-			require(['uuidUtils'], function(UUIDUtils) {
-				new UUIDUtils().generateUUID({
-					success: function() {
-						//alert('success');
-						initApplication();
-					},
-					error: function() {}
-				});
-			});
+			initApplication();
 		}
 });
 function initApplication() {
@@ -151,6 +137,7 @@ function initApplication() {
 	require(["jquery", "underscore.extend", "backbone.extend", "i18n", "router"],
 		function($, _, Backbone, i18n, AppRouter){
 		
+		console.log('INITAPPLICATION');
 		// Initialize Parse
 		Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
 		

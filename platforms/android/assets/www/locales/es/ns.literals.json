@@ -118,7 +118,7 @@
 			"rank" : "#",
 			"name" : "Nombre",
 			"points" : "Puntos"
-		}
+		
 		}
 	},
 	"askClue" : {
@@ -140,6 +140,32 @@
 		"saveSyncDataTitle" : "Guardar",
 		"saveSyncDataOk" : "Tarea guardada correctamente.",
 		"expirationDate" : "Aviso caducidad"
+	},
+	"menuList" : {
+		"syncro" : "Sincronizar",
+		"logout" : "Desconectar",
+		"exit" : "Salir",
+		"config" : "Configuración",
+		"iniciar" : "Iniciar",
+		"contestar" : "Contestar",
+		"fotos" : "Fotos",
+		"mapa" : "Mapa",
+		"guardarConfig" : "Guardar",
+		"verLog" : "Ver log",
+		"borrarConfig" : "Borrar",
+		"guardar" : "Guardar",
+		"vaciar" : "Vaciar BD",
+		"catala" :"Català",
+		"castellano" : "Castellano",
+		"newFoto" : "Nueva",
+		"borrarFoto": "Borrar",
+		"borrarFotoTodas": "Borrar todo",
+		"partes" : "Partes",
+		"newTS" : "Nuevo parte",
+		"guardarTimeSheet" : "Guardar parte",
+		"resumenTareas" : "Resumen tareas",
+		"changepsw" : "Cambio contraseña",
+		"sync_ts" : "Enviar partes"
 	},
 	"error" :{
 		"userNotExists" : "Introduzca un usuario válido para acceder al sistema.",

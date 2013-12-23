@@ -168,16 +168,16 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			var self = this,
 				buttonsMenu = [];
 
-			if (window.localStorage.getItem(LS_CHANGE_PASSWORD) === "true") {
-				buttonsMenu.push({id: 'btn_change_psw', icon: 'unlock-alt', class:'', text: 'menuList.changepsw', url: 'changepsw' });
-			}
+			//if (window.localStorage.getItem(LS_CHANGE_PASSWORD) === "true") {
+				//buttonsMenu.push({id: 'btn_change_psw', icon: 'unlock-alt', class:'', text: 'menuList.changepsw', url: 'changepsw' });
+			//}
 
 			buttonsMenu.push({id: 'btn_cat', icon: 'chat', class:'', text: 'menuList.catala', url: 'idioma/ca' });
 			buttonsMenu.push({id: 'btn_esp', icon: 'chat', class:'', text: 'menuList.castellano', url: 'idioma/es' });
 
-			if (!isIOS()) {
-				buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
-			}
+			//if (!isIOS()) {
+				//buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
+			//}
 
 			return buttonsMenu;
 		}
