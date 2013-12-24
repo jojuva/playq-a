@@ -225,7 +225,6 @@ var AppRouter = Backbone.Router.extend({
 							console.log("q2:"+dataForView.question.id);
 							dataForView.answerCollections = new AnswerCollection();
 							dataForView.answerCollections.findByQuestion(dataForView.question,callbacks);
-							callbacks.success();
 						},
 						error: function () { callbacks.error(); }
 					});

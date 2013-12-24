@@ -43,8 +43,9 @@ define(['underscore', 'parse'],
 		},
 		findByQuestion:function (question, callbacks) {
 			console.log('answerDAO.findByQuestion');
-			var answers = question.relation("answers");
-			answers.query().find({
+			var query = new Parse.Query("Answer");
+			query.equalTo("question",question);
+			query.find({
 			  success: function(objects) {
 				// The object was retrieved successfully.
 				console.log("#answers:"+objects.length);

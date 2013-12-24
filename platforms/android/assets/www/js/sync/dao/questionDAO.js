@@ -49,7 +49,7 @@ define(['underscore', 'parse'],
 			var Category = Parse.Object.extend("Category");
 			var cat = new Category();
 			cat.set("objectId",catId);			
-			query.equalTo("categories",cat);
+			query.equalTo("category",cat);
 			//query.include("answers");
 			query.find( {
 			  success: function(objects) {

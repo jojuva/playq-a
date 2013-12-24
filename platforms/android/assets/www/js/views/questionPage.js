@@ -53,20 +53,27 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 		
 		doAnswer: function(answer) {
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			//check answer
-			if (this.collection.models[answer].get('correct') && this.numQuestions<10){
-				this.numQuestions++;
+			if (this.collection.models[answer].get('correct')){
 				//add points
-				this.addPoints();
+				this.addPoints(this.model.get('score'),1,0,numQuestions);
+				if (this.numQuestions<10){
+					this.numQuestions++;
+					this.nextQuestion();
+				}else{
+					this.doEnd('OK');
+				}
 			}else{
-				this.doEnd();
+				//add points
+				this.addPoints(0,0,1,0);
+				this.doEnd('KO');
 			};
 		},
 		
-		addPoints: function() {
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+		addPoints: function(score,ok,ko,strike) {
 			var statistic = new Statistic();
-			console.log('navigate end');
+			
 			//this.nextQuestion();			
 		},
 		
@@ -83,10 +90,10 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			});
 		},
 
-		doEnd: function() {
+		doEnd: function(result) {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('navigate end');
-			app.navigate('statistics', true);
+			app.navigate('statistics/'+result, true);
 		}		
 		
 	});
