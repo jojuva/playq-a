@@ -61,7 +61,7 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 						createdAt: object.createdAt,
 						updatedAt: object.updatedAt
 					});
-					console.log('o:'+object.toSource());
+					//console.log('o:'+object.toSource());
 					if (callbacks.success) callbacks.success();
 				},
 				error: callbacks.error

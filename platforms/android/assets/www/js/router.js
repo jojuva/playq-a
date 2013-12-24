@@ -94,7 +94,7 @@ var AppRouter = Backbone.Router.extend({
 			self.before(ID_PAGE.STATISTICS, {
 				success: function () {
 					console.log('changePage-StatisticsPage');
-					console.log('d4:'+self.dataForView.toSource());
+					//console.log('d4:'+self.dataForView.toSource());
 					self.changePage( new StatisticsPage(self.dataForView));
 				},
 				error: function () {
