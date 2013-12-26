@@ -10,6 +10,7 @@ var AppRouter = Backbone.Router.extend({
 		"signup" : "signup",
 		"menu" : "menu",
 		"question/:cat" : "question",
+		"question/:cat/:num" : "question",
 		"wait" : "wait",
 		"statistics" : "statistics",
 		"top10" : "top10",
@@ -62,7 +63,7 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
     /* pagina question */
-	question: function (cat) {
+	question: function (cat, num) {
 		var self = this;
 		require(["views/questionPage"], function(QuestionPage){
 			self.before(ID_PAGE.QUESTION, {
@@ -76,7 +77,8 @@ var AppRouter = Backbone.Router.extend({
 					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: question; objectId: '+cat);
 				}
 			},{
-				objectId: cat
+				objectId: cat,
+				numQuestions: num
 			});
 		});
 	},
@@ -219,6 +221,7 @@ var AppRouter = Backbone.Router.extend({
 				require(["models/question","collections/answerCollections"],
 				function(Question, AnswerCollection){
 					console.log(initData.objectId);
+					dataForView.numQuestions = initData.numQuestions;
 					dataForView.question = new Question();
 					dataForView.question.getRandomByCategory(initData.objectId,{
 						success: function () { 

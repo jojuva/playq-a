@@ -1,12 +1,14 @@
-define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'jqm'],
-	function($, _, Backbone, Header, jqmPageTpl, questionTpl) {
+define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'models/statistic', 'jqm'],
+	function($, _, Backbone, Header, jqmPageTpl, questionTpl, Statistic) {
 
 	var Question = Backbone.View.extend({
-		numQuestions: 0,
+		numQuestions: null,
 		
 		initialize:function () {
-			console.log(JSON.stringify(this.model, null, 4));
-			console.log(JSON.stringify(this.collection, null, 4));
+			this.numQuestions=this.options.numQuestions;
+			console.log('numQuestions-ini:'+this.numQuestions);
+			//console.log(JSON.stringify(this.model, null, 4));
+			//console.log(JSON.stringify(this.collection, null, 4));
 			this.template = _.template(questionTpl);
 			this.questionData = {
 				questionA: 'pregunta',
@@ -53,47 +55,68 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 		
 		doAnswer: function(answer) {
+			var self = this;
+			
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			//check answer
 			if (this.collection.models[answer].get('correct')){
 				//add points
-				this.addPoints(this.model.get('score'),1,0,numQuestions);
-				if (this.numQuestions<10){
-					this.numQuestions++;
-					this.nextQuestion();
-				}else{
-					this.doEnd('OK');
-				}
+				this.numQuestions++;
+				this.addPoints(this.model.get('score'),1,0,this.numQuestions,{
+					success: function(){
+						console.log('numQuestions:'+self.numQuestions);
+						if (self.numQuestions<10){
+							self.doTraining();
+						}else{
+							self.doEnd('OK');
+						}
+					},
+					error: function(){
+						console.log('error adding points.');
+					}
+						
+				});
 			}else{
 				//add points
-				this.addPoints(0,0,1,0);
-				this.doEnd('KO');
+				this.addPoints(0,0,1,0,{
+					success: function(){
+						self.doEnd('KO');
+					},
+					error: function(){
+						console.log('error adding points.');
+					}
+				});
 			};
 		},
 		
-		addPoints: function(score,ok,ko,strike) {
+		addPoints: function(score,ok,ko,strike,callbacks) {
 			var statistic = new Statistic();
-			
-			//this.nextQuestion();			
-		},
-		
-		nextQuestion: function(){
-			this.model = new Question();
-			this.model.getRandomByCategory(initData.objectId,{
-				success: function () { 
-					console.log("q2:"+this.model.id);
-					this.collection = new AnswerCollection();
-					this.collection.findByQuestion(this.model,callbacks);
+			statistic.getMyStatistic({
+				success: function(){
+					statistic.set('totScore',statistic.get('totScore')+score);
+					statistic.set('okAnswers',statistic.get('okAnswers')+ok);
+					statistic.set('koAnswers',statistic.get('koAnswers')+ko);
+					if (statistic.get('maxStrike')<=strike){
+						statistic.set('maxStrike',strike);
+					}
+					statistic.save();
 					callbacks.success();
 				},
-				error: function () { callbacks.error(); }
+				error: function(){
+					console.log('error saving statistic.');
+					callbacks.error();
+				}
 			});
+		},
+		
+		doTraining: function() {
+			console.log('navigate question');
+			app.navigate('question/'+this.model.get('category').id+'/'+this.numQuestions, true);
 		},
 
 		doEnd: function(result) {
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
-			console.log('navigate end');
-			app.navigate('statistics/'+result, true);
+			console.log('doEnd');
+			app.navigate('statistics', true);
 		}		
 		
 	});
@@ -122,6 +145,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 			this.subviews.menuView = new Question({
 				el: $('#page-content', this.el),
+				numQuestions: this.options.numQuestions,
 				model: this.options.question,
 				collection: this.options.answerCollections
 			}).render();

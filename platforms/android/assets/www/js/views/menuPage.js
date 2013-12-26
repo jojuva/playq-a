@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		doTraining: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('navigate question');
-			app.navigate('question/'+$('#categoryid').val(), true);
+			app.navigate('question/'+$('#categoryid').val()+'/0', true);
 		},
 		
 		doChallenge: function() {
