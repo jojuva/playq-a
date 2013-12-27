@@ -1,0 +1,11 @@
+<div class="container-menu" ><!--class="ui-overlay-popup" id="contMenuDiv"-->
+<ul data-role="listview" data-inset="true" ><!--id="menuDiv"-->
+	<% _.each(menuBtns, function (btn) { %>
+
+		<li data-icon="<%=btn.icon%>" id="list-<%= btn.id %>" >
+			<a id="<%= btn.id %>" class="button-optionList" data-i18n="<%=btn.text %>"></a>
+		</li>
+
+	<% }); %>
+</ul>
+</div>

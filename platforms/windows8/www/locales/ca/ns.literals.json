@@ -1,0 +1,348 @@
+﻿{
+	"versio" : "Versió",
+	"alerts" : {
+		"syncroPendent" : "Dades pendents de sincronitzar"
+	},
+	"buttons" : {
+		"enter" : "Entrar",
+		"back"	: "Enrere",
+		"menu"	: "Menú",
+		"crear" : "Crear",
+		"borrar" : "Borrar",
+		"accept" : "Acceptar",
+		"cancel" : "Cancel·lar",
+		"add" : "Afegir",
+		"edit" : "Editar",
+		"yes" : "Sí",
+		"no" : "No",
+		"changePsw" : "Canviar contrasenya",
+		"signup" : "Registrar-se",
+		"facebook" : "Facebook",
+		"training" : "Entrenament",
+		"challenge" : "Competició",
+		"statistics" : "Estadistica",
+		"top10" : "Top 10",
+		"chemistry" : "Química",
+		"maths" : "Mates",
+		"physics" : "Física",
+		"ask" : "Pregunta",
+		"guess" : "Endevina ara",
+		"play" : "Torna a Jugar"
+	},
+	"select":{
+		"defaultLabel" : "Escollir..."
+	},
+	"dialog":{
+		"deleteText" : "Vols eliminar la base de dades?",
+		"deleteFoto" : "Vols eliminar la fotografia?",
+		"deleteFotoAll" : "Vols eliminar totes les fotografies?",
+		"delete" : "Eliminar",
+		"reiniciarTarea" : "Vols tornar a iniciar la tasca?",
+		"iniciar": "Iniciar Tasca",
+		"deleteLogText" : "Vols eliminar el registre de logs?",
+		"deleteTimeSheetText": "Vols eliminar el parte?",
+		"backTitle" : "Confirmació",
+		"backMsg" : "Segur que desitja sortir sense desar els canvis?",
+		"logoutMsg" : "Segur que desitja desconnectar-se?",
+		"si" : "Sí",
+		"no" : "No",
+		"deleteProgress" : "Vols eliminar l'avanç?"
+	},
+	"loading" : {
+		"message" : "Carregant...",
+		"online" : "Login Online",
+		"offline" : "Login Offline",
+		"syncro" : "Sincronitzant...",
+		"save": "Desant...",
+		"process" : "Processant..."
+	},
+	"cita" : {
+		"fromdatetime" : "Des de la data",
+		"untildatetime" : "Fins la data"
+	},
+	"login" : {
+		"title" : "Login",
+		"form" : {
+			"title" : "Introdueix les dades",
+			"user" : "Usuari",
+			"password" : "Contrasenya",
+			"staylogged" : "Mantenir login",
+			"newuser" : "Usuari nou?"
+		},
+		"admin" : "Administrador",
+		"expirationDate" : {
+			"message" : "Ha de canviar la contrasenya en __param__ dia",
+			"message_plural" : "Ha de canviar la contrasenya en __param__ dies"
+		}
+	},
+	"signup" : {
+		"title" : "Registrar-se",
+		"form" : {
+			"username" : "Usuari",
+			"email" : "E-mail",
+			"password" : "Contrasenya",
+			"repeat_password" : "Repeteix contrasenya"
+		}
+	},
+	"menu" : {
+		"title" : "Menu",
+		"form" : {
+			"category" : "Selecciona categoria..."
+		}
+	},
+	"question" : {
+		"title" : "Pregunta",
+		"form" : {
+		}
+	},
+	"wait" : {
+		"title" : "Si us plau, Esperi...",
+		"table" : {
+			"scoring" : "Puntuació"
+		}
+	},
+	"statistics" : {
+		"title" : "Estadística",
+		"table" : {
+			"name" : "Nom",
+			"points" : "Punts",
+			"time" : "Temps mig",
+			"strike" : "Seguits",
+			"ok" : "Encerts",
+			"ko" : "Errors"
+		}
+
+	},
+	"top10" : {
+		"title" : "Classificació",
+		"table" : {
+			"rank" : "#",
+			"name" : "Nom",
+			"points" : "Punts"
+		}
+	},
+	"askClue" : {
+		"title" : "Escriu pregunta SI/NO"
+	},
+	"answerClue" : {
+		"title" : "Si us plau, contesti a la pregunta"
+	},
+	"clueResult" : {
+		"title" : "Resultat"
+	},
+	"guess" : {
+		"title" : "Endevina adversari"
+	},
+	"end" : {
+		"title" : "FI"
+	},
+	"info" : {
+		"saveSyncDataTitle" : "Desar",
+		"saveSyncDataOk" : "Tasca desada correctament",
+		"expirationDate" : "Avís caducitat"
+	},
+	"menuList" : {
+		"syncro" : "Sincronitzar",
+		"logout" : "Desconnectar",
+		"exit" : "Sortir",
+		"config" : "Configuració",
+		"iniciar" : "Iniciar",
+		"contestar" : "Contestar",
+		"fotos" : "Fotos",
+		"mapa" : "Mapa",
+		"guardarConfig" : "Desar",
+		"verLog" : "Veure log",
+		"borrarConfig" : "Borrar",
+		"guardar" : "Desar",
+		"vaciar" : "Buidar BD",
+		"catala" :"Català",
+		"castellano" : "Castellano",
+		"newFoto" : "Nova",
+		"borrarFoto": "Borrar",
+		"borrarFotoTodas": "Borrar tot",
+		"partes" : "Partes",
+		"newTS" : "Nou parte",
+		"guardarTimeSheet" : "Guardar parte",
+		"resumenTareas" : "Resum tasques",
+		"changepsw" : "Canvi contrasenya",
+		"sync_ts" : "Enviar partes"
+	},
+	"error" :{
+		"userNotExists" : "Introdueix un usuari vàlid per accedir al sistema.",
+		"noConexion" : "No es pot establir la connexió",
+		"noSyncTitle" : "Enviament de dades",
+		"emailPattern" : "El e-mail no té un format correcte",
+		"fail_login_offline" :"Usuari o contrasenya incorrectes (OFF-LINE)",
+		"fail_login_online" :"Usuari o contrasenya incorrectes (ON-LINE)",
+		"fail_login_offline_no_credentials" : "No hi ha connexió, no es pot verificar la seva identitat",
+		"login_error" : "No s'ha pogut realitzar el login correctament",
+		"signup_error" : "No s'ha pogut registrar el nou usuari correctament",
+		"obligatorios" : "Introdueix els valors als camps",
+		"failRepeatPassword" : "Les contrasenyes no coincideixen",
+		"syncroOffline" : "Enviament no realitzat al no tenir cobertura",
+		"savedTask_syncroOffline" : "Tasca desada - no s'ha pogut sincronitzar al no tenir cobertura",
+		"savedTask_syncroError" : "Tasca desada - error en el procés de enviament",
+		"syncroError" : "Error en el procés de enviament",
+		"saveDataTitle" : "Desar",
+		"saveDataError" : "Error al desar les dades",
+		"fechasIncorrectas" : "Les dates no són correctes",
+		"operarioObligatorio" : "Afegeix un operari",
+		"operariosDuplicados" : "Aquest operari ja ha estat afegit en aquesta data",
+		"operarioDuracion" : "Falta duració per l'operari amb data ",
+		"operariosNull" : "Escull un operari",
+		"fechaNull" : "Escull una data",
+		"motivoObligatorio" : "Escull un motiu de no execució",
+		"duracionObligatorio": "Afegeix una duració",
+		"duracionOperario" : "Falta indicar operari per la duració ",
+		"validacionTarea" : "Revisa els següents camps",
+		"parte_tareaNull": "Afegeix una tasca",
+		"session_exp" : "Ha caducat la sessió, torni a introduir les seves credencials.",
+		"minPresence" : "La tasca ha de tenir una presencia com a mínim",
+		"solapaminto" : "Hi ha solapament de: ",
+		"parteNoObtenido" : "No s'ha pogut obtenir el parte. Tornar a intentar.",
+		"parteRepetit" : "El parte ja existeix al terminal",
+		"genericError" : "S'ha produït un error. Tornar a intentar",
+		"deleteDataTitle" : "Eliminar dades",
+		"deleteData" : "Error al eliminar dades",
+		"operation" : {
+			"002" : "Contrasenya caducada",
+			"005" : "Crear Base Dades",
+			"006" : "Error Javascript",
+			"007" : "Error crear BD",
+			"008" : "Error inserir taules mestres",
+			"009" : "Error obtenir dades",
+			"010" : "Error Desar dades",
+			"011" : "Error carregar dades per mostrar pagina",
+			"012" : "Error cache template",
+			"013" : "Error borrar row",
+			"014" : "Error cerca",
+			"015" : "Error Login",
+			"016" : "Error al sincronitzar",
+			"017" : "Error al sincronitzar",
+			"018" : "Error de login online",
+			"019" : "Error connexió",
+			"020" : "Error getHash",
+			"021" : "Error Login",
+			"022" : "Error Fichero (Foto)",
+			"024" : "Problema d'accés app",
+			"025" : "Error Canvi contrasenya",
+			"026" : "Error GOT Canvi contrasenya"
+		},
+		"description" : {
+			"generic" : "S'ha produït un error innesperat a l'aplicació i s'ha de tancar.",
+			"002" : "La contrasenya de l'operari ha caducat",
+			"005" : "Error al crear i inicialitzar la base de dades del dispositiu.",
+			"006" : "Error JS",
+			"007" : "Error CREATE BD",
+			"008" : "Error INSERT BD",
+			"009" : "Error fetch BD",
+			"010" : "Error insert/update BD",
+			"011" : "Error load page data",
+			"012" : "Error cache template",
+			"013" : "Error delete row",
+			"014" : "Error al fer cerca",
+			"015" : "Credencials incorrectes a l'autenticació sense cobertura",
+			"016" : "Sincronització no realitzada a causa de no tenir cobertura",
+			"017" : "Error en el procés de sincronització",
+			"018" : "Error del login realitzat al servidor",
+			"019" : "Error al fer login a causa de no tenir cobertura",
+			"020" : "No s'ha pogut obtenir el hash de les credencials",
+			"021" : "No s'ha pogut validar offline, no hi ha contrasenya emmagatzemada",
+			"022" : "Error en la gestión de la foto",
+			"024" : "Accés a l'aplicació amb un operari desconegut pel terminal",
+			"025" : "No s'ha pogut establir connexió per realitzar el canvi de contrasenya.",
+			"026" : "Error Canvi contrasenya GOT."
+		},
+		"validation":{
+			"rownumber":{
+				"required" : "El camp Fila de Comptador Instal·lat és obligatori"
+			},
+			"columnnumber":{
+				"required" : "El camp Columna de Comptador Instal·lat és obligatori"
+			},
+			"brandid":{
+				"required" : "El camp Marca de Comptador Instal·lat és obligatori"
+			},
+			"modelid":{
+				"required" : "El camp Model de Comptador Instal·lat és obligatori"
+			},
+			"gaugeid": {
+				"required" : "El camp Calibre de Comptador Instal·lat és obligatori",
+				"required2" : "El camp Calibre de Comptador Instal·lat (Segona Esfera) és obligatori"
+			},
+			"serialnumber":{
+				"required" : "El camp Número de serie de Comptador Instal·lat és obligatori",
+				"required2" : "El camp Número de serie de Comptador Instal·lat (Segona Esfera) és obligatori"
+			},
+			"reading":{
+				"required" : "El camp Lectura del Comptador Retirat és obligatori si hi ha comptador i ha de ser numèric",
+				"required2" : "El camp Lectura del Comptador Retirat (Segona Esfera) és obligatori si hi ha comptador i ha de ser numèric",
+				"requiredIns" : "El camp Lectura del Comptador Instal·lat és obligatori i ha de ser numèric",
+				"requiredIns2" : "El camp Lectura del Comptador Instal·lat (Segona Esfera) és obligatori i ha de ser numèric"
+			},
+			"emplacementcode":{
+				"required" : "El camp Ubicació de Comptador Instal·lat és obligatori"
+			},
+			"radiomodule" : {
+				"required" : "El camp Mòdul radio és obligatori si hi ha instal·lat emissor"
+			},
+			"installationdate":{
+				"required" : "El camp Data d'instal·lació de Comptador Instal·lat és obligatori"
+			},
+			"endtime":{
+				"required" : "El camp Hora fi és obligatori"
+			},
+			"starttime":{
+				"required" : "El camp Hora inici és obligatori"
+			},
+			"startDate":{
+				"required": "El camp Inici és obligatori"
+			},
+			"endDate":{
+				"required": "El camp Fi és obligatori"
+			},
+			"hourTypeForOpUnitId":{
+				"required": "Escull un Tipus Hora"
+			},
+			"cortes" : "Si informa els camps Duració i/o Exposició s'ha introduïr un valor numèric major a 0 al camp Talls",
+			"date":{
+				"required" : "El camp hores ha de ser major a 00:00"
+			},
+			"resourceId" : {
+				"required" : "El camp recurs és obligatori"
+			},
+			"dateTS" :{
+				"required" : "Afegeix la data del parte"
+			},
+			"workDateTypeForOUId" : {
+				"required" : "Escull un tipus de Jornada"
+			},
+			"date_progress" : {
+				"required" : "Afegeix una data"
+			},
+			"progress" : {
+				"required" : "Afegeix un avanç"
+			},
+			"failuretype" : {
+				"required" : "Escull la causa d'avaria"
+			},
+			"chlorinereading" : {
+				"required" : "Informa la lectura de clor"
+			},
+			"totalleaks" : {
+				"format" : "Nº de fugues 5 dígits màxim"
+			},
+			"distance" : {
+				"format": "Metres de xarxa: 8 dígits màxim"
+			}
+		},
+		"overlap":{
+			"overlap_1": "No es pot afegir l'interval de temps. Se solapa amb ",
+			"overlap_2": " de la tasca ",
+			"overlap_3": "  d'hores no productives'",
+			"start_end": "La data de inici no pot ser superior a la fi",
+			"start_end_igual": "La data de inici i de fi no poden ser iguals",
+			"overlap_presence" : "La duració no es pot afegir, se solapa amb "
+		}
+	}
+}

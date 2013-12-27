@@ -1,0 +1,163 @@
+{
+	"hasErrors": false,
+	"chargeTM": {
+		"technicalOperatorId": 216,
+		"workDateTypeForOUId": 1,
+		"date": "20130607",
+		"operatorUnitId": 15,
+		"vehicleRegistration": null,
+		"observation": "",
+		"expenses": 0,
+		"presenceDataEntryMO": {
+			"presenceDataEntryMO": [{
+				"taskId": 341816,
+				"taskTypeId": 89,
+				"taskDescription": "Inspección fuera de plazo",
+				"asbestosCuts": 0,
+				"asbestosDuration": null,
+				"asbestosExposition": null,
+				"confinedSpaces": false,
+				"accountCode": "O6547915-1",
+				"realAddress": "AV.LIBERTAD 26-5-1 ( ELX )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607100000",
+						"endDate": "20130607103000"
+					}]
+				}
+			}, {
+				"taskId": 341817,
+				"taskTypeId": 89,
+				"taskDescription": "Inspección fuera de plazo2",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6547920-1",
+				"realAddress": "AV.LIBERTAD 28 ( ELX )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607101500",
+						"endDate": "20130607113000"
+					}]
+				}
+			}, {
+				"taskId": 342515,
+				"taskTypeId": 93,
+				"taskDescription": "Trabajos genéricos",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6549405-1",
+				"realAddress": "PD.LLANO SAN JOSE P1 93 E/1-1 ( LLANO DE SAN JOSE (ELX) )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607090000",
+						"endDate": "20130607103000"
+					}]
+				}
+			}, {
+				"taskId": 342516,
+				"taskTypeId": 93,
+				"taskDescription": "Trabajos genéricos",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6549407-1",
+				"realAddress": "PD.LLANO SAN JOSE P1 95-1 ( LLANO DE SAN JOSE (ELX) )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607103000",
+						"endDate": "20130607113000"
+					}]
+				}
+			}, {
+				"taskId": 342518,
+				"taskTypeId": 93,
+				"taskDescription": "Trabajos genéricos",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6549409-1",
+				"realAddress": "PD.LLANO SAN JOSE P1 94 ( LLANO DE SAN JOSE (ELX) )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607123000",
+						"endDate": "20130607133000"
+					}]
+				}
+			}, {
+				"taskId": 343724,
+				"taskTypeId": 89,
+				"taskDescription": "Inspección fuera de plazo",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6551036-1",
+				"realAddress": "LA CORUÑA 10 GE- ( LOS ARENALES DEL SOL (ELX) )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607113000",
+						"endDate": "20130607123000"
+					}]
+				}
+			}, {
+				"taskId": 344599,
+				"taskTypeId": 89,
+				"taskDescription": "Inspección fuera de plazo",
+				"asbestosCuts": 0,
+				"asbestosDuration": 0,
+				"asbestosExposition": 0,
+				"confinedSpaces": false,
+				"accountCode": "O6551751-1",
+				"realAddress": "PD.PEÑA AGUILAS P1 329 ( PEÑA DE LAS AGUILAS (ELX) )",
+				"presenceUsedResourceMO": {
+					"presenceUsedResourceMO": []
+				},
+				"presenceOperatorMO": {
+					"presenceOperatorMO": [{
+						"hourTypeForOpUnitId": 242,
+						"startDate": "20130607133000",
+						"endDate": "20130607143000"
+					}]
+				}
+			}]
+		},
+		"chargeNotProdIntervalMO": {
+			"chargeNotProdIntervalMO": []
+		}
+	},
+	"error": {
+		"code": null,
+		"description": "tareas pendientes de subir a GOT",
+		"mobileTaskId": 0
+	}
+}
