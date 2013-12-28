@@ -9,6 +9,8 @@ require.config({
 	underscore: 'libs/underscore/underscore-1.5.2.min',
 	'underscore.extend' : 'libs/underscore/underscore.playqa.extends',
 	parse: 'libs/parse/parse-1.2.13',
+	'facebook': 'libs/facebook/facebook-js-sdk',
+	'fb-connect': 'libs/facebook/cdv-plugin-fb-connect',
 	backbone: 'libs/backbone/backbone-1.0.0',
 	'backbone.stickit': 'libs/backbone/backbone.stickit',
 	'backbone.stickit.extend': 'libs/backbone/backbone.stickit.extends',
@@ -43,6 +45,12 @@ require.config({
     parse: {
 		exports: 'Parse'
     },    
+	'facebook': {
+		exports: 'FB'
+    },	
+    'fb-connect': {
+		exports: 'CDV'
+    },
     backbone: {
 		deps: ['underscore.extend', 'jquery'],
 		exports: 'Backbone'
@@ -102,8 +110,8 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "parse", "jqm", "utils", "app-config", "json2"],
-	function(require, $, _, Parse, FB) {
+define(['require', "jquery", "underscore.extend", "parse", "facebook", "fb-connect", "jqm", "utils", "app-config", "json2"],
+	function(require, $, _, Parse, FB, CDV) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
 			console.log('NOT IS ON DEVICE');
@@ -147,6 +155,17 @@ function initApplication() {
 			$(".error").show();
 		  }
 		});*/	
+
+		// Initialize Facebook
+		Parse.FacebookUtils.init({
+		  appId      : FB_APP_ID, // Facebook App ID
+          nativeInterface: CDV.FB,
+          useCachedDialogs: false,
+          status:true, // check login status
+          cookie:true, // enable cookies to allow Parse to access the session
+          xfbml:true, // parse XFBML
+          oauth:true
+		});
 	   
 	   // Initialize lang
 		var lang = window.localStorage.getItem(LS_LANG);

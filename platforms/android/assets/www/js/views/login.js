@@ -93,12 +93,12 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		doFBLogin:function () {
 			var self = this;
 	  
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			//$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 			this.hideErrors();
 			this.hideErrorMessage($('#errors-login', this.el));
-
-			Parse.FacebookUtils.logIn(null, {
+			
+			Parse.FacebookUtils.logIn("user_likes,email", {
 			  success: function(user) {
 				if (!user.existed()) {
 				  alert("User signed up and logged in through Facebook!");
@@ -111,9 +111,10 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 				}
 			  },
 			  error: function(user, error) {
-				console.log(user);
-				console.log(error);
-				self.showErrorReceived(user, error);
+				console.log(user.id);
+				console.log(error.code);
+				console.log(error.message);
+				 self.showErrorReceived(user, error);
 			  }
 			});		
 		},
