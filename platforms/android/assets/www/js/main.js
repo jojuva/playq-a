@@ -9,7 +9,6 @@ require.config({
 	underscore: 'libs/underscore/underscore-1.5.2.min',
 	'underscore.extend' : 'libs/underscore/underscore.playqa.extends',
 	parse: 'libs/parse/parse-1.2.13',
-	'facebook': 'libs/facebook/all',
 	backbone: 'libs/backbone/backbone-1.0.0',
 	'backbone.stickit': 'libs/backbone/backbone.stickit',
 	'backbone.stickit.extend': 'libs/backbone/backbone.stickit.extends',
@@ -44,9 +43,6 @@ require.config({
     parse: {
 		exports: 'Parse'
     },    
-	'facebook': {
-		exports: 'FB'
-    },
     backbone: {
 		deps: ['underscore.extend', 'jquery'],
 		exports: 'Backbone'
@@ -106,7 +102,7 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "utils", "app-config", "json2"],
+define(['require', "jquery", "underscore.extend", "parse", "jqm", "utils", "app-config", "json2"],
 	function(require, $, _, Parse, FB) {
 		// TODO Temporal borrar entrega
 		if (!isOnDevice()) {
