@@ -96,13 +96,15 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit', 'v
 		},
 
 		render:function (eventName) {
+			console.log('render-top10-page');
 			$(this.el).html(this.template({headerFixed: true}));
 			this.subviews.headerView = new Header({
 				el: $('#page-header', this.el),
 				title: 'top10.title',
 				idPage: this.idPage,
 				showBackBtn: true,
-				menuBtns: this.initMenuHeaderBtns()
+				showUserInfo: false,
+				showMenuListBtn: false
 			}).render();
 
 			if(!_.isEmpty(this.options.rankingCollections.models)){
@@ -112,17 +114,6 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit', 'v
 				}).render();
 			}
 			return this;
-		},
-
-		initMenuHeaderBtns: function () {
-			var self = this;
-			return [
-				{id: 'btn_borrar', icon: 'trash', text: 'menuList.borrarConfig', action: function(event){ self.deleteLogs(); }}
-			];
-		},
-		deleteLogs: function(){
-			var self= this;
-            self.subviews.listLogsView.deleteLogs();
 		}
 
 	});

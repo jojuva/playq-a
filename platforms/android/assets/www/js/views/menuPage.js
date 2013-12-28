@@ -58,7 +58,38 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		doChallenge: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('navigate wait');
+			this.doPush();
 			app.navigate('wait', true);
+		},
+		
+		doPush: function() {
+			console.log('doPush');
+			//var currentInstallation = Parse.Installation.current();
+			var query = new Parse.Query(Parse.Installation);
+			//query.notEqualTo('objectId', 'AtVUV8F8Hm');
+			/*query.first({
+				success: function(object){
+					console.log('success');
+				},
+				error: function(error){
+					console.log('error querying first installation');
+				}
+			});*/
+			 
+			Parse.Push.send({
+			  where: query, // Set our Installation query
+			  data: {
+			    alert: "Hi again! would you like to Play Q&A with me?",
+			    objectId: Parse.User.current().id
+			  }
+			}, {
+			  success: function() {
+			    // Push was successful
+			  },
+			  error: function(error) {
+			    // Handle error
+			  }
+			});			
 		},
 		
 		doStatistics: function() {

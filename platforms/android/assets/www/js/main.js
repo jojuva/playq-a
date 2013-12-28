@@ -151,14 +151,6 @@ function initApplication() {
 			$(".error").show();
 		  }
 		});*/	
-		
-		// Initialize Facebook
-		Parse.FacebookUtils.init({
-		  appId      : FB_APP_ID, // Facebook App ID
-		  channelUrl : '//playqa.parseapp.com/channel.html', // Channel File
-		  cookie     : true, // enable cookies to allow Parse to access the session
-		  xfbml      : true  // parse XFBML
-		});
 	   
 	   // Initialize lang
 		var lang = window.localStorage.getItem(LS_LANG);
