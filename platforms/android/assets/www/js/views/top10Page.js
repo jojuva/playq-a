@@ -2,6 +2,7 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit', 'v
 	function($, _, Backbone, stickit, Header, jqmPageTpl, top10ListTpl, top10ItemListTpl) {
 
 	var Top10ItemList = Backbone.View.extend({
+
 		bindings:{
 			'#rank' : {
 				observe: 'position',
@@ -71,18 +72,6 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit', 'v
 		addTop10ToList: function ($container, list) {
 			_.each(list, function (item) {
 				$container.append(new Top10ItemList({ model: item }).render().el);
-			});
-		},
-		deleteLogs: function(){
-			this.collection.deleteLog({
-				success:function(){
-					//ok
-					$.mobile.loading('hide');
-				},
-				error:function(error){
-					/* error delete */
-					execError(ERROR_DELETE_DATA+' Logs');
-				}
 			});
 		}
 	});

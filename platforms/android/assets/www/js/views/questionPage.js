@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'models/statistic', 'jqm'],
-	function($, _, Backbone, Header, jqmPageTpl, questionTpl, Statistic) {
+define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'models/statistic', 'models/ranking', 'jqm'],
+	function($, _, Backbone, Header, jqmPageTpl, questionTpl, Statistic, Ranking) {
 
 	var Question = Backbone.View.extend({
 		numQuestions: null,
@@ -100,6 +100,13 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 						statistic.set('maxStrike',strike);
 					}
 					statistic.save();
+					var ranking = new Ranking();
+					ranking.getMyRanking({
+						success: function(){
+							ranking.set('score',ranking.get('score')+score);
+							ranking.save();
+						}
+					});
 					callbacks.success();
 				},
 				error: function(){

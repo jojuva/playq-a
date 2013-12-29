@@ -98,25 +98,27 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			this.hideErrors();
 			this.hideErrorMessage($('#errors-login', this.el));
 			
-			Parse.FacebookUtils.logIn("user_likes,email", {
-			  success: function(user) {
-				if (!user.existed()) {
-				  alert("User signed up and logged in through Facebook!");
-				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-				  app.navigate('menu', true);	  
-				} else {
-				  alert("User logged in through Facebook!");
-				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-				  app.navigate('menu', true);	  
-				}
-			  },
-			  error: function(user, error) {
-				console.log(user.id);
-				console.log(error.code);
-				console.log(error.message);
-				 self.showErrorReceived(user, error);
-			  }
-			});		
+			if (isOnDevice()) {
+				Parse.FacebookUtils.logIn("user_likes,email", {
+					  success: function(user) {
+						if (!user.existed()) {
+						  alert("User signed up and logged in through Facebook!");
+						  window.localStorage.setItem(LS_NOM_OPERATOR, user);
+						  app.navigate('menu', true);	  
+						} else {
+						  alert("User logged in through Facebook!");
+						  window.localStorage.setItem(LS_NOM_OPERATOR, user);
+						  app.navigate('menu', true);	  
+						}
+					  },
+					  error: function(user, error) {
+						console.log(user.id);
+						console.log(error.code);
+						console.log(error.message);
+						 self.showErrorReceived(user, error);
+					  }
+					});		
+			}
 		},
 
 		showErrorReceived: function (user, error) {

@@ -18,6 +18,9 @@ define(['underscore', 'parse', 'models/ranking', 'sync/dao/rankingDAO'],
 			query.find({
 			  success: function(ranks) {
 				console.log("Successfully retrieved ranks " + ranks[0].id);
+				_.each(ranks, function (rank,index) {
+					ranks[index].set('position',index+1);
+				});				
 				self.add(ranks);
 				callbacks.success();
 			  },

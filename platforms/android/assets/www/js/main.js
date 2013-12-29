@@ -156,16 +156,18 @@ function initApplication() {
 		  }
 		});*/	
 
-		// Initialize Facebook
-		Parse.FacebookUtils.init({
-		  appId      : FB_APP_ID, // Facebook App ID
-          nativeInterface: CDV.FB,
-          useCachedDialogs: false,
-          status:true, // check login status
-          cookie:true, // enable cookies to allow Parse to access the session
-          xfbml:true, // parse XFBML
-          oauth:true
-		});
+		if (isOnDevice()) {
+			// Initialize Facebook
+			Parse.FacebookUtils.init({
+			  appId      : FB_APP_ID, // Facebook App ID
+	          nativeInterface: CDV.FB,
+	          useCachedDialogs: false //,
+	          //status:true, // check login status
+	          //cookie:true, // enable cookies to allow Parse to access the session
+	          //xfbml:true, // parse XFBML
+	          //oauth:true
+			});
+		}
 	   
 	   // Initialize lang
 		var lang = window.localStorage.getItem(LS_LANG);
