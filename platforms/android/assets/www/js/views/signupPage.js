@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 	function($, _, Backbone, stickit, Parse, PlayUser, Ranking, Statistic, Header, AlertPopup, jqmPageTpl, signupTpl) {
 
 	var SignUp = Backbone.View.extend({
+		parseFile: null,
 		
 		subviews: {},
 		
@@ -31,9 +32,20 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		},
 		
 		events: {
-			"click #signup_btn": "validateForm"
+			"click #signup_btn": "validateForm",
+			"change #profilePhotoFileUpload": "doUpload"
 		},
-
+		
+		doUpload: function(){
+			var fileUploadControl = $("#profilePhotoFileUpload")[0];
+			if (fileUploadControl.files.length > 0) {
+			  var file = fileUploadControl.files[0];
+			  var name = "photo.jpg";
+			 
+			  this.parseFile = new Parse.File(name, file);
+			}			
+		},
+		
 		scrollTop: function () {
 			if (isIOS()) {
 				$.mobile.silentScroll(0);
@@ -62,8 +74,9 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			var user = new Parse.User();
 			user.set("username", this.model.get('username'));
 			user.set("password", this.model.get('password'));
-			user.set("email", this.model.get('email'));			
-	  
+			user.set("email", this.model.get('email'));	
+			user.set("image", this.parseFile);	
+			
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 			this.hideErrors();

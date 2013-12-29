@@ -75,7 +75,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 						if (self.numQuestions<10){
 							self.doTraining();
 						}else{
-							self.doEnd('OK');
+							self.doEnd(CODE_ERROR.OK);
 						}
 					},
 					error: function(){
@@ -87,7 +87,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				//add points
 				this.addPoints(0,0,1,0,{
 					success: function(){
-						self.doEnd('KO');
+						self.doEnd(CODE_ERROR.KO);
 					},
 					error: function(){
 						console.log('error adding points.');
@@ -130,7 +130,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		doEnd: function(result) {
 			console.log('doEnd');
-			app.navigate('end', true);
+			app.navigate('end/'+result, true);
 		}		
 		
 	});
@@ -152,7 +152,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				el: $('#page-header', this.el),
 				title: 'question.title',
 				idPage: this.idPage,
-				showBackBtn: true,
+				showBackBtn: false,
 				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();

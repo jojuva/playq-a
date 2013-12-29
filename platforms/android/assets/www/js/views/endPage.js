@@ -9,6 +9,16 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
+			console.log('RESULT:'+this.options.result)
+			if (this.options.result == CODE_ERROR.OK){
+				$('#winner', this.el).show();
+			}else{
+				$('#loser', this.el).show();
+			}
+			var profilePhoto = Parse.User.current().get("image");
+			if (!_.isUndefined(profilePhoto)) {
+				$("#profileImg", this.el).attr( "src", profilePhoto.url());
+			}
 			return this;
 		},
 
@@ -36,7 +46,8 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			}).render();
 
 			this.subviews.endView = new End({
-				el: $('#page-content', this.el)
+				el: $('#page-content', this.el),
+				result: this.options.result
 			}).render();
 
 			return this;

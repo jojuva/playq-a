@@ -18,7 +18,7 @@ var AppRouter = Backbone.Router.extend({
 		"answerClue" : "answerClue",
 		"clueResult" : "clueResult",
 		"guess" : "guess",
-		"end" : "end",
+		"end/:result" : "end",
 		"exitApp" : "exitApp",
 		"idioma/:lng" : "changeLang"
     },
@@ -150,10 +150,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
     /* pagina end */
-	end: function () {
+	end: function (result) {
 		var self = this;
 		require(["views/endPage"], function(EndPage){
-			self.changePage( new EndPage());
+			self.changePage( new EndPage({result: result}));
 		});
 	},
 
@@ -231,7 +231,7 @@ var AppRouter = Backbone.Router.extend({
 						error: function (error) { 
 							if(error=='no more questions for this category'){
 								console.log('no more questions for this category');
-								app.navigate('end', true);
+								app.navigate('end/'+CODE_ERROR.OK, true);
 							}else{
 								callbacks.error();
 							}

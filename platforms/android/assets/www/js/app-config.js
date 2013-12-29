@@ -151,7 +151,7 @@ var TABLEDB = {
 
 var DEFAULT_LANG = "ca";
 
-var CODE_ERROR_SYNC = {
+var CODE_ERROR = {
 	KO: "KO",
 	OK: "OK"
 };
