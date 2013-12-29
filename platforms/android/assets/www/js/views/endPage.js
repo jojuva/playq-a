@@ -11,12 +11,15 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			$(this.el).html(this.template({versio: app_version})).i18n();
 			console.log('RESULT:'+this.options.result)
 			if (this.options.result == CODE_ERROR.OK){
+				$('#lbl_winner', this.el).show();
 				$('#winner', this.el).show();
 			}else{
+				$('#lbl_loser', this.el).show();
 				$('#loser', this.el).show();
+				$('#menu_div', this.el).show();
 			}
 			var profilePhoto = Parse.User.current().get("image");
-			if (!_.isUndefined(profilePhoto)) {
+			if (!_.isUndefined(profilePhoto) && profilePhoto!==null) {
 				$("#profileImg", this.el).attr( "src", profilePhoto.url());
 			}
 			return this;
@@ -54,13 +57,20 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 		
 		events: {
-			"click #menu_btn": "doMenu"
+			"click #menu_btn": "doMenu",
+			"click #exit_btn": "doExit"
 		},
 		
 		doMenu: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('doMenu');
 			app.navigate('menu', true);
+		},
+		
+		doExit: function() {
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			console.log('doExit');
+			navigator.app.exitApp();
 		}
 		
 	});

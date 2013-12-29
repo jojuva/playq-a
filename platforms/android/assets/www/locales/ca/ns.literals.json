@@ -27,7 +27,8 @@
 		"physics" : "Física",
 		"ask" : "Pregunta",
 		"guess" : "Endevina ara",
-		"play" : "Torna a Jugar"
+		"play" : "Torna a Jugar",
+		"exit": "Sortir"
 	},
 	"select":{
 		"defaultLabel" : "Escollir..."
@@ -108,10 +109,10 @@
 		"table" : {
 			"name" : "Nom",
 			"points" : "Punts",
-			"time" : "Temps mig",
-			"strike" : "Seguits",
 			"ok" : "Encerts",
-			"ko" : "Errors"
+			"ko" : "Errors",
+			"strike" : "Encerts Seguits",
+			"time" : "Temps mig"
 		}
 
 	},
@@ -137,7 +138,10 @@
 		"title" : "Endevina adversari"
 	},
 	"end" : {
-		"title" : "FI - Play Q&A"
+		"title" : "FI - Play Q&A",
+		"subtitleok" : "Totes les teves respostes han estat correctes",
+		"subtitleko" : "La resposta no ha estat correcte. Torna a provar"
+		
 	},
 	"info" : {
 		"saveSyncDataTitle" : "Desar",

@@ -27,7 +27,8 @@
 		"physics" : "Física",
 		"ask" : "Pregunta",
 		"guess" : "Adivina ahora",
-		"play" : "Vuelve a Jugar"
+		"play" : "Vuelve a Jugar",
+		"exit": "Salir"
 	},
 	"select":{
 		"defaultLabel" : "Elegir..."
@@ -108,10 +109,10 @@
 		"table" : {
 			"name" : "Nombre",
 			"points" : "Puntos",
-			"time" : "Tiempo medio",
-			"strike" : "Seguidos",
 			"ok" : "Aciertos",
-			"ko" : "Errores"
+			"ko" : "Errores",
+			"strike" : "Aciertos Seguidos",
+			"time" : "Tiempo medio"
 		}
 	},
 	"top10" : {
@@ -137,7 +138,9 @@
 		"title" : "Adivina adversario"
 	},
 	"end" : {
-		"title" : "FIN - Play Q&A"
+		"title" : "FIN - Play Q&A",
+		"subtitleok" : "Todas las respuestas han sido correctas",
+		"subtitleko" : "La respuesta no ha sido correcta. Vuelve a intentarlo"
 	},
 	"info" : {
 		"saveSyncDataTitle" : "Guardar",

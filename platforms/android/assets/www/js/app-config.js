@@ -22,7 +22,7 @@ var TYPE = {
 	ACL : {value:"ACL"}
 };
 
-var app_version = '0.5.1';
+var app_version = '0.5.2';
 
 /***************************/
 /****** SINCRO CONFIG ******/
