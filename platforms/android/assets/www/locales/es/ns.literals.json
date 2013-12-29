@@ -61,7 +61,7 @@
 		"untildatetime" : "Hasta la fecha"
 	},
 	"login" : {
-		"title" : "Login",
+		"title" : "Login - Play Q&A",
 		"form" : {
 			"title" : "Entra los datos",
 			"user" : "Usuario",
@@ -76,7 +76,7 @@
 		}
 	},
 	"signup" : {
-		"title" : "Registrarse",
+		"title" : "Registrarse - Play Q&A",
 		"form" : {
 			"username" : "Usuario",
 			"email" : "E-mail",
@@ -85,24 +85,26 @@
 		}
 	},
 	"menu" : {
-		"title" : "Menu",
+		"title" : "Menu - Play Q&A",
 		"form" : {
 			"category" : "Selecciona categoría..."
 		}
 	},
 	"question" : {
-		"title" : "Pregunta",
+		"title" : "Pregunta - Play Q&A",
 		"form" : {
 		}
 	},
 	"wait" : {
-		"title" : "Por favor Espere...",
+		"title" : "Espere - Play Q&A",
+		"subtitle" : "Por favor Espere...",
 		"table" : {
 			"scoring" : "Puntuación"
 		}
 	},
 	"statistics" : {
-		"title" : "Estadística",
+		"title" : "Estadística - Play Q&A",
+		"subtitle" : "Estadística personal",
 		"table" : {
 			"name" : "Nombre",
 			"points" : "Puntos",
@@ -113,7 +115,8 @@
 		}
 	},
 	"top10" : {
-		"title" : "Classificación",
+		"title" : "Classificación - Play Q&A",
+		"subtitle" : "Top10",
 		"table" : {
 			"rank" : "#",
 			"name" : "Nombre",
@@ -128,13 +131,13 @@
 		"title" : "Por favor, conteste a la pregunta"
 	},
 	"clueResult" : {
-		"title" : "Resultado"
+		"title" : "Resultado - Play Q&A"
 	},
 	"guess" : {
 		"title" : "Adivina adversario"
 	},
 	"end" : {
-		"title" : "FIN"
+		"title" : "FIN - Play Q&A"
 	},
 	"info" : {
 		"saveSyncDataTitle" : "Guardar",

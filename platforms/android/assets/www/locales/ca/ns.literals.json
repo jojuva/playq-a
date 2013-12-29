@@ -61,7 +61,7 @@
 		"untildatetime" : "Fins la data"
 	},
 	"login" : {
-		"title" : "Login",
+		"title" : "Login - Play Q&A",
 		"form" : {
 			"title" : "Introdueix les dades",
 			"user" : "Usuari",
@@ -76,7 +76,7 @@
 		}
 	},
 	"signup" : {
-		"title" : "Registrar-se",
+		"title" : "Registrar-se - Play Q&A",
 		"form" : {
 			"username" : "Usuari",
 			"email" : "E-mail",
@@ -85,24 +85,26 @@
 		}
 	},
 	"menu" : {
-		"title" : "Menu",
+		"title" : "Menu - Play Q&A",
 		"form" : {
 			"category" : "Selecciona categoria..."
 		}
 	},
 	"question" : {
-		"title" : "Pregunta",
+		"title" : "Pregunta - Play Q&A",
 		"form" : {
 		}
 	},
 	"wait" : {
-		"title" : "Si us plau, Esperi...",
+		"title" : "Esperi - Play Q&A",
+		"subtitle" : "Si us plau, Esperi...",
 		"table" : {
 			"scoring" : "Puntuació"
 		}
 	},
 	"statistics" : {
-		"title" : "Estadística",
+		"title" : "Estadística - Play Q&A",
+		"subtitle" : "Estadística personal",
 		"table" : {
 			"name" : "Nom",
 			"points" : "Punts",
@@ -114,7 +116,8 @@
 
 	},
 	"top10" : {
-		"title" : "Classificació",
+		"title" : "Classificació - Play Q&A",
+		"subtitle" : "Top10",
 		"table" : {
 			"rank" : "#",
 			"name" : "Nom",
@@ -128,13 +131,13 @@
 		"title" : "Si us plau, contesti a la pregunta"
 	},
 	"clueResult" : {
-		"title" : "Resultat"
+		"title" : "Resultat - Play Q&A"
 	},
 	"guess" : {
 		"title" : "Endevina adversari"
 	},
 	"end" : {
-		"title" : "FI"
+		"title" : "FI - Play Q&A"
 	},
 	"info" : {
 		"saveSyncDataTitle" : "Desar",

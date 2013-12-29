@@ -2172,6 +2172,7 @@ ul.ui-listview li.ui-li span.lbl-value {
   margin: 1em;
   font-size: 1.2em;
   font-weight: bold;
+  text-align: center;
 }
 .title_task .task-contesta-header {
   margin-bottom: 5px;

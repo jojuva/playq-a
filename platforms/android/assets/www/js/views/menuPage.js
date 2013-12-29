@@ -30,7 +30,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				el: $('#page-header', this.el),
 				title: 'menu.title',
 				idPage: this.idPage,
-				showBackBtn: true,
+				showBackBtn: false,
 				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();
