@@ -50,15 +50,18 @@ define(['underscore', 'parse'],
 			var cat = new Category();
 			cat.set("objectId",catId);			
 			query.equalTo("category",cat);
-			//query.include("answers");
+			if (window.localStorage.getItem(LS_QUESTION_IDS) !== ""){
+				console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));
+				query.notContainedIn("objectId",window.localStorage.getItem(LS_QUESTION_IDS).split(","));
+			}
 			query.find( {
 			  success: function(objects) {
 				// The object was retrieved successfully.
 				console.log("#questions:"+objects.length);
-				if (objects.length!=0){
+				if (objects.length!==0){
 					callbacks.success(objects);
 				}else{
-					callbacks.error('no questions for this category');
+					callbacks.error('no more questions for this category');
 				}
 			  },
 			  error: function(error) {

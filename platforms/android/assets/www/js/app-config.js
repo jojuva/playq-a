@@ -22,7 +22,7 @@ var TYPE = {
 	ACL : {value:"ACL"}
 };
 
-var app_version = '0.4.1';
+var app_version = '0.5.1';
 
 /***************************/
 /****** SINCRO CONFIG ******/
@@ -83,24 +83,25 @@ var HASH_ADMIN_CREDENTIALS = '47545e3189b4ec9665c515cd11369345';
 /******** LOCALSTORAGE *********/
 /*******************************/
 
-var LS_URL_WS = 'gotmobile_url_ws';
-var LS_UUID = 'gotmobile_uuid';
-var LS_EMPTY_BD = 'gotmobile_is_empty_bd';
-var LS_ALIASTM = "gotmobile_aliastm";
-var LS_NOM_OPERATOR = "gotmobile_nomoperator";
-var LS_SYNC_PENDENT = "gotmobile_sync_pendent";
-var LS_MSG_SYNC_PENDENT = "gotmobile_msg_sync_pendent";
-var LS_OPERATOR_ID = "gotmobile_operatorid";
-var LS_CODETM = "gotmobile_codetm";
-var LS_FPATH = "gotmobile_fotos_device_path";
-var LS_IS_ADMIN = "gotmobile_isadmin";
-var LS_LAST_LOGIN_DATETIME = "gotmobile_last_login_datetime";
-var LS_EDIT_INIT_DATE = "gotmobilie_edit_init_date_presence";
-var LS_EDIT_FINAL_DATE = "gotmobilie_edit_final_date_presence";
-var LS_EDIT_INTERVAL = "gotmobilie_edit_interval_presence";
-var LS_CHANGE_PASSWORD = "gotmobile_change_password";
-var LS_EXPIRATION_DATE = "gotmobile_expiration_date";
-var LS_LANG = "gotmobile_lang";
+var LS_URL_WS = 'ls_url_ws';
+var LS_UUID = 'ls_uuid';
+var LS_EMPTY_BD = 'ls_is_empty_bd';
+var LS_ALIASTM = "ls_aliastm";
+var LS_NOM_OPERATOR = "ls_nomoperator";
+var LS_SYNC_PENDENT = "ls_sync_pendent";
+var LS_MSG_SYNC_PENDENT = "ls_msg_sync_pendent";
+var LS_OPERATOR_ID = "ls_operatorid";
+var LS_CODETM = "ls_codetm";
+var LS_FPATH = "ls_fotos_device_path";
+var LS_IS_ADMIN = "ls_isadmin";
+var LS_LAST_LOGIN_DATETIME = "ls_last_login_datetime";
+var LS_EDIT_INIT_DATE = "ls_edit_init_date_presence";
+var LS_EDIT_FINAL_DATE = "ls_edit_final_date_presence";
+var LS_EDIT_INTERVAL = "ls_edit_interval_presence";
+var LS_CHANGE_PASSWORD = "ls_change_password";
+var LS_EXPIRATION_DATE = "ls_expiration_date";
+var LS_LANG = "ls_lang";
+var LS_QUESTION_IDS = "ls_question_ids";
 
 /*******************************/
 /******** SYNC - RESPOSTA ******/

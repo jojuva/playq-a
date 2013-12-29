@@ -60,6 +60,13 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			//check answer
 			if (this.collection.models[answer].get('correct')){
+				if (window.localStorage.getItem(LS_QUESTION_IDS) == ""){
+					window.localStorage.setItem(LS_QUESTION_IDS,this.model.id);
+					console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));
+				}else{
+					window.localStorage.setItem(LS_QUESTION_IDS,window.localStorage.getItem(LS_QUESTION_IDS)+','+this.model.id);
+					console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));				
+				}
 				//add points
 				this.numQuestions++;
 				this.addPoints(this.model.get('score'),1,0,this.numQuestions,{
@@ -117,13 +124,13 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 		
 		doTraining: function() {
-			console.log('navigate question');
+			console.log('doTraining');
 			app.navigate('question/'+this.model.get('category').id+'/'+this.numQuestions, true);
 		},
 
 		doEnd: function(result) {
 			console.log('doEnd');
-			app.navigate('statistics', true);
+			app.navigate('end', true);
 		}		
 		
 	});

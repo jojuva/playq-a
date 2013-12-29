@@ -2,10 +2,10 @@
 <widget id="edu.uoc.jojuva.playqa" version="0.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PlayQA</name>
     <description>
-        PlayQA
+        Play QA for students
     </description>
     <author email="jonas.julve@gmail.com" href="http://www.uoc.edu">
-        Jonas
+        Jonás Julve
     </author>
     <content src="index.html" />
     <feature name="App">

@@ -69,7 +69,6 @@ var AppRouter = Backbone.Router.extend({
 			self.before(ID_PAGE.QUESTION, {
 				success: function () {
 					console.log('changePage-QuestionPage');
-					
 					self.changePage( new QuestionPage(self.dataForView));
 				},
 				error: function () {
@@ -229,7 +228,14 @@ var AppRouter = Backbone.Router.extend({
 							dataForView.answerCollections = new AnswerCollection();
 							dataForView.answerCollections.findByQuestion(dataForView.question,callbacks);
 						},
-						error: function () { callbacks.error(); }
+						error: function (error) { 
+							if(error=='no more questions for this category'){
+								console.log('no more questions for this category');
+								app.navigate('end', true);
+							}else{
+								callbacks.error();
+							}
+						}
 					});
 
 				});
