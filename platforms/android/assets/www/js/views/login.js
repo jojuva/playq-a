@@ -81,6 +81,8 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 				// Do stuff after successful login.
 				window.localStorage.setItem(LS_NOM_OPERATOR, user.get("username"));
 				window.localStorage.setItem(LS_QUESTION_IDS, "");
+				window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+				window.localStorage.setItem(LS_STAY_LOGGED, $('#stay-logged').val());
 				app.navigate('menu', true);
 			  },
 			  error: function(user, error) {
@@ -104,13 +106,14 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 					  success: function(user) {
 						if (!user.existed()) {
 						  alert("User signed up and logged in through Facebook!");
-						  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-						  app.navigate('menu', true);	  
 						} else {
 						  alert("User logged in through Facebook!");
-						  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-						  app.navigate('menu', true);	  
 						}
+						window.localStorage.setItem(LS_NOM_OPERATOR, user.get("username"));
+						window.localStorage.setItem(LS_QUESTION_IDS, "");
+						window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+						window.localStorage.setItem(LS_STAY_LOGGED, $('#stay-logged').val());
+						app.navigate('menu', true);	  
 					  },
 					  error: function(user, error) {
 						console.log(user.id);

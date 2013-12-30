@@ -32,7 +32,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				idPage: this.idPage,
 				showBackBtn: false,
 				showUserInfo: false,
-				showMenuListBtn: false
+				menuBtns: this.initMenuHeaderBtns()
 			}).render();
 
 			this.subviews.menuView = new Menu({
@@ -40,6 +40,17 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			}).render();
 
 			return this;
+		},
+
+		initMenuHeaderBtns: function () {
+			var self = this,
+				buttonsMenu = [];
+
+			if (!isIOS()) {
+				buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
+			}
+
+			return buttonsMenu;
 		},
 		
 		events: {

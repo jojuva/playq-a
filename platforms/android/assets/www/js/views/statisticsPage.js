@@ -9,10 +9,10 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 			this.statisticsData = {
 				name: '----',
 				points: 99,
-				time: '----',
-				strike: 0,
 				ok: 0,
-				ko: 0
+				ko: 0,
+				strike: 0,
+				time: '----'
 			};
 		},
 
@@ -28,7 +28,8 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 			this.statisticsData.ok = this.model.get('okAnswers');
 			this.statisticsData.ko = this.model.get('koAnswers');
 			this.statisticsData.strike = this.model.get('maxStrike');
-			this.statisticsData.time = this.model.get('avgTime');
+			var avgTime = this.model.get('avgTime')/this.model.get('okAnswers');
+			this.statisticsData.time = avgTime.toString().substring(0,4)+' s';
 		}
 	});
 

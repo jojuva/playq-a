@@ -44,9 +44,15 @@ var AppRouter = Backbone.Router.extend({
 	login:function (sessionExp) {
 		// netejar variables a LS del Usuari
 		//new LoginUtils().logout();
-		this.changePage(new LoginPage({
-			sessionExp: (sessionExp === 'true')
-		}));
+		var currentUser = Parse.User.current();
+		var stayLogged = window.localStorage.getItem(LS_STAY_LOGGED);
+		if (currentUser && stayLogged=='true') {
+		    app.navigate('menu',true);
+		}else{
+			this.changePage(new LoginPage({
+				sessionExp: (sessionExp === 'true')
+			}));
+		}		
 	},
     /* pagina signup */
 	signup: function () {
@@ -158,6 +164,7 @@ var AppRouter = Backbone.Router.extend({
 	},
 
     exitApp: function () {
+    	Parse.User.logOut();
 		navigator.app.exitApp();
 	},
 
@@ -215,6 +222,9 @@ var AppRouter = Backbone.Router.extend({
 		_(this.dataForView).removeAll();
 
 		switch (idPage) {
+			case ID_PAGE.LOGIN:
+				console.log('before-login');
+				break;
 			case ID_PAGE.QUESTION:
 				console.log('before-question');
 				require(["models/question","collections/answerCollections"],

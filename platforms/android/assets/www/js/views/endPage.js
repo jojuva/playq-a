@@ -70,7 +70,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		doExit: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('doExit');
-			navigator.app.exitApp();
+			app.navigate('exitApp', true);
 		}
 		
 	});

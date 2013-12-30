@@ -22,7 +22,7 @@ var TYPE = {
 	ACL : {value:"ACL"}
 };
 
-var app_version = '0.5.2';
+var app_version = '0.6.0';
 
 /***************************/
 /****** SINCRO CONFIG ******/
@@ -102,6 +102,7 @@ var LS_CHANGE_PASSWORD = "ls_change_password";
 var LS_EXPIRATION_DATE = "ls_expiration_date";
 var LS_LANG = "ls_lang";
 var LS_QUESTION_IDS = "ls_question_ids";
+var LS_STAY_LOGGED = "ls_stay_logged";
 
 /*******************************/
 /******** SYNC - RESPOSTA ******/

@@ -106,6 +106,10 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 					if (statistic.get('maxStrike')<=strike){
 						statistic.set('maxStrike',strike);
 					}
+					var date = window.localStorage.getItem(LS_LAST_LOGIN_DATETIME);
+					var seconds =  moment().diff(moment(date,"YYYYMMDDHHmmss"), 'seconds');
+					window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+					statistic.set('avgTime',statistic.get('avgTime')+seconds);
 					statistic.save();
 					var ranking = new Ranking();
 					ranking.getMyRanking({
