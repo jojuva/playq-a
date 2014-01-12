@@ -7,6 +7,9 @@
     <author email="jonas.julve@gmail.com" href="http://www.uoc.edu">
         Jonás Julve
     </author>
+	<gap:platform name="ios" />
+	<gap:platform name="android" />
+	<gap:platform name="winphone" />
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="phonegap-version" value="3.1.0" />
 	<preference name="permissions" value="none" />
@@ -22,7 +25,8 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-minSdkVersion" value="10" />
+	<preference name="android-targetSdkVersion" value="19" />
     <preference name="android-installLocation" value="auto" />
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
@@ -43,7 +47,7 @@
     <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
-    <access origin="http://127.0.0.1*" />
+    <access origin="*" />
     <content src="index.html" />
 	<gap:plugin name="org.apache.cordova.camera" />
 	<gap:plugin name="com.phonegap.plugins.facebookconnect">
