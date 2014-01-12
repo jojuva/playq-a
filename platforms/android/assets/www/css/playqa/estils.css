@@ -1612,7 +1612,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .ui-btn-inner .ui-icon.icon-green {
   color: #098b18 !important;
 }
-
+span.ui-btn-text { 
+	white-space:normal; 
+}
 .ui-checkbox .ui-icon {
   border-radius: 3px !important;
   -webkit-border-radius: 3px !important;
@@ -2224,7 +2226,6 @@ ul.ui-listview li.ui-li span.lbl-value {
 .list-buttons .ui-li-link-alt {
   z-index: 1 !important;
 }
-
 #meterUninstall-form .info-form {
   margin: 0.5em 5% 0.5em 0 !important;
 }

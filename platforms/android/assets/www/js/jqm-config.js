@@ -6,15 +6,10 @@ function($){
 	});
 
 	function checkUrlParams() {
-		if (!_.isUndefined(syncroPendent = $.urlParam('syncroPendent'))) {
-			window.localStorage.setItem(LS_SYNC_PENDENT, syncroPendent);
-		} else if (_.isEmpty(window.localStorage.getItem(LS_SYNC_PENDENT))) {
-			window.localStorage.setItem(LS_SYNC_PENDENT, "false");
-		}
-		if (!_.isUndefined(msg = $.urlParam('msg'))) {
-			window.localStorage.setItem(LS_MSG_SYNC_PENDENT, decodeURIComponent(msg));
-		} else if (_.isEmpty(window.localStorage.getItem(LS_MSG_SYNC_PENDENT))) {
-			window.localStorage.setItem(LS_MSG_SYNC_PENDENT, "Datos pendientes de sincronizar.");
+		if (!_.isUndefined(opp = $.urlParam('opp'))) {
+			window.localStorage.setItem(LS_OPPONENT, opp);
+		} else if (_.isEmpty(window.localStorage.getItem(LS_OPPONENT))) {
+			window.localStorage.setItem(LS_OPPONENT, "false");
 		}
 	}
 

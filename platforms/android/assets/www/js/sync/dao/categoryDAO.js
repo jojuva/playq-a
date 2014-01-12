@@ -12,7 +12,7 @@ define(['underscore', 'parse'],
 		};
 	};
 
-	_.extend(QuestionDAO.prototype, {
+	_.extend(CategoryDAO.prototype, {
 
 		findAll:function (callbacks) {
 			var categories = Parse.Collection.extend("CategoryCollection");
@@ -48,7 +48,7 @@ define(['underscore', 'parse'],
 			  error: function(category, error) {
 				// Execute any logic that should take place if the save fails.
 				// error is a Parse.Error with an error code and description.
-				alert('Failed to create new object, with error code: ' + error.description);
+				alert('Failed to create new object, with error code: ' + error.code);
 			  }
 			});
 		},

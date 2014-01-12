@@ -9,8 +9,18 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
+			this.fillCategoryData();
 			return this;
 		},
+		
+		fillCategoryData:function(){
+			console.log("fillCategoryData");
+			var options = $("#categoryid", this.el);
+			this.collection.each( function (category) {
+				//console.log(JSON.stringify(category, null, 4));
+				options.append('<option value="'+category.id+'">'+category.get('name')+'</option>');
+			});				
+		}
 
 	});
 
@@ -36,7 +46,8 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 			}).render();
 
 			this.subviews.menuView = new Menu({
-				el: $('#page-content', this.el)
+				el: $('#page-content', this.el),
+				collection: this.options.categoryCollections
 			}).render();
 
 			return this;

@@ -19,12 +19,10 @@
 
 package edu.uoc.jojuva.playqa;
 
-import android.os.Bundle;
-import android.util.Log;
+import org.apache.cordova.Config;
+import org.apache.cordova.CordovaActivity;
 
-import org.apache.cordova.*;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.os.Bundle;
 
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
@@ -47,20 +45,20 @@ public class PlayQA extends CordovaActivity
         ParseInstallation.getCurrentInstallation().saveInBackground();
         ParseAnalytics.trackAppOpened(getIntent());
 
-    	Bundle extras = getIntent().getExtras();
+//    	Bundle extras = getIntent().getExtras();
     	String params = "";
-    	if (extras.getString("com.parse.Data") != null) {
-    	    JSONObject json;
-			try {
-				json = new JSONObject(extras.getString("com.parse.Data"));
-				String opp = json.getString("objectId");
-	    	    params = "?opp=" + opp;
-	    	    Log.i(TAG, "BUNDLE: " + extras.toString());
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    	}
+//    	if (extras.getString("com.parse.Data") != null) {
+//    	    JSONObject json;
+//			try {
+//				json = new JSONObject(extras.getString("com.parse.Data"));
+//				String opp = json.getString("objectId");
+//	    	    params = "?opp=" + opp;
+//	    	    Log.i(TAG, "BUNDLE: " + extras.toString());
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//    	}
     	
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl() + params, 1000000);

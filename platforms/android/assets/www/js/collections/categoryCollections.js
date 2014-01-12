@@ -1,4 +1,4 @@
-define(['underscore', 'parse', 'models/Category', 'sync/dao/CategoryDAO'], 
+define(['underscore', 'parse', 'models/category', 'sync/dao/categoryDAO'], 
   function(_, Parse, Category, CategoryDAO){
 	var CategoryCollection = Parse.Collection.extend({
 		model: Category,

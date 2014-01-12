@@ -42,16 +42,12 @@ var AppRouter = Backbone.Router.extend({
     },
     /* pagina login */
 	login:function (sessionExp) {
-		// netejar variables a LS del Usuari
-		//new LoginUtils().logout();
 		var currentUser = Parse.User.current();
 		var stayLogged = window.localStorage.getItem(LS_STAY_LOGGED);
 		if (currentUser && stayLogged=='true') {
 		    app.navigate('menu',true);
 		}else{
-			this.changePage(new LoginPage({
-				sessionExp: (sessionExp === 'true')
-			}));
+			this.changePage(new LoginPage());
 		}		
 	},
     /* pagina signup */
@@ -65,7 +61,15 @@ var AppRouter = Backbone.Router.extend({
 	menu: function () {
 		var self = this;
 		require(["views/menuPage"], function(MenuPage){
-			self.changePage( new MenuPage());
+			self.before(ID_PAGE.MENU, {
+				success: function () {
+					console.log('changePage-menuPage');
+					self.changePage( new MenuPage(self.dataForView));
+				},
+				error: function (error) {
+					execError(error, 'router: menu');
+				}
+			});	
 		});
 	},
     /* pagina question */
@@ -77,9 +81,8 @@ var AppRouter = Backbone.Router.extend({
 					console.log('changePage-QuestionPage');
 					self.changePage( new QuestionPage(self.dataForView));
 				},
-				error: function () {
-					console.log('error-questionPage');
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: question; objectId: '+cat);
+				error: function (error) {
+					execError(error, 'router: question; objectId: '+cat);
 				}
 			},{
 				objectId: cat,
@@ -104,9 +107,8 @@ var AppRouter = Backbone.Router.extend({
 					//console.log('d4:'+self.dataForView.toSource());
 					self.changePage( new StatisticsPage(self.dataForView));
 				},
-				error: function () {
-					console.log('error-StatisticsPage');
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: statistics');
+				error: function (error) {
+					execError(error, 'router: statistics');
 				}
 			});		
 		});
@@ -120,9 +122,8 @@ var AppRouter = Backbone.Router.extend({
 					console.log('changePage-Top10Page');
 					self.changePage( new Top10Page(self.dataForView));
 				},
-				error: function () {
-					console.log('error-Top10Page');
-					execError(ERROR.ERROR_LOAD_PAGE_DATA, 'router: top10');
+				error: function (error) {
+					execError(error, 'router: top10');
 				}
 			});	
 		});
@@ -224,6 +225,14 @@ var AppRouter = Backbone.Router.extend({
 		switch (idPage) {
 			case ID_PAGE.LOGIN:
 				console.log('before-login');
+				break;
+			case ID_PAGE.MENU:
+				console.log('before-menu');
+				require(["collections/categoryCollections"],
+						function(CategoryCollection){
+							dataForView.categoryCollections = new CategoryCollection();
+							dataForView.categoryCollections.fetch(callbacks);
+						});
 				break;
 			case ID_PAGE.QUESTION:
 				console.log('before-question');

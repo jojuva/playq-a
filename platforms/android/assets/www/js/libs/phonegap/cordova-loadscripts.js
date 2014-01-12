@@ -17,22 +17,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptCordova);
 
 /* plugins */
 
-var scriptPluginPush = document.createElement('script');
-scriptPluginPush.type = 'text/javascript';
-scriptPluginPush.src = 'js/pluginsPhonegap/PushNotification.js';
-document.getElementsByTagName('head')[0].appendChild(scriptPluginPush);
-
-var scriptStartApp = document.createElement('script');
-scriptStartApp.type = 'text/javascript';
-scriptStartApp.src = 'js/pluginsPhonegap/StartApp.js';
-document.getElementsByTagName('head')[0].appendChild(scriptStartApp);
-
-if (navigator.userAgent.toLowerCase().match(/iphone/) || navigator.userAgent.toLowerCase().match(/ipad/)) {
-    var scriptSecureDeviceIdentifier = document.createElement('script');
-    scriptSecureDeviceIdentifier.type = 'text/javascript';
-    scriptSecureDeviceIdentifier.src = 'js/pluginsPhonegap/SecureDeviceIdentifier.js';
-    document.getElementsByTagName('head')[0].appendChild(scriptSecureDeviceIdentifier);
-}
 
 /* css */
 var linkMediaQueries = document.createElement('link');
