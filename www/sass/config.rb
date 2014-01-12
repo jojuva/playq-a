@@ -3,7 +3,7 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "www/css/gotmobile"
+css_dir = "www/css/playqa"
 sass_dir = "www/sass"
 images_dir = "www/images"
 javascripts_dir = "www/js"

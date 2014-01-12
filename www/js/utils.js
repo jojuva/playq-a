@@ -1,24 +1,22 @@
 window.onerror = function(message, url, lineNumber) {
 	require(['underscore.extend'], function( _){
 		if (_.isUndefined(url)) url = "";
-		//execError(ERROR.ERROR_JS, 'linia: ' + lineNumber + ' ; url: ' + url + ' ; msg: ' + message);
 		console.log("Error: "+message+" in "+url+" at line "+lineNumber);
 	});
 };
 
-//window.execError = function(error, errorMessage) {
-//	require(["jquery", "underscore.extend", "backbone.extend", "models/internal/log", "i18n"], function($, _, Backbone, Log){
-//			var log = new Log(),
-//			op = $.t('error.operation.' + error.value),
-//			desc = $.t('error.description.' + error.value) + ((!_.isUndefined(errorMessage) ? ' // ' + errorMessage : ''));
-//			nivel = error.level;
-//			log.save({Operation: op, Description: desc, Nivel: nivel }, {
-//				success: function() {
-//				}, error: function () {}
-//			});
-//	});
-//};
-
+window.execError = function(error, errorMessage) {
+	require(["jquery", "underscore.extend", "backbone.extend", "models/log", "i18n"], function($, _, Backbone, Log){
+			var log = new Log(),
+			op = $.t('error.operation.' + error.code),
+			desc = $.t('error.description.' + error.message) + ((!_.isUndefined(errorMessage) ? ' // ' + errorMessage : ''));
+			level = 'log.error';
+			log.save({operation: op, description: desc, level: level }, {
+				success: function() {
+				}, error: function () {}
+			});
+	});
+};
 
 function isOnDevice() {
 	//return (window.cordova && window.device);
@@ -102,7 +100,7 @@ function existFiles(path, callbacks){
 			},
 			function(error) { noFiles(error, callbacks); });
 	}else{
-		//TODO - treure a producció
+		//TODO - treure
 		callbacks.error();
 	}
 }

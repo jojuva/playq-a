@@ -7,21 +7,10 @@ define(['underscore', 'backbone', 'parse', 'i18n'],
 				username: null,
 				email: null,
 				password: null,
-				repeatpassword: null,
-				mobileTerminal: null,
-				pushId: null,
-				platform: null,
-				versionplatform: null,
-				versionapp: null,
-				language: null
+				repeatpassword: null
 			},
 
 			initialize: function() {
-				//his.attributes.mobileTerminal = new UUIDUtils().getUUID();
-				this.attributes.platform = device.platform;
-				this.attributes.versionplatform = device.version;
-				this.attributes.versionapp = app_version;
-				this.attributes.language = window.localStorage.getItem(LS_LANG);
 			},
 
 			validation: {

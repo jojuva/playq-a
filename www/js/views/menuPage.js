@@ -9,8 +9,18 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
+			this.fillCategoryData();
 			return this;
 		},
+		
+		fillCategoryData:function(){
+			console.log("fillCategoryData");
+			var options = $("#categoryid", this.el);
+			this.collection.each( function (category) {
+				//console.log(JSON.stringify(category, null, 4));
+				options.append('<option value="'+category.id+'">'+category.get('name')+'</option>');
+			});				
+		}
 
 	});
 
@@ -30,16 +40,28 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				el: $('#page-header', this.el),
 				title: 'menu.title',
 				idPage: this.idPage,
-				showBackBtn: true,
+				showBackBtn: false,
 				showUserInfo: false,
-				showMenuListBtn: false
+				menuBtns: this.initMenuHeaderBtns()
 			}).render();
 
 			this.subviews.menuView = new Menu({
-				el: $('#page-content', this.el)
+				el: $('#page-content', this.el),
+				collection: this.options.categoryCollections
 			}).render();
 
 			return this;
+		},
+
+		initMenuHeaderBtns: function () {
+			var self = this,
+				buttonsMenu = [];
+
+			if (!isIOS()) {
+				buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
+			}
+
+			return buttonsMenu;
 		},
 		
 		events: {
@@ -52,13 +74,44 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		doTraining: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('navigate question');
-			app.navigate('question/'+$('#categoryid').val(), true);
+			app.navigate('question/'+$('#categoryid').val()+'/0', true);
 		},
 		
 		doChallenge: function() {
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			console.log('navigate wait');
+			this.doPush();
 			app.navigate('wait', true);
+		},
+		
+		doPush: function() {
+			console.log('doPush');
+			//var currentInstallation = Parse.Installation.current();
+			var query = new Parse.Query(Parse.Installation);
+			//query.notEqualTo('objectId', 'AtVUV8F8Hm');
+			/*query.first({
+				success: function(object){
+					console.log('success');
+				},
+				error: function(error){
+					console.log('error querying first installation');
+				}
+			});*/
+			 
+			Parse.Push.send({
+			  where: query, // Set our Installation query
+			  data: {
+			    alert: "Hi again! would you like to Play Q&A with me?",
+			    objectId: Parse.User.current().id
+			  }
+			}, {
+			  success: function() {
+			    // Push was successful
+			  },
+			  error: function(error) {
+			    // Handle error
+			  }
+			});			
 		},
 		
 		doStatistics: function() {

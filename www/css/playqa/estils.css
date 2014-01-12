@@ -1612,7 +1612,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .ui-btn-inner .ui-icon.icon-green {
   color: #098b18 !important;
 }
-
+span.ui-btn-text { 
+	white-space:normal; 
+}
 .ui-checkbox .ui-icon {
   border-radius: 3px !important;
   -webkit-border-radius: 3px !important;
@@ -1708,8 +1710,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .logo {
   margin: 20px auto 10px;
   background: url("../../images/playqa/play.png") no-repeat center center;
-  height: 225px;
-  width: 225px;
+  height: 113px;
+  width: 113px;
+}
+.winner {
+  margin: 20px auto 10px;
+  background: url("../../images/playqa/winner.jpg") no-repeat center center;
+  height: 323px;
+  width: 400px;
+}
+.loser {
+  margin: 20px auto 10px;
+  background: url("../../images/playqa/loser.jpg") no-repeat center center;
+  height: 432px;
+  width: 285px;
 }
 
 #submit_login_btn {
@@ -2160,6 +2174,7 @@ ul.ui-listview li.ui-li span.lbl-value {
   margin: 1em;
   font-size: 1.2em;
   font-weight: bold;
+  text-align: center;
 }
 .title_task .task-contesta-header {
   margin-bottom: 5px;
@@ -2211,7 +2226,6 @@ ul.ui-listview li.ui-li span.lbl-value {
 .list-buttons .ui-li-link-alt {
   z-index: 1 !important;
 }
-
 #meterUninstall-form .info-form {
   margin: 0.5em 5% 0.5em 0 !important;
 }

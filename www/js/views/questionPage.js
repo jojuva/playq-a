@@ -1,12 +1,14 @@
-define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'jqm'],
-	function($, _, Backbone, Header, jqmPageTpl, questionTpl) {
+define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!templates/jqmPage.html', 'text!templates/question.html', 'models/statistic', 'models/ranking', 'jqm'],
+	function($, _, Backbone, Header, jqmPageTpl, questionTpl, Statistic, Ranking) {
 
 	var Question = Backbone.View.extend({
-		numQuestions: 0,
+		numQuestions: null,
 		
 		initialize:function () {
-			console.log(JSON.stringify(this.model, null, 4));
-			console.log(JSON.stringify(this.collection, null, 4));
+			this.numQuestions=this.options.numQuestions;
+			console.log('numQuestions-ini:'+this.numQuestions);
+			//console.log(JSON.stringify(this.model, null, 4));
+			//console.log(JSON.stringify(this.collection, null, 4));
 			this.template = _.template(questionTpl);
 			this.questionData = {
 				questionA: 'pregunta',
@@ -53,40 +55,86 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 		},
 		
 		doAnswer: function(answer) {
+			var self = this;
+			
+			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 			//check answer
-			if (this.collection.models[answer].get('correct') && this.numQuestions<10){
-				this.numQuestions++;
+			if (this.collection.models[answer].get('correct')){
+				if (window.localStorage.getItem(LS_QUESTION_IDS) == ""){
+					window.localStorage.setItem(LS_QUESTION_IDS,this.model.id);
+					console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));
+				}else{
+					window.localStorage.setItem(LS_QUESTION_IDS,window.localStorage.getItem(LS_QUESTION_IDS)+','+this.model.id);
+					console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));				
+				}
 				//add points
-				this.addPoints();
+				this.numQuestions++;
+				this.addPoints(this.model.get('score'),1,0,this.numQuestions,{
+					success: function(){
+						console.log('numQuestions:'+self.numQuestions);
+						if (self.numQuestions<10){
+							self.doTraining();
+						}else{
+							self.doEnd(CODE_ERROR.OK);
+						}
+					},
+					error: function(){
+						console.log('error adding points.');
+					}
+						
+				});
 			}else{
-				this.doEnd();
+				//add points
+				this.addPoints(0,0,1,0,{
+					success: function(){
+						self.doEnd(CODE_ERROR.KO);
+					},
+					error: function(){
+						console.log('error adding points.');
+					}
+				});
 			};
 		},
 		
-		addPoints: function() {
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+		addPoints: function(score,ok,ko,strike,callbacks) {
 			var statistic = new Statistic();
-			console.log('navigate end');
-			//this.nextQuestion();			
-		},
-		
-		nextQuestion: function(){
-			this.model = new Question();
-			this.model.getRandomByCategory(initData.objectId,{
-				success: function () { 
-					console.log("q2:"+this.model.id);
-					this.collection = new AnswerCollection();
-					this.collection.findByQuestion(this.model,callbacks);
+			statistic.getMyStatistic({
+				success: function(){
+					statistic.set('totScore',statistic.get('totScore')+score);
+					statistic.set('okAnswers',statistic.get('okAnswers')+ok);
+					statistic.set('koAnswers',statistic.get('koAnswers')+ko);
+					if (statistic.get('maxStrike')<=strike){
+						statistic.set('maxStrike',strike);
+					}
+					var date = window.localStorage.getItem(LS_LAST_LOGIN_DATETIME);
+					var seconds =  moment().diff(moment(date,"YYYYMMDDHHmmss"), 'seconds');
+					window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+					statistic.set('avgTime',statistic.get('avgTime')+seconds);
+					statistic.save();
+					var ranking = new Ranking();
+					ranking.getMyRanking({
+						success: function(){
+							ranking.set('score',ranking.get('score')+score);
+							ranking.save();
+						}
+					});
 					callbacks.success();
 				},
-				error: function () { callbacks.error(); }
+				error: function(){
+					console.log('error saving statistic.');
+					callbacks.error();
+				}
 			});
 		},
+		
+		doTraining: function() {
+			console.log('doTraining');
+			app.navigate('question/'+this.model.get('category').id+'/'+this.numQuestions, true);
+		},
 
-		doEnd: function() {
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
-			console.log('navigate end');
-			app.navigate('statistics', true);
+		doEnd: function(result) {
+			console.log('doEnd');
+			app.navigate('end/'+result, true);
 		}		
 		
 	});
@@ -108,13 +156,14 @@ define(['jquery', 'underscore', 'backbone.extend', 'views/headerView', 'text!tem
 				el: $('#page-header', this.el),
 				title: 'question.title',
 				idPage: this.idPage,
-				showBackBtn: true,
+				showBackBtn: false,
 				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();
 
 			this.subviews.menuView = new Question({
 				el: $('#page-content', this.el),
+				numQuestions: this.options.numQuestions,
 				model: this.options.question,
 				collection: this.options.answerCollections
 			}).render();

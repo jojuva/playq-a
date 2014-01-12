@@ -43,8 +43,9 @@ define(['underscore', 'parse'],
 		},
 		findByQuestion:function (question, callbacks) {
 			console.log('answerDAO.findByQuestion');
-			var answers = question.relation("answers");
-			answers.query().find({
+			var query = new Parse.Query("Answer");
+			query.equalTo("question",question);
+			query.find({
 			  success: function(objects) {
 				// The object was retrieved successfully.
 				console.log("#answers:"+objects.length);
@@ -68,7 +69,7 @@ define(['underscore', 'parse'],
 			  error: function(answer, error) {
 				// Execute any logic that should take place if the save fails.
 				// error is a Parse.Error with an error code and description.
-				alert('Failed to create new object, with error code: ' + error.description);
+				alert('Failed to create new object, with error code: ' + error.code);
 			  }
 			});
 		},

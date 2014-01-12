@@ -37,31 +37,13 @@ define(['underscore', 'parse', 'sync/dao/questionDAO', 'collections/answerCollec
 					var pos = _.random(objects.length-1);
 					var object = objects[pos];
 					console.log("question:"+object.id);
-					/*var query=object.relation("answers").query();
-					callbacks.answers = query.find({
-					  success: function(answers) {
-						alert("Successfully retrieved " + answers.length + " answers.");
-						// Do something with the returned Parse.answer values
-						object.answers = answers;
-						object.respuestas = answers;
-						for (var i = 0; i < answers.length; i++) { 
-						  var answer = answers[i];
-						  alert(answer.id + ' - ' + answer.get('description'));
-						}
-						return answers;
-					  },
-					  error: function(error) {
-						alert("Error: " + error.code + " " + error.message);
-					  }
-					});
-					console.log("answers:"+callbacks.answers);*/
 					self.add(object);
 					self.set({
 						objectId: object.id,
 						createdAt: object.createdAt,
 						updatedAt: object.updatedAt
 					});
-					console.log('o:'+object.toSource());
+					//console.log('o:'+object.toSource());
 					if (callbacks.success) callbacks.success();
 				},
 				error: callbacks.error

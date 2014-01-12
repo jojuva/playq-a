@@ -8,8 +8,9 @@ require.config({
 	'app-config': 'app-config',
 	underscore: 'libs/underscore/underscore-1.5.2.min',
 	'underscore.extend' : 'libs/underscore/underscore.playqa.extends',
-	parse: 'libs/parse/parse-1.2.13',
-	'facebook': 'libs/facebook/all',
+	parse: 'libs/parse/parse-1.2.15',
+	'facebook': 'libs/facebook/facebook-js-sdk',
+	'fb-connect': 'libs/facebook/cdv-plugin-fb-connect',
 	backbone: 'libs/backbone/backbone-1.0.0',
 	'backbone.stickit': 'libs/backbone/backbone.stickit',
 	'backbone.stickit.extend': 'libs/backbone/backbone.stickit.extends',
@@ -31,8 +32,6 @@ require.config({
 	'md5' : 'libs/hash/md5',
 	'main' : 'main',
 	'router' : 'router',
-	'iscroll' : 'libs/iscroll/iscroll',
-	'iscrollview' : 'libs/iscroll/jquery.mobile.iscrollview',
 	'swipe': 'libs/swipe/swipe'
 },
   shim: {
@@ -48,6 +47,9 @@ require.config({
     },    
 	'facebook': {
 		exports: 'FB'
+    },	
+    'fb-connect': {
+		exports: 'CDV'
     },
     backbone: {
 		deps: ['underscore.extend', 'jquery'],
@@ -85,17 +87,11 @@ require.config({
     'app-config': {
 		exports: 'AppConf'
 	},
-	'sqlUtils': {
-		deps:['underscore']
-	},
 	'utils':{
 		deps:['jquery']
 	},
 	'router':{
 		deps:['backbone.extend', 'utils']
-	},
-	'iscrollview':{
-		deps: ['iscroll', 'jqm']
 	},
 	'mobiscrollcore' : {
 		deps: ['jquery', 'jqm-config']
@@ -114,9 +110,9 @@ require.config({
 	}
 }
 });
-define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "iscrollview", "utils", "app-config", "json2"],
-	function(require, $, _, Parse, FB) {
-		// TODO Temporal borrar entrega
+define(['require', "jquery", "underscore.extend", "parse", "facebook", "fb-connect", "jqm", "utils", "app-config", "json2"],
+	function(require, $, _, Parse, FB, CDV) {
+		// TODO temporal
 		if (!isOnDevice()) {
 			console.log('NOT IS ON DEVICE');
 			$(document).ready(function() {
@@ -133,46 +129,54 @@ define(['require', "jquery", "underscore.extend", "parse", "facebook", "jqm", "i
 		}
 
 		function onDeviceReady() {
+			console.log('ONDEVICEREADY');
 			document.addEventListener("backbutton", handleBackButton, false);
 			document.addEventListener("menubutton", handleMenuButton, false);
 			window.addEventListener("orientationchange", orientationHandler, false);
-			require(['uuidUtils'], function(UUIDUtils) {
-				new UUIDUtils().generateUUID({
-					success: function() {
-						initApplication();
-					},
-					error: function() {}
-				});
-			});
+			initApplication();
 		}
 });
 function initApplication() {
-		// i18n init
 	require(["jquery", "underscore.extend", "backbone.extend", "i18n", "router"],
 		function($, _, Backbone, i18n, AppRouter){
 		
+		console.log('INITAPPLICATION');
 		// Initialize Parse
 		Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
-		
-		/*var TestObject = Parse.Object.extend("TestObject");
-		var testObject = new TestObject();
-		  testObject.save({foo: "bar"}, {
-		  success: function(object) {
-			$(".success").show();
-		  },
-		  error: function(model, error) {
-			$(".error").show();
-		  }
-		});*/	
-		
+
+		//var TestObject = Parse.Object.extend("TestObject");
+		//var testObject = new TestObject();
+		//testObject.save({foo: "bar"}, {
+		//success: function(object) {
+		//$(".success").show();
+		//},
+		//error: function(model, error) {
+		//$(".error").show();
+		//}
+		//});
+	      
 		// Initialize Facebook
-		Parse.FacebookUtils.init({
-		  appId      : FB_APP_ID, // Facebook App ID
-		  channelUrl : '//playqa.parseapp.com/channel.html', // Channel File
-		  cookie     : true, // enable cookies to allow Parse to access the session
-		  xfbml      : true  // parse XFBML
-		});
-	   
+		if (isOnDevice()) {
+			console.log('FB.init-isOnDevice');
+			Parse.FacebookUtils.init({
+			  appId      : FB_APP_ID, // Facebook App ID
+	          nativeInterface: CDV.FB,
+	          useCachedDialogs: false,
+	          status:true, // check login status
+	          cookie:true, // enable cookies to allow Parse to access the session
+	          xfbml:true, // parse XFBML
+	          oauth:false
+			});
+		}else{
+			console.log('FB.init-isNOTOnDevice');
+			Parse.FacebookUtils.init({
+				  appId      : FB_APP_ID, // Facebook App ID
+		          status:false, // check login status
+		          cookie:true, // enable cookies to allow Parse to access the session
+		          xfbml:true // parse XFBML
+				});
+		}
+		
 	   // Initialize lang
 		var lang = window.localStorage.getItem(LS_LANG);
 		if (_.isNull(lang)) {
@@ -190,7 +194,7 @@ function initApplication() {
 				$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 				app = new AppRouter();
-				//mirem si és la primera vegada -> bd estarà buida i la variable de localstorage sera null
+				//mirem si es la primera vegada -> bd estara�buida i la variable de localstorage sera null
 				// TODO temporal
 				var empty = window.localStorage.getItem(LS_EMPTY_BD);
 				if (_.isNull(empty)) {

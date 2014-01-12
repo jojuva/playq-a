@@ -11,8 +11,7 @@ define(['underscore', 'parse', 'sync/dao/answerDAO'],
 			description: null,
 			correct: null,
 			createdAt: null,
-			updatedAt: null,
-			ACL: null
+			updatedAt: null
 		},
 
 		initialize: function() {

@@ -9,8 +9,7 @@ define(['underscore', 'parse', 'sync/dao/categoryDAO'],
 			objectId: null,
 			name: null,
 			createdAt: null,
-			updatedAt: null,
-			ACL: null
+			updatedAt: null
 		},
 
 		initialize: function() {

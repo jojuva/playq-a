@@ -36,7 +36,10 @@ define(['jquery', 'underscore.extend', 'backbone.extend', 'backbone.stickit.exte
 
 			this.subviews.headerView = new Header({
 				el: $('#page-header', this.el),
+				title: 'wait.title',
 				idPage: this.idPage,
+				showBackBtn: true,
+				showUserInfo: false,
 				showMenuListBtn: false
 			}).render();
 

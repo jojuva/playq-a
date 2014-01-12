@@ -33,7 +33,7 @@ define(['underscore', 'parse', 'sync/dao/statisticDAO'],
 			query.include('user');
 			query.find({
 			  success: function(stat) {
-				console.log("Successfully retrieved stat " + stat[0].toSource());
+				//console.log("Successfully retrieved stat " + stat[0].toSource());
 				self.add(stat[0]);
 				self.set({
 					objectId: stat[0].id,

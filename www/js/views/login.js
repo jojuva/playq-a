@@ -21,9 +21,6 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		render:function (eventName) {
 			$(this.el).html(this.template({versio: app_version})).i18n();
 			this.stickit();
-			if (this.options.sessionExp === true) {
-				this.showErrorRecived(ERROR.SESSION_EXPIRED);
-			}
 			this.renderPopups();
 			return this;
 		},
@@ -79,7 +76,10 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			Parse.User.logIn(username, password, {
 			  success: function(user) {
 				// Do stuff after successful login.
-				//window.localStorage.setItem(LS_NOM_OPERATOR, user);
+				window.localStorage.setItem(LS_NOM_OPERATOR, user.get("username"));
+				window.localStorage.setItem(LS_QUESTION_IDS, "");
+				window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+				window.localStorage.setItem(LS_STAY_LOGGED, $('#stay-logged').val());
 				app.navigate('menu', true);
 			  },
 			  error: function(user, error) {
@@ -93,31 +93,134 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		doFBLogin:function () {
 			var self = this;
 	  
-			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
+			//$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 			this.hideErrors();
 			this.hideErrorMessage($('#errors-login', this.el));
-
-			Parse.FacebookUtils.logIn(null, {
-			  success: function(user) {
-				if (!user.existed()) {
-				  alert("User signed up and logged in through Facebook!");
-				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-				  app.navigate('menu', true);	  
-				} else {
-				  alert("User logged in through Facebook!");
-				  window.localStorage.setItem(LS_NOM_OPERATOR, user);
-				  app.navigate('menu', true);	  
-				}
-			  },
-			  error: function(user, error) {
-				console.log(user);
-				console.log(error);
-				self.showErrorReceived(user, error);
-			  }
-			});		
+            
+//			if (!isOnDevice()) {
+//	            FB.login(
+//	                    function(response) {
+//	                    if (response.session) {
+//	                    	alert('logged in');
+//	                    	console.log(JSON.stringify(response));
+//	                    } else {
+//	                    	alert('not logged in');
+//	                    	console.log(JSON.stringify(response));
+//	                    	console.log(JSON.stringify(response.authResponse));
+//	        	            Parse.FacebookUtils.logIn("user_likes,email", {
+//
+//	        	            	success: function(_user) {
+//	        	            	    console.log("User is logged into Parse");
+//	        	            	},
+//
+//	        	            	error: function(error1, error2){
+//	        	            	    console.log("Unable to create/login to as Facebook user");
+//	        	            	    console.log("  ERROR1 = "+JSON.stringify(error1));
+//	        	            	    console.log("  ERROR2 = "+JSON.stringify(error2));
+//	        	            	}
+//	        	            	});
+//	                    }
+//	                    },
+//	                    { scope: "email" }
+//	                    );
+//			}
+//			
+//			if (!isOnDevice()) {
+//	            console.log('FB.getLoginStatus');
+//	            FB.getLoginStatus(function(response) {
+//	            	console.log('FB.getLoginStatus2');
+//	                if (response.status == 'connected') {
+//	                	//alert('status logged in');
+//	                	console.log(JSON.stringify(localStorage.getItem('cdv_fb_session')));
+//	                	console.log(JSON.stringify(response));
+//	                	self.getUserInfo(response.authResponse); // Get User Information.
+//	                } else {
+//		                //alert('status not logged in');
+//			            FB.login(
+//			                    function(response) {
+//			                    if (response.session) {
+//			                    	//alert('logged in');
+//			                    	console.log(JSON.stringify(response));
+//			                    	self.getUserInfo(response.authResponse); // Get User Information.
+//			                    } else {
+//			                    	//alert('not logged in');
+//			                    	console.log(JSON.stringify(response));
+//			                    }
+//			                    },
+//			                    { scope: "email" }
+//			                    );
+//	                }
+//	                });
+//				
+//			}
+			
+			// TODO: waiting Parse to resolve the issue with Phonegap
+			// https://www.parse.com/questions/facebookutils-and-cordova-310
+			//if (isOnDevice()) {
+				Parse.FacebookUtils.logIn("user_likes,email",{
+					  success: function(user) {
+						if (!user.existed()) {
+						  alert("User signed up and logged in through Facebook!");
+						} else {
+						  alert("User logged in through Facebook!");
+						}
+						window.localStorage.setItem(LS_NOM_OPERATOR, user.get("username"));
+						window.localStorage.setItem(LS_QUESTION_IDS, "");
+						window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
+						window.localStorage.setItem(LS_STAY_LOGGED, $('#stay-logged').val());
+						app.navigate('menu', true);	  
+					  },
+					  error: function(error1, error2){
+	            	    console.log("Unable to create/login to as Facebook user");
+	            	    console.log("  ERROR1 = "+JSON.stringify(error1));
+	            	    console.log("  ERROR2 = "+JSON.stringify(error2));
+					  }
+					});		
+			//}
 		},
-
+		
+//		getUserInfo: function(authResponse){
+//			console.log('getUserInfo');
+//			FB.api('/me?access_token='+authResponse.accessToken, function(response) {
+//				console.log(JSON.stringify(response));
+//		        console.log(response.name);
+//		        console.log(response.link);
+//		        console.log(response.username);
+//		        console.log(response.id);
+//		        console.log(response.email);
+//		        var query = new Parse.Query(Parse.User);
+//		        query.equalTo("email", response.email);  
+//		        query.equalTo("username", response.username);
+//		        query.find({
+//		          success: function(user) {
+//		        	  if (user.length>0){
+//		        		  console.log(JSON.stringify(user));
+//		        		  user.become(Parse.User.current()._sessionToken);
+//		        		  app.navigate('menu', true);
+//		        	  }else{
+//		  		          var newuser = new Parse.User();
+//		        		  newuser.set("email", response.email);  
+//		        		  newuser.set("username", response.username);
+//		        		  newuser.set("password", response.username);
+//		        		  newuser.signUp(null, {
+//		        			  success: function(user) {
+//		        				    // Hooray! Let them use the app now.
+//		        				  	console.log(JSON.stringify(user));
+//		        			        app.navigate('menu', true);
+//		        				  },
+//		        				  error: function(user, error) {
+//		        				    // Show the error message somewhere and let the user try again.
+//		        				    alert("Error: " + error.code + " " + error.message);
+//		        				  }
+//		        				});
+//		        	  }
+//		        		  
+//		          }
+//		        });
+//		        });
+//		},
+		
 		showErrorReceived: function (user, error) {
 			var $errorsContent = $('#errors-login', this.el);
 
@@ -157,8 +260,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			}).render();
 
 			this.subviews.loginView = new Login({
-				el: $('#page-content', this.el),
-				sessionExp: this.options.sessionExp
+				el: $('#page-content', this.el)
 			}).render();
 
 			return this;
@@ -175,9 +277,9 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			buttonsMenu.push({id: 'btn_cat', icon: 'chat', class:'', text: 'menuList.catala', url: 'idioma/ca' });
 			buttonsMenu.push({id: 'btn_esp', icon: 'chat', class:'', text: 'menuList.castellano', url: 'idioma/es' });
 
-			if (!isIOS()) {
-				buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
-			}
+			//if (!isIOS()) {
+				//buttonsMenu.push({id: 'btn_salir', icon: 'signout', class:'', text: 'menuList.exit', url: 'exitApp' });
+			//}
 
 			return buttonsMenu;
 		}

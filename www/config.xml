@@ -2,10 +2,10 @@
 <widget id="edu.uoc.jojuva.playqa" version="0.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>PlayQA</name>
     <description>
-        Play Q&amp;A - Application for students.
+        Play QA for students
     </description>
     <author email="jonas.julve@gmail.com" href="http://www.uoc.edu">
-        Jon·s Julve
+        Jon√°s Julve
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="phonegap-version" value="3.1.0" />
@@ -45,4 +45,13 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <access origin="http://127.0.0.1*" />
     <content src="index.html" />
+	<gap:plugin name="org.apache.cordova.camera" />
+	<gap:plugin name="com.phonegap.plugins.facebookconnect">
+		<param name="APP_ID" value="217472768376798" />
+		<param name="APP_NAME" value="PlayQA" />
+	</gap:plugin>
+	<gap:plugin name="org.apache.cordova.device" />
+	<gap:plugin name="org.apache.cordova.file" />
+	<gap:plugin name="org.apache.cordova.network-information" />
+	<gap:plugin name="org.apache.cordova.splashscreen" />
 </widget>

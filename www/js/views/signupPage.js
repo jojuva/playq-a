@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 	function($, _, Backbone, stickit, Parse, PlayUser, Ranking, Statistic, Header, AlertPopup, jqmPageTpl, signupTpl) {
 
 	var SignUp = Backbone.View.extend({
+		parseFile: null,
 		
 		subviews: {},
 		
@@ -31,9 +32,29 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 		},
 		
 		events: {
-			"click #signup_btn": "validateForm"
+			"click #signup_btn": "validateForm",
+			"click #photo_btn": "doPhoto"
 		},
 
+		doPhoto: function(){
+			var destinationType=navigator.camera.DestinationType;
+			var pictureSource=navigator.camera.PictureSourceType;
+			navigator.camera.getPicture(this.savePhoto, this.errorPhoto, { quality: 50,
+			    destinationType: destinationType.DATA_URL,
+			    sourceType: pictureSource.SAVEDPHOTOALBUM
+			});
+		},
+		
+		savePhoto: function (imageData) {
+		    var image = document.getElementById('profileImg');
+		    image.src = "data:image/jpeg;base64," + imageData;
+		    window.localStorage.setItem(LS_PHOTO, imageData);
+		},
+
+		errorPhoto: function (message) {
+		    alert('Failed because: ' + message);
+		},
+		
 		scrollTop: function () {
 			if (isIOS()) {
 				$.mobile.silentScroll(0);
@@ -56,14 +77,18 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			this.showErrors(errors);
 			this.clearPassword();
 		},
-
+		
 		doSignUp:function () {
 			var self = this;
+
 			var user = new Parse.User();
 			user.set("username", this.model.get('username'));
 			user.set("password", this.model.get('password'));
-			user.set("email", this.model.get('email'));			
-	  
+			user.set("email", this.model.get('email'));	
+			var imageData = window.localStorage.getItem(LS_PHOTO);
+		    this.parseFile = new Parse.File('mobile.jpg', { base64: imageData });
+			user.set("image", this.parseFile);	
+			
 			$.mobile.loading('show', {text: $.t("loading.message"), textVisible: true, html: "", theme: "f"});
 
 			this.hideErrors();
@@ -74,13 +99,15 @@ define(['jquery', 'underscore', 'backbone.extend', 'backbone.stickit.extend', 'p
 			user.signUp(null, {
 			  success: function(user) {
 				console.log('New user created with objectId: ' + user.id);
-				//window.localStorage.setItem(LS_NOM_OPERATOR, user);
 				self.addRanking(user);
 				self.addStatistic(user);
+				window.localStorage.setItem(LS_NOM_OPERATOR, user.get("username"));
+				window.localStorage.setItem(LS_QUESTION_IDS, "");
+				window.localStorage.setItem(LS_LAST_LOGIN_DATETIME, moment().format("YYYYMMDDHHmmss"));
 				app.navigate('menu', true);	
 			  },
 			  error: function(user, error) {
-				alert("Error: " + error.code + " " + error.message);
+				//alert("Error: " + error.code + " " + error.message);
 				console.log("login-error:"+error.message);
 				self.showErrorReceived(user, error);	
 			  }

@@ -49,16 +49,19 @@ define(['underscore', 'parse'],
 			var Category = Parse.Object.extend("Category");
 			var cat = new Category();
 			cat.set("objectId",catId);			
-			query.equalTo("categories",cat);
-			//query.include("answers");
+			query.equalTo("category",cat);
+			if (window.localStorage.getItem(LS_QUESTION_IDS) !== ""){
+				console.log("QIDS:"+window.localStorage.getItem(LS_QUESTION_IDS));
+				query.notContainedIn("objectId",window.localStorage.getItem(LS_QUESTION_IDS).split(","));
+			}
 			query.find( {
 			  success: function(objects) {
 				// The object was retrieved successfully.
 				console.log("#questions:"+objects.length);
-				if (objects.length!=0){
+				if (objects.length!==0){
 					callbacks.success(objects);
 				}else{
-					callbacks.error('no questions for this category');
+					callbacks.error('no more questions for this category');
 				}
 			  },
 			  error: function(error) {
@@ -80,7 +83,7 @@ define(['underscore', 'parse'],
 			  error: function(question, error) {
 				// Execute any logic that should take place if the save fails.
 				// error is a Parse.Error with an error code and description.
-				alert('Failed to create new object, with error code: ' + error.description);
+				alert('Failed to create new object, with error code: ' + error.code);
 			  }
 			});
 		},

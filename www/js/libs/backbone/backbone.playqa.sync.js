@@ -15,7 +15,7 @@ Backbone.sync = function (method, model, options) {
             }
 
             if (!_.isUndefined(model) && model.local === true) {
-                // TODO temporal borrar al entregar
+                // TODO temporal
                 options.url = model.url;
             } else {
                 if(_.isNull(options.url) || _.isUndefined(options.url)) {

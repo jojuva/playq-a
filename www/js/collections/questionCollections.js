@@ -1,4 +1,4 @@
-define(['underscore', 'parse', 'models/Question', 'sync/dao/QuestionDAO'], 
+define(['underscore', 'parse', 'models/question', 'sync/dao/questionDAO'], 
   function(_, Parse, Question, QuestionDAO){
 	var QuestionCollection = Parse.Collection.extend({
 		model: Question,
